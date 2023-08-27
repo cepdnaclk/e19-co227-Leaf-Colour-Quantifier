@@ -1,0 +1,4 @@
+.vscode
+
+/backend/rest-api/env
+/backend/rest-api/__pycache__
