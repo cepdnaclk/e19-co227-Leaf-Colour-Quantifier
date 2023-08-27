@@ -9,7 +9,7 @@ title: A Field-Based Approach for Quantifying Plant Leaf Color
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# A Field-Based Approach for Quantifying Plant Leaf Color
 
 ---
 
