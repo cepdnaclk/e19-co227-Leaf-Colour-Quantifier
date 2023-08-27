@@ -37,9 +37,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 Traditionally, leaf color assessment has been subjective and time-consuming. To overcome these limitations, we are developing a field technique that leverages computer vision and image processing. By capturing leaf images and analyzing the RGB values or other color models, we can quantify the color characteristics of the leaves, such as hue, saturation, and brightness.
 Our approach is simple, affordable, and accessible, using commonly available equipment and open-source software libraries. The use of digital imaging ensures consistent and repeatable measurements, reducing human bias.
 
-## Other Sub Topics
 
-.....
 
 ## Links
 
