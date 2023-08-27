@@ -3,7 +3,7 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and title
-repository-name: e19-co227-leaf-Colour-Quantifier
+repository-name: e19-co227-Leaf-Colour-Quantifier
 title:A Field-Based Approach for Quantifying Plant Leaf Color
 ---
 
