@@ -9,10 +9,10 @@ This is a sample image, to show how to add images to your page. To learn more op
  -->
 
 ## Team
--  E/19/094, Eashwara M.
--  E/19/129, Gunawardana K.H.
--  E/19/372, Silva A.K.M.
--  E/19/408, Ubayasiri S.J.
+-  E/19/094-Eashwara M.
+-  E/19/129-Gunawardana K.H.
+-  E/19/372-Silva A.K.M.
+-  E/19/408-Ubayasiri S.J.
 
 ## Table of Contents
 1. [Introduction](#introduction)
