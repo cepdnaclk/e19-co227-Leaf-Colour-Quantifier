@@ -42,13 +42,13 @@ async def predict_api(file: UploadFile = File(...)):
     # Return the streaming response.
     return response
 
+@app.get("/api_test")
+async def read_main():
+    return {"msg": "Hello World"}
+
 # main function
 def api():
-    try:
-        uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=True)
-        return True
-    except:
-        return False
+    uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=True)
 
 if __name__ == "__main__":
     uvicorn.run("api:app", host="0.0.0.0", port=5000, reload=True)
