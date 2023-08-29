@@ -44,7 +44,11 @@ async def predict_api(file: UploadFile = File(...)):
 
 # main function
 def api():
-    uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=True)
+    try:
+        uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=True)
+        return True
+    except:
+        return False
 
 if __name__ == "__main__":
     uvicorn.run("api:app", host="0.0.0.0", port=5000, reload=True)
