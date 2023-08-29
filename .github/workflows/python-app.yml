@@ -18,9 +18,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: go to backend
-      run: |
-        cd backend
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
