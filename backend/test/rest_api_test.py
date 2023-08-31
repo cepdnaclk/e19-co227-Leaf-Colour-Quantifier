@@ -1,6 +1,5 @@
 import sys
 import os
-# sys.path.insert(0, __file__.split("\\test")[0])
 sys.path.insert(0, os.getcwd())
 
 from fastapi.testclient import TestClient
