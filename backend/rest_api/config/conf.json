@@ -1,0 +1,15 @@
+{
+  "PROJECT_CONF": {
+    "PROJECT_NAME": "Leaf-Colour-Quantifier",
+    "PROJECT_DESCRIPTION": "A simple field technique to detect/quantify the colour of a plant leaf.",
+    "API_VERSION": "1.0.0",
+    "API_VERSION_PATH": "/",
+    "ACCESS_TOKEN_EXPIRE_MINUTES": 300,
+    "SESSION_TOKEN_EXPIRE_SECONDS": 43200,
+    "SERVER_NAME": "LeafColour",
+    "SERVER_HOST": "https://localhost:5000",
+    "BACKEND_CORS_ORIGINS": [
+      "*"
+    ]
+  }
+}
