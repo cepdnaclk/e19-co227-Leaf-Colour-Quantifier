@@ -1,48 +1,43 @@
-from typing import Union
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import StreamingResponse
+import sys
+import os
+sys.path.insert(0, os.getcwd())
+
+from fastapi import FastAPI
 import uvicorn
-import numpy as np
-import cv2
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
+from rest_api.config import ProjectSettings
+from rest_api.routes import image
  
-app = FastAPI()
+app = FastAPI(title=ProjectSettings.PROJECT_NAME,
+              description=ProjectSettings.PROJECT_DESCRIPTION,
+              version="1.0.0",
+              openapi_url=f"{ProjectSettings.API_VERSION_PATH}openapi.json",
+              docs_url=f"{ProjectSettings.API_VERSION_PATH}docs",
+              redoc_url=f"{ProjectSettings.API_VERSION_PATH}redoc")
 
-@app.post("/")
-async def predict_api(file: UploadFile = File(...)):
-    contents = await file.read()
+# Middleware Settings
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ProjectSettings.BACKEND_CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    nparr = np.fromstring(contents, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+# adding routes
+app.include_router(image.router, prefix="/image")
 
-    cv2.GaussianBlur(img, (3, 3), 0)
-    #Convert image to grayscale
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #Apply Sobel method to the grayscale image
-    grad_x = cv2.Sobel(gray, cv2.CV_16S, 1, 0, ksize=3, scale=1, 
-    delta=0, borderType=cv2.BORDER_DEFAULT) #Horizontal Sobel 
+# Root API
+@app.get(ProjectSettings.API_VERSION_PATH, include_in_schema=False)
+def root() -> JSONResponse:
+    return JSONResponse(status_code=200,
+                        content={
+                            "message": "Welcome to Sample Server"})
 
-    grad_y = cv2.Sobel(gray, cv2.CV_16S, 0, 1, ksize=3, scale=1, 
-    delta=0, borderType=cv2.BORDER_DEFAULT) #Vertical Sobel 
-
-    abs_grad_x = cv2.convertScaleAbs(grad_x)
-    abs_grad_y = cv2.convertScaleAbs(grad_y)
-    grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
-
-    # line that fixed it
-    _, encoded_img = cv2.imencode('.PNG', grad)
-
-    # Create a streaming response.
-    def image_generator():
-        yield encoded_img.tobytes()
-
-    # Create a StreamingResponse with the generator function and appropriate media type
-    # return StreamingResponse(image_generator(), media_type="image/jpeg")
-    response = StreamingResponse(image_generator(), media_type="image/png")
-
-    # Return the streaming response.
-    return response
-
-@app.get("/api_test")
+# testing
+@app.get("/api_test", include_in_schema=False)
 async def read_main():
     return {"msg": "Hello World"}
 
