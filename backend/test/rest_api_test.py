@@ -3,7 +3,7 @@ import os
 sys.path.insert(0, os.getcwd())
 
 from fastapi.testclient import TestClient
-from backend.rest_api import api  # Adjust the import path based on your file structure
+from rest_api import api  # Adjust the import path based on your file structure
 
 client = TestClient(api.app)
 
