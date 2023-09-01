@@ -1,1 +1,1 @@
-from . import imageEnhance
+from . import Image
