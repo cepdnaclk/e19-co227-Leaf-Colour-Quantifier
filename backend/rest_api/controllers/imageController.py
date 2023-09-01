@@ -8,7 +8,6 @@ def getImageToEnhance(contents):
     nparr = np.fromstring(contents, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    # enhancedImg = imageEnhance.getImage(img)
     image = Image(img)
     enhancedImg = image.getGradImage()
 
