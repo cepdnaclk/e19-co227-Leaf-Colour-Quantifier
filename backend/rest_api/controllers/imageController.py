@@ -1,14 +1,16 @@
 import numpy as np
 import cv2
 from fastapi.responses import StreamingResponse
-from image_processing import imageEnhance
+from image_processing.Image import Image
 
 def getImageToEnhance(contents):
     
     nparr = np.fromstring(contents, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    enhancedImg = imageEnhance.getImage(img)
+    # enhancedImg = imageEnhance.getImage(img)
+    image = Image(img)
+    enhancedImg = image.getGradImage()
 
     # line that fixed it
     _, encoded_img = cv2.imencode('.PNG', enhancedImg)
