@@ -2,6 +2,7 @@
 
 **/__pycache__
 **/*.pyc
+*.pyc
 
 /backend/env
 /backend/rest-api/__pycache__

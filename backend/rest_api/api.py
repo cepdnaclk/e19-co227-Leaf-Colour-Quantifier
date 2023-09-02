@@ -34,7 +34,7 @@ app.include_router(image.router, prefix="/image")
 def root() -> JSONResponse:
     return JSONResponse(status_code=200,
                         content={
-                            "message": "Welcome to Sample Server"})
+                            "message": ProjectSettings.PROJECT_NAME})
 
 # testing
 @app.get("/api_test", include_in_schema=False)
