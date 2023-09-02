@@ -5,5 +5,4 @@
 *.pyc
 
 /backend/env
-/backend/rest-api/__pycache__
 /backend/.pytest_cache
