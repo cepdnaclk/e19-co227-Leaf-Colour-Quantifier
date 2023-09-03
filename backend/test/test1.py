@@ -4,6 +4,7 @@ import numpy as np
 # Let's load a simple image with 3 black squares
 image = cv2.imread("test\\a4.jpg")
 image = cv2.resize(image, (400, 400))
+print(image)
   
 # Grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

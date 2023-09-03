@@ -4,6 +4,8 @@ import numpy as np
 image = cv2.imread("test\\a4.jpg")
 
 image = cv2.resize(image, (400, 400))
+
+print(image.shape)
 # image = cv2.imread("test\\photo1.jpg")
 original = image.copy()
 mask = np.zeros(image.shape, dtype=np.uint8)
