@@ -7,7 +7,7 @@ from image_processing.Image import Image
 import numpy as np
  
 # Load the image
-image = cv2.imread("test\\photo1.jpg")
+image = cv2.imread("test\\a4.jpg")
 myImage = Image(image)
 
 def test_image():
@@ -17,10 +17,12 @@ def test_image():
         assert image == myImage.getImage()
 
 if __name__ == "__main__":
-    print(type(image == myImage.getImage()) == np.ndarray)
-    cv2.imshow("Image", myImage.getGradImage())
-    # cv2.imshow("Image", myImage.image)
 
+    cv2.imshow("Image", myImage.getGradImage())
+    # Wait for the user to press a key
+    cv2.waitKey(0)
+
+    cv2.imshow("Image", myImage.getSegmentationImage())
     # Wait for the user to press a key
     cv2.waitKey(0)
     
