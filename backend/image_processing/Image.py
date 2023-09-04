@@ -1,6 +1,6 @@
 import numpy as np
-from typing import Annotated, Union
 import cv2
+from image_processing.leafSegmentation.segment import segment_leaf
 
 class Image:
 
@@ -12,8 +12,8 @@ class Image:
     
     def getGradImage(self):
         newImage = self.image.copy()
-
         cv2.GaussianBlur(newImage, (3, 3), 0)
+        
         #Convert image to grayscale
         gray = cv2.cvtColor(newImage, cv2.COLOR_BGR2GRAY)
         #Apply Sobel method to the grayscale image
@@ -28,3 +28,6 @@ class Image:
         grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
 
         return grad
+    
+    def getSegmentationImage(self):
+        return segment_leaf(self.image, 1, True, 0)
