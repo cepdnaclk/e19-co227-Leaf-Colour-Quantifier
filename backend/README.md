@@ -1,5 +1,6 @@
 ## Setup
-> cd backend 
+
+> cd backend
 
 > python -m venv env
 
@@ -8,4 +9,7 @@
 > pip install -r requirements.txt
 
 ## Run
+
+> cd backend
+
 > python main.py
