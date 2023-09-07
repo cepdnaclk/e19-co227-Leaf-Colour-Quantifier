@@ -18,47 +18,59 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black38,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/logo.png',
-              width: 200,
-              height: 200,
-            ),
-            // const SizedBox(height: 20),
-            Image.asset(
-              'assets/images/name.png',
-              width: 200,
+              'assets/images/logo-vertical.png',
+              width: 280,
+
             ),
 
-            const SizedBox(height: 60),
-            Container(
-              width: 125,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    foregroundColor: Colors.black),
-                onPressed: () => getImage(source: ImageSource.camera),
-                child: const Text('📷 Take Photo'),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: 125,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    foregroundColor: Colors.black),
-                onPressed: () => getImage(source: ImageSource.gallery),
-                child: const Text('Import'),
-              ),
+
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        foregroundColor: Colors.white,
+                      side: const BorderSide(color: Colors.white, width: 1)
+
+                    ),
+
+                    onPressed: () => getImage(source: ImageSource.camera),
+                    label: const Text('Import',
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                      )
+                    ),
+                    icon: const Icon(
+                        Icons.image,
+                      size: 18,
+                    )
+                ),
+                const SizedBox(width: 10),
+
+                ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        foregroundColor: Colors.black),
+                    onPressed: () => getImage(source: ImageSource.camera),
+                    label: const Text('Take Photo'),
+                    icon: const Icon(
+                      Icons.camera
+                    )
+                  ),
+
+              ],
             ),
           ],
         ),
