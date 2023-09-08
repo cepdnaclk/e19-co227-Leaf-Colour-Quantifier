@@ -8,13 +8,14 @@ def resize(image, p=0.3):
     return cv.resize(image, (w, h))
 
 
-image = cv.imread('dieffenbachia-square-scaled.jpg')
+image = cv.imread('test\\a1.jpg')
 cv.GaussianBlur(image, (3, 3), 0)
 gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 
 # apply sobel method to the grayscale image
 grad_x = cv.Sobel(gray, cv.CV_64F, 1, 0, ksize=3, scale=1,
                   delta=0, borderType=cv.BORDER_DEFAULT)
+
 grad_y = cv.Sobel(gray, cv.CV_64F, 0, 1, ksize=3, scale=1,
                   delta=0, borderType=cv.BORDER_DEFAULT)
 

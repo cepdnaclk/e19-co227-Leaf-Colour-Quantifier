@@ -9,9 +9,10 @@ def get_dominant_colors(image, num_colors=3):
 
     # Convert the image to RGB color space
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
+    
     # Flatten the image into a 2D array of pixels
     pixels = image_rgb.reshape(-1, 3)
+
 
     # Perform K-means clustering
     kmeans = KMeans(n_clusters=num_colors)
@@ -19,15 +20,19 @@ def get_dominant_colors(image, num_colors=3):
 
     # Get the labels and counts for each cluster
     labels, counts = np.unique(kmeans.labels_, return_counts=True)
+    # print(labels, counts)
 
     # Sort the clusters based on count in descending order
     sorted_clusters = np.argsort(counts)[::-1]
+    # print(sorted_clusters)
 
     # Get the top three dominant colors
     top_clusters = sorted_clusters[:num_colors]
+    # print(top_clusters)
 
     # Get the RGB values of the top three clusters
     top_colors = kmeans.cluster_centers_[top_clusters].astype(int)
+    # print(top_colors)
 
     # Calculate the percentage of each color
     total_pixels = pixels.shape[0]
@@ -36,6 +41,20 @@ def get_dominant_colors(image, num_colors=3):
     # Calculate the spread of each color
     color_spreads = np.sqrt(
         np.mean(np.square(pixels - kmeans.cluster_centers_[kmeans.labels_]), axis=0))
+    
+    temp_pixel = pixels[np.random.choice(pixels.shape[0], 1000, replace=False)]
+
+    ax = plt.axes(projection='3d')
+    xdata = temp_pixel[:,0]
+    ydata = temp_pixel[:,1]
+    zdata = temp_pixel[:,2]
+    ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens')
+    print(top_colors)
+    xdata = top_colors[:,0]
+    ydata = top_colors[:,1]
+    zdata = top_colors[:,2]
+    ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Dark2_r')
+    plt.show()
 
     return top_colors, color_spreads, color_percentages
 
@@ -104,32 +123,33 @@ def resize(image, p=0.3):
     return cv2.resize(image, (w, h))
 
 
-photo = cv2.imread('photo.jpg')
-paint = cv2.imread('paint.jpg')
+photo = cv2.imread('test\\a5.jpg')
+# paint = cv2.imread('paint.jpg')
 
-composite_mask = createCompositeMask(photo, paint)
+# composite_mask = createCompositeMask(photo, paint)
 
-leaf = cv2.bitwise_and(photo, photo, mask=composite_mask)
+# leaf = cv2.bitwise_and(photo, photo, mask=composite_mask)
 
 
-# Resizing Image
-p = 0.3
-w = int(leaf.shape[1] * p)
-h = int(leaf. shape[0] * p)
-resized = cv2.resize(leaf, (w, h))
-cv2.imshow(' resized_leaf', resized)
-cv2 .waitKey(0)
+# # Resizing Image
+# p = 0.3
+# w = int(leaf.shape[1] * p)
+# h = int(leaf. shape[0] * p)
+# resized = cv2.resize(leaf, (w, h))
+# cv2.imshow(' resized_leaf', resized)
+# cv2 .waitKey(0)
 
-# compute a histogram for masked image
-plot_histogram(leaf, "Histogram for Masked Image", mask=composite_mask)
+# # compute a histogram for masked image
+# plot_histogram(leaf, "Histogram for Masked Image", mask=composite_mask)
 
-# show the plots
-plt.show()
+# # show the plots
+# plt.show()
 
 
 dominant_colors, color_spreads, color_percentages = get_dominant_colors(
     photo)
 
+# print(dominant_colors, color_spreads, color_percentages)
+
 for color, spread, percentage in zip(dominant_colors, color_spreads, color_percentages):
-    print(
-        f"Dominant color: {color}, Spread: {spread}, Percentage: {percentage}%")
+    print(f"Dominant color: {color}, Spread: {spread}, Percentage: {percentage}%")
