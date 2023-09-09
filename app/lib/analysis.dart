@@ -1,7 +1,6 @@
 import 'dart:math';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:leaf_spectrum/components/histogram.dart';
 
 class Analysis extends StatelessWidget {
   Analysis({super.key});
@@ -32,27 +31,15 @@ class Analysis extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 1.2,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
+                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: const Color.fromRGBO(
+                          64, 72, 80, 0.4196078431372549)
                   ),
-                  child: LineChart(
-                    LineChartData(
-                      minX: 0,
-                      maxX: 11,
-                      minY: 0,
-                      maxY: 255,
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: [
-                            const FlSpot(0, 3),
-                            const FlSpot(4,5),
-                          ]
-                        )
-                      ]
-                    )
-                  ),
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.hardEdge,
+                  child: const Histogram(),
                 ),
               )
             ]
