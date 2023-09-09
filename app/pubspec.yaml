@@ -37,6 +37,8 @@ dependencies:
   image_picker: ^1.0.4
   dropdown_search: ^5.0.6
   fl_chart: ^0.63.0
+  http: ^1.1.0
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:

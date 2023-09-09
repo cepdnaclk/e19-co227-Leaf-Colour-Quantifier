@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:path_provider/path_provider.dart';
 
 class ImagePage extends StatelessWidget {
-
   final File imageFile;
 
   const ImagePage({Key? key, required this.imageFile}) : super(key: key);
@@ -30,6 +32,68 @@ class ImagePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          print(imageFile.path);
+          var processedImage = await sendImageToServer(
+              imageFile, 'http://192.168.8.177:5000/image/segmentaion');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  ProcessedImagePage(processedImage: processedImage),
+            ),
+          );
+        },
+        child: Icon(Icons.send),
+        backgroundColor: Colors.green,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+
+  Future<File> sendImageToServer(File imageFile, String url) async {
+    // Create a multipart request
+    // print(imageFile.p);
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+
+    // Attach the image file to the request
+    var file = await http.MultipartFile.fromPath('file', imageFile.path);
+    request.files.add(file);
+
+    // Send the request and wait for the response
+    var response = await request.send();
+
+    // Read the response and convert it to a file
+    var processedImage = await http.Response.fromStream(response);
+
+    // var processedImageFile = File('./assets');
+    var tempDir = await getTemporaryDirectory();
+    var tempPath = tempDir.path;
+    var processedImageFile = File('$tempPath/processed_image.jpg');
+    await processedImageFile.writeAsBytes(processedImage.bodyBytes);
+
+    return processedImageFile;
+  }
+}
+
+class ProcessedImagePage extends StatelessWidget {
+  final File processedImage;
+
+  const ProcessedImagePage({Key? key, required this.processedImage})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+        title: Text('Processed Image'),
+      ),
+      body: Center(
+        child: Image.file(processedImage),
       ),
     );
   }
