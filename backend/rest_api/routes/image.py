@@ -19,16 +19,16 @@ async def getSegmentationImage(file: UploadFile = File(...)):
     # Return the streaming response.
     return imageController.getImageToSegementation(contents)
 
-@router.post("/segmentaion/nparray")
-async def getSegmentationImage(file: UploadFile = File(...)):
-    contents = await file.read()
+# @router.post("/segmentaion/nparray")
+# async def getSegmentationImage(file: UploadFile = File(...)):
+#     contents = await file.read()
 
-    # Return the streaming response.
-    return imageController.getImageToNpArray(contents)
+#     # Return the streaming response.
+#     return imageController.getImageToNpArray(contents)
 
-@router.post("/segmentaion/rgb")
-async def getSegmentationImage(file: UploadFile = File(...)):
-    contents = await file.read()
+# @router.post("/segmentaion/rgb")
+# async def getSegmentationImage(file: UploadFile = File(...)):
+#     contents = await file.read()
 
-    # Return the streaming response.
-    return imageController.getImageToRGB(contents)
+#     # Return the streaming response.
+#     return imageController.getImageToRGB(contents)
