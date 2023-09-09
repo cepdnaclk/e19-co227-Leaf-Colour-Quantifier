@@ -71,9 +71,10 @@ class Histogram extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 16.0,
               ),
             ),
-            axisNameSize: 20.0
+            axisNameSize: 30.0
           ),
          bottomTitles: AxisTitles(
            sideTitles: bottomTitles(),

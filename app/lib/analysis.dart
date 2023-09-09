@@ -1,9 +1,8 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:leaf_spectrum/components/histogram.dart';
 
 class Analysis extends StatelessWidget {
-  Analysis({super.key});
+  const Analysis({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,9 @@ class Analysis extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
               AspectRatio(
-                aspectRatio: 1.2,
+                aspectRatio: 0.9,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: const Color.fromRGBO(
@@ -41,7 +40,22 @@ class Analysis extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   child: const Histogram(),
                 ),
-              )
+              ),
+              const SizedBox(height: 40,),
+              Center(
+                child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        foregroundColor: Colors.black),
+                    onPressed: () {},
+                    label: const Text('Analyse another leaf'),
+                    icon: const Icon(
+                        Icons.restart_alt_sharp
+                    )
+                ),
+              ),
             ]
           ),
         ),
