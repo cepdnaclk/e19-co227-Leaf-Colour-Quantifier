@@ -27,19 +27,19 @@ app.add_middleware(
 )
 
 # adding routes
-app.include_router(image.router, prefix="/image")
+app.include_router(image.router, prefix="/image", tags=["image"])
 
 # Root API
-@app.get(ProjectSettings.API_VERSION_PATH, include_in_schema=False)
+@app.get(ProjectSettings.API_VERSION_PATH, tags=["api"])
 def root() -> JSONResponse:
     return JSONResponse(status_code=200,
                         content={
                             "message": ProjectSettings.PROJECT_NAME})
 
 # testing
-@app.get("/api_test", include_in_schema=False)
+@app.get("/api_test", include_in_schema=False, tags=["test"])
 async def read_main():
-    return {"msg": "Hello World"}
+    return {"msg": "test"}
 
 # main function
 def api():
