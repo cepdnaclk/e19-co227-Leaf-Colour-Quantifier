@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
+import 'package:leaf_spectrum/analysis.dart';
+import 'package:leaf_spectrum/processed_image.dart';
 
 class ImagePage extends StatelessWidget {
   final File imageFile;
@@ -37,7 +39,7 @@ class ImagePage extends StatelessWidget {
         onPressed: () async {
           print(imageFile.path);
           var processedImage = await sendImageToServer(
-              imageFile, 'http://192.168.8.177:5000/image/segmentaion');
+              imageFile, 'http://192.168.1.100:5000/image/segmentaion');
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -75,26 +77,5 @@ class ImagePage extends StatelessWidget {
     await processedImageFile.writeAsBytes(processedImage.bodyBytes);
 
     return processedImageFile;
-  }
-}
-
-class ProcessedImagePage extends StatelessWidget {
-  final File processedImage;
-
-  const ProcessedImagePage({Key? key, required this.processedImage})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-        title: Text('Processed Image'),
-      ),
-      body: Center(
-        child: Image.file(processedImage),
-      ),
-    );
   }
 }
