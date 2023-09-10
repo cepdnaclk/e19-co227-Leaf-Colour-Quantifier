@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 # adding routes
-app.include_router(image.router, prefix="/image")
+app.include_router(image.router, prefix="/image", tags=["image"])
 
 # Root API
 @app.get(ProjectSettings.API_VERSION_PATH, include_in_schema=False)
