@@ -1,8 +1,29 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:leaf_spectrum/components/histogram.dart';
+import 'dart:typed_data';
+import 'package:image/image.dart' as img;
 
 class Analysis extends StatelessWidget {
-  const Analysis({super.key});
+  final File imageFile;
+  const Analysis({super.key, required this.imageFile});
+
+
+  Future<List<List<int>>> getImageChannels() async {
+    final Uint8List imageData = await imageFile.readAsBytes();
+    img.Image? image = img.decodeImage(imageData);
+
+
+    // Split the image into channels
+    List<List<int>> channels = [];
+
+    if (image != null) {
+      channels[0] = image.getBytes(order: img.ChannelOrder.rgb);
+
+    }
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,4 +83,7 @@ class Analysis extends StatelessWidget {
       ),
     );
   }
+
+
+
 }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:path_provider/path_provider.dart';
 import 'package:leaf_spectrum/analysis.dart';
 
 class ProcessedImagePage extends StatelessWidget {
@@ -38,7 +35,7 @@ class ProcessedImagePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Analysis(),
+                    builder: (context) => Analysis(imageFile: processedImage)                ,
                   ),
                 );
               },
