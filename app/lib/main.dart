@@ -24,7 +24,7 @@ void main() async {
   File file = await moveAssetToFile('assets/images/test.jpeg');
   Analysis analysis = Analysis(imageFile: file);
 
-  print(await analysis.getImageChannels());
+  // print(await analysis.getHistogramMaps());
   runApp(MaterialApp(
   home: analysis,
   ));

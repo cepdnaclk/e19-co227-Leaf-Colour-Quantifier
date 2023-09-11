@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
+import 'package:leaf_spectrum/models/histogram_data.dart';
 class Histogram extends StatelessWidget {
-  const Histogram({super.key});
+  final HistogramData histogramData;
+  Histogram({super.key, required this.histogramData});
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -27,7 +28,7 @@ class Histogram extends StatelessWidget {
   SideTitles leftTitles() => SideTitles(
     getTitlesWidget: leftTitleWidgets,
     showTitles: true,
-    interval: 2000,
+    interval: histogramData.getMaximum() / 10,
     reservedSize: 24,
   );
 
@@ -94,7 +95,7 @@ class Histogram extends StatelessWidget {
         minX: 0,
         maxX: 255,
         minY: 0,
-        maxY: 10000,
+        maxY: histogramData.getMaximum().toDouble(),
         gridData: const FlGridData(
           show: true,
         ),
@@ -104,27 +105,16 @@ class Histogram extends StatelessWidget {
         lineBarsData: [
 
           lineData(
-            spots: [
-              const FlSpot(0, 3000),
-              const FlSpot(10, 5000),
-              const FlSpot(25, 10000),
-              const FlSpot(255, 2000)
-            ],
+            spots: histogramData.getRedSpots(),
             color: Colors.redAccent,
           ),
           lineData(
-            spots: [
-              const FlSpot(20, 2000),
-              const FlSpot(40, 3000),
-            ],
+            spots: histogramData.getGreenSpots(),
             color: Colors.greenAccent,
           ),
 
           lineData(
-            spots: [
-              const FlSpot(50, 2000),
-              const FlSpot(80, 3000),
-            ],
+            spots: histogramData.getBlueSpots(),
             color: Colors.blueAccent,
           )
         ],
