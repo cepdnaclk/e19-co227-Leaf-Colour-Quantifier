@@ -9,18 +9,34 @@ class Analysis extends StatelessWidget {
   const Analysis({super.key, required this.imageFile});
 
 
-  Future<List<List<int>>> getImageChannels() async {
+  Future<List<int>> getImageChannels() async {
     final Uint8List imageData = await imageFile.readAsBytes();
     img.Image? image = img.decodeImage(imageData);
 
 
     // Split the image into channels
-    List<List<int>> channels = [];
+    List<int> channels =[];
 
-    if (image != null) {
-      channels[0] = image.getBytes(order: img.ChannelOrder.rgb);
+    channels = (await image?.getBytes(order: img.ChannelOrder.rgb))!;
 
+    Map<int, int> redData = {};
+    Map<int, int> blueData = {};
+    Map<int, int> greenData = {};
+    for (int i = 0; i < channels.length; i += 4) {
+      int red = channels[i];
+      int green = channels[i + 1];
+      int blue = channels[i + 2];
+
+      redData[red] = (redData[red] ?? 0) + 1;
+      greenData[green] = (greenData[green] ?? 0) + 1;
+      blueData[blue] = (blueData[blue] ?? 0) + 1;
     }
+
+
+    List<Map<int, int>> histogramData = [redData, blueData, greenData];
+    print(histogramData);
+    return channels;
+
 
 
   }
