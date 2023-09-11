@@ -21,8 +21,6 @@ class HistogramData {
 
   List<FlSpot> getBlueSpots() => _getSpots(blueData);
 
-  int getMaximum() {
-    return max;
-  }
+  int getMaximum() => max;
 
 }
