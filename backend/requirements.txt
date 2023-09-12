@@ -8,3 +8,4 @@ matplotlib
 httpx
 scikit-learn
 PyPDF2
+reportlab
