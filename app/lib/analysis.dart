@@ -27,6 +27,11 @@ class Analysis extends StatelessWidget {
     Map<int, int> blueData = {};
     Map<int, int> greenData = {};
 
+    for (int i = 0; i < 256; i++) {
+      redData[i] = 0;
+      greenData[i] = 0;
+      blueData[i] = 0;
+    }
     int max = 0;
     for (int i = 0; i < channels.length; i += 3) {
       int red = channels[i];
