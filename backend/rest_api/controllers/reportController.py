@@ -23,6 +23,7 @@ def getImageReport(contents):
         
         # Add the first page to the writer
         pdfWriter.add_page(pdfReader.pages[0])
+        pdfWriter.add_page(pdfReader.pages[1])
         
         # Write the modified PDF to the BytesIO object
         pdfWriter.write(pdf_content)
@@ -31,7 +32,7 @@ def getImageReport(contents):
     pdf_content.seek(0)
     
     # Return the PDF as a StreamingResponse
-    return StreamingResponse(pdf_content, media_type="application/pdf")
+    return StreamingResponse(pdf_content, media_type="application/pdf", headers={"Content-Disposition": "attachment; filename=report.pdf"})
 
 
 
