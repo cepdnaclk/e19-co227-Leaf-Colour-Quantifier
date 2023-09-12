@@ -1,15 +1,21 @@
-import sys
-import os
-sys.path.insert(0, os.getcwd())
-
-from image_processing.leafSegmentation.segment import segment_leaf
-import cv2
-import numpy as np
-
-image = cv2.imread("test\\a4.jpg")
-
-image = segment_leaf(image, 1, True, 0)
-
-cv2.imshow("image", image)
-cv2.waitKey(0)
-cv2.imwrite("test.jpg", image)
+# importing required modules
+import PyPDF2
+ 
+# creating a pdf file object
+pdfFileObj = open('test\\sample.pdf', 'rb')
+ 
+# creating a pdf reader object
+pdfReader = PyPDF2.PdfReader(pdfFileObj)
+ 
+# printing number of pages in pdf file
+print(len(pdfReader.pages))
+print(pdfReader)
+ 
+# creating a page object
+pageObj = pdfReader.pages[0]
+ 
+# extracting text from page
+# print(pageObj.extract_text())
+ 
+# closing the pdf file object
+pdfFileObj.close()

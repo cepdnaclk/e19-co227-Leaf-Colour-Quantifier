@@ -7,3 +7,4 @@ pandas
 matplotlib
 httpx
 scikit-learn
+PyPDF2
