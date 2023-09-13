@@ -100,7 +100,12 @@ class Analysis extends StatelessWidget {
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else {
-                        return Histogram(histogramData: snapshot.data!);
+                        return Histogram(
+                            histogramData: snapshot.data!,
+                            showRed: true,
+                            showBlue: true,
+                          showGreen: true,
+                        );
                       }
                     },
                   ),

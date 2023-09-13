@@ -3,7 +3,30 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:leaf_spectrum/models/histogram_data.dart';
 class Histogram extends StatelessWidget {
   final HistogramData histogramData;
-  Histogram({super.key, required this.histogramData});
+  final bool showRed;
+  final bool showGreen;
+  final bool showBlue;
+
+  Histogram({super.key, required this.histogramData, required this.showRed, required this.showGreen, required this.showBlue});
+
+  List<LineChartBarData> getLineData() {
+    List<LineChartBarData> lineDataList = [];
+    if (showRed) {
+      lineDataList.add(lineData(
+          spots: histogramData.getRedSpots(), color: Colors.redAccent));
+    }
+
+    if (showGreen) {
+      lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
+    }
+
+    if (showBlue) {
+      lineDataList.add(
+        lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
+      );
+    }
+    return lineDataList;
+  }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -64,6 +87,10 @@ class Histogram extends StatelessWidget {
     return LineChart(LineChartData(
         backgroundColor: Colors.transparent,
         clipData: const FlClipData.none(),
+        lineTouchData: LineTouchData(
+         enabled: false,
+        ),
+
         titlesData: FlTitlesData(
           show: true,
 
@@ -102,22 +129,7 @@ class Histogram extends StatelessWidget {
       borderData: FlBorderData(
         show: false,
       ),
-        lineBarsData: [
-
-          lineData(
-            spots: histogramData.getRedSpots(),
-            color: Colors.redAccent,
-          ),
-          lineData(
-            spots: histogramData.getGreenSpots(),
-            color: Colors.greenAccent,
-          ),
-
-          lineData(
-            spots: histogramData.getBlueSpots(),
-            color: Colors.blueAccent,
-          )
-        ],
+        lineBarsData: getLineData(),
       ),
     );
   }
