@@ -71,21 +71,22 @@ def createPDF(img):
     can.save()
 
 
-# create temporary directory
-temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
+if __name__ == "__main__":
+    # create temporary directory
+    temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
 
-# print(temp_dir)
+    # print(temp_dir)
 
-# get image - not required if  already done
-img = cv.imread("Landscape-Color.jpg")
+    # get image - not required if  already done
+    img = cv.imread("test\\a1.jpg")
 
-# change the current directory to temporary dir
-os.chdir(pathlib.Path(temp_dir.name))
+    # change the current directory to temporary dir
+    os.chdir(pathlib.Path(temp_dir.name))
 
-createPDF(img)
+    createPDF(img)
 
-# go back to previous dir
-os.chdir("../")
+    # go back to previous dir
+    os.chdir("../")
 
-# delete temp dir
-shutil.rmtree(pathlib.Path(temp_dir.name))
+    # delete temp dir
+    shutil.rmtree(pathlib.Path(temp_dir.name))
