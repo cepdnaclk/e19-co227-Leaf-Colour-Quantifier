@@ -1,7 +1,11 @@
+import os
+import pathlib
+import shutil
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib import pagesizes
 import cv2 as cv
 from matplotlib import pyplot as plt
+import tempfile as tp
 
 
 def getHistogram(img):
@@ -10,7 +14,7 @@ def getHistogram(img):
     histrArrays = {}
     i = 0
     for col in colours.keys():
-        histrArrays[col]= getHistogramChannelWise(
+        histrArrays[col] = getHistogramChannelWise(
             img, col, colours, i)
         i += 1
         # plt.show()
@@ -25,7 +29,7 @@ def getHistogram(img):
     plt.legend()
     plt.grid()
     plt.savefig("histogram.jpg", format="jpg", bbox_inches="tight")
-    plt.title("Histogram")
+
     # plt.show()
 
 
@@ -40,6 +44,7 @@ def getHistogramChannelWise(img, col, colours, i):
     plt.savefig("histogram"+col+".jpg", format="jpg", bbox_inches="tight")
     plt.close()
     return histr
+
 
 def createPDF(img):
     getHistogram(img)
@@ -66,4 +71,21 @@ def createPDF(img):
     can.save()
 
 
-# createPDF(cv.imread("Landscape-Color.jpg"))
+# create temporary directory
+temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
+
+# print(temp_dir)
+
+# get image - not required if  already done
+img = cv.imread("Landscape-Color.jpg")
+
+# change the current directory to temporary dir
+os.chdir(pathlib.Path(temp_dir.name))
+
+createPDF(img)
+
+# go back to previous dir
+os.chdir("../")
+
+# delete temp dir
+shutil.rmtree(pathlib.Path(temp_dir.name))
