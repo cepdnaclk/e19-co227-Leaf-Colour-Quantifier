@@ -2,9 +2,6 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:path_provider/path_provider.dart';
 import 'package:leaf_spectrum/analysis.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
@@ -77,14 +74,14 @@ class ProcessedImagePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40)),
                   foregroundColor: Colors.black),
               onPressed: () {
-                sendImageToServer(processedImage,
-                    'http://192.168.8.177:5000/report/image', context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => Analysis(),
-                //   ),
-                // );
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Analysis(imageFile: processedImage)                ,
+                  ),
+                );
+
               },
               label: const Text('Report'),
               icon: const Icon(Icons.bar_chart_outlined)),

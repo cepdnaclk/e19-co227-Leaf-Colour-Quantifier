@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
+import 'package:leaf_spectrum/models/histogram_data.dart';
 class Histogram extends StatelessWidget {
-  const Histogram({super.key});
+  final HistogramData histogramData;
+  final bool showRed;
+  final bool showGreen;
+  final bool showBlue;
+
+  Histogram({super.key, required this.histogramData, required this.showRed, required this.showGreen, required this.showBlue});
+
+  List<LineChartBarData> getLineData() {
+    List<LineChartBarData> lineDataList = [];
+    if (showRed) {
+      lineDataList.add(lineData(
+          spots: histogramData.getRedSpots(), color: Colors.redAccent));
+    }
+
+    if (showGreen) {
+      lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
+    }
+
+    if (showBlue) {
+      lineDataList.add(
+        lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
+      );
+    }
+    return lineDataList;
+  }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -27,7 +51,7 @@ class Histogram extends StatelessWidget {
   SideTitles leftTitles() => SideTitles(
     getTitlesWidget: leftTitleWidgets,
     showTitles: true,
-    interval: 2000,
+    interval: histogramData.getMaximum() / 10,
     reservedSize: 24,
   );
 
@@ -63,6 +87,10 @@ class Histogram extends StatelessWidget {
     return LineChart(LineChartData(
         backgroundColor: Colors.transparent,
         clipData: const FlClipData.none(),
+        lineTouchData: LineTouchData(
+         enabled: false,
+        ),
+
         titlesData: FlTitlesData(
           show: true,
 
@@ -94,40 +122,14 @@ class Histogram extends StatelessWidget {
         minX: 0,
         maxX: 255,
         minY: 0,
-        maxY: 10000,
+        maxY: histogramData.getMaximum().toDouble(),
         gridData: const FlGridData(
           show: true,
         ),
       borderData: FlBorderData(
         show: false,
       ),
-        lineBarsData: [
-
-          lineData(
-            spots: [
-              const FlSpot(0, 3000),
-              const FlSpot(10, 5000),
-              const FlSpot(25, 10000),
-              const FlSpot(255, 2000)
-            ],
-            color: Colors.redAccent,
-          ),
-          lineData(
-            spots: [
-              const FlSpot(20, 2000),
-              const FlSpot(40, 3000),
-            ],
-            color: Colors.greenAccent,
-          ),
-
-          lineData(
-            spots: [
-              const FlSpot(50, 2000),
-              const FlSpot(80, 3000),
-            ],
-            color: Colors.blueAccent,
-          )
-        ],
+        lineBarsData: getLineData(),
       ),
     );
   }

@@ -1,8 +1,62 @@
+import 'dart:collection';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:leaf_spectrum/components/histogram.dart';
+import 'dart:typed_data';
+import 'package:image/image.dart' as img;
+import 'package:leaf_spectrum/models/histogram_data.dart';
+
 
 class Analysis extends StatelessWidget {
-  const Analysis({super.key});
+  final File imageFile;
+
+  const Analysis({super.key, required this.imageFile});
+
+
+  Future<HistogramData> getHistogramMaps() async {
+    final Uint8List imageData = await imageFile.readAsBytesSync();
+    img.Image? image = img.decodeImage(imageData);
+
+
+    // Split the image into channels
+    List<int> channels =[];
+
+    channels = (await image?.getBytes(order: img.ChannelOrder.rgb))!;
+
+    Map<int, int> redData = {};
+    Map<int, int> blueData = {};
+    Map<int, int> greenData = {};
+
+    for (int i = 0; i < 256; i++) {
+      redData[i] = 0;
+      greenData[i] = 0;
+      blueData[i] = 0;
+    }
+    int max = 0;
+    for (int i = 0; i < channels.length; i += 3) {
+      int red = channels[i];
+      int green = channels[i + 1];
+      int blue = channels[i + 2];
+
+      redData[red] = (redData[red] ?? 0) + 1;
+      greenData[green] = (greenData[green] ?? 0) + 1;
+      blueData[blue] = (blueData[blue] ?? 0) + 1;
+
+      max = redData[red]! > max ? redData[red]! : max;
+      max = greenData[green]! > max ? greenData[green]! : max;
+      max = blueData[blue]! > max ? blueData[blue]! : max;
+    }
+
+    print(SplayTreeMap<int, int>.from(redData));
+
+    return HistogramData([
+      SplayTreeMap<int, int>.from(redData),
+      SplayTreeMap<int, int>.from(greenData),
+      SplayTreeMap<int, int>.from(blueData),
+    ], max);
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +92,23 @@ class Analysis extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   clipBehavior: Clip.hardEdge,
-                  child: const Histogram(),
+                  child: FutureBuilder<HistogramData>(
+                    future: getHistogramMaps(),
+                    builder: (BuildContext context, AsyncSnapshot<HistogramData> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else {
+                        return Histogram(
+                            histogramData: snapshot.data!,
+                            showRed: true,
+                            showBlue: true,
+                          showGreen: true,
+                        );
+                      }
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 40,),
@@ -62,4 +132,7 @@ class Analysis extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
