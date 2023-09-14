@@ -5,7 +5,7 @@ import 'package:leaf_spectrum/components/histogram.dart';
 import 'dart:typed_data';
 import 'package:image/image.dart' as img;
 import 'package:leaf_spectrum/models/histogram_data.dart';
-
+import 'package:leaf_spectrum/home.dart';
 
 class Analysis extends StatelessWidget {
   final File imageFile;
@@ -27,6 +27,7 @@ class Analysis extends StatelessWidget {
     Map<int, int> blueData = {};
     Map<int, int> greenData = {};
 
+    //initializing the map
     for (int i = 0; i < 256; i++) {
       redData[i] = 0;
       greenData[i] = 0;
@@ -38,21 +39,31 @@ class Analysis extends StatelessWidget {
       int green = channels[i + 1];
       int blue = channels[i + 2];
 
+      //Eliminating Black Pixels
+      if (red == 0 && green == 0 && blue == 0) continue;
+
+      //Adding data to Map
       redData[red] = (redData[red] ?? 0) + 1;
       greenData[green] = (greenData[green] ?? 0) + 1;
       blueData[blue] = (blueData[blue] ?? 0) + 1;
 
+      //Calculating the maximum values
       max = redData[red]! > max ? redData[red]! : max;
       max = greenData[green]! > max ? greenData[green]! : max;
       max = blueData[blue]! > max ? blueData[blue]! : max;
     }
 
-    print(SplayTreeMap<int, int>.from(redData));
+    //sorting the Map according to its key
+    redData = SplayTreeMap<int, int>.from(redData);
+    greenData = SplayTreeMap<int, int>.from(greenData);
+    blueData = SplayTreeMap<int, int>.from(blueData);
 
+
+    //return HistogramData object
     return HistogramData([
-      SplayTreeMap<int, int>.from(redData),
-      SplayTreeMap<int, int>.from(greenData),
-      SplayTreeMap<int, int>.from(blueData),
+      redData,
+      greenData,
+      blueData,
     ], max);
 
 
@@ -67,66 +78,74 @@ class Analysis extends StatelessWidget {
 
           padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-              const Text(
-                "Analysis",
+                const Text(
+                  "Analysis",
 
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                  fontSize: 32.0,
-                ),
-              ),
-              const SizedBox(height: 20,),
-              AspectRatio(
-                aspectRatio: 0.9,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: const Color.fromRGBO(
-                          64, 72, 80, 0.4196078431372549)
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    fontSize: 32.0,
                   ),
-                  alignment: Alignment.center,
-                  clipBehavior: Clip.hardEdge,
-                  child: FutureBuilder<HistogramData>(
-                    future: getHistogramMaps(),
-                    builder: (BuildContext context, AsyncSnapshot<HistogramData> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator();
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else {
-                        return Histogram(
+                ),
+                const SizedBox(height: 20,),
+                AspectRatio(
+                  aspectRatio: 0.9,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: const Color.fromRGBO(
+                            64, 72, 80, 0.4196078431372549)
+                    ),
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.hardEdge,
+                    child: FutureBuilder<HistogramData>(
+                      future: getHistogramMaps(),
+                      builder: (BuildContext context, AsyncSnapshot<HistogramData> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          return Histogram(
                             histogramData: snapshot.data!,
                             showRed: true,
                             showBlue: true,
-                          showGreen: true,
-                        );
-                      }
-                    },
+                            showGreen: true,
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 40,),
-              Center(
-                child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40)),
-                        foregroundColor: Colors.black),
-                    onPressed: () {},
-                    label: const Text('Analyse another leaf'),
-                    icon: const Icon(
-                        Icons.restart_alt_sharp
-                    )
+                const SizedBox(height: 40,),
+                Center(
+                  child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          foregroundColor: Colors.black),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                Home(),
+                          ),
+                        );
+                      },
+                      label: const Text('Analyse another leaf'),
+                      icon: const Icon(
+                          Icons.restart_alt_sharp
+                      )
+                  ),
                 ),
-              ),
-            ]
+              ]
           ),
         ),
       ),
@@ -136,3 +155,4 @@ class Analysis extends StatelessWidget {
 
 
 }
+

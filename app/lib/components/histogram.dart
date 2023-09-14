@@ -76,7 +76,7 @@ class Histogram extends StatelessWidget {
   LineChartBarData lineData({required List<FlSpot> spots, required Color color}) => LineChartBarData(
     spots: spots,
     color: color,
-    isCurved: true,
+    isCurved: false,
     dotData: const FlDotData(
       show: false,
     )
