@@ -20,10 +20,10 @@ This is a sample image, to show how to add images to your page. To learn more op
  -->
 
 ## Team
--  E/19/094, Eashwara M.
--  E/19/129, Gunawardana K.H.
--  E/19/372, Silva A.K.M.
--  E/19/408, Ubayasiri S.J.
+-  [E/19/094, Eashwara M.](https://people.ce.pdn.ac.lk/students/e19/094/)
+-  [E/19/129, Gunawardana K.H.](https://people.ce.pdn.ac.lk/students/e19/129/)
+-  [E/19/372, Silva A.K.M.](https://people.ce.pdn.ac.lk/students/e19/372/)
+-  [E/19/408, Ubayasiri S.J.](https://people.ce.pdn.ac.lk/students/e19/408/)
 
 ## Table of Contents
 1. [Introduction](#introduction)
