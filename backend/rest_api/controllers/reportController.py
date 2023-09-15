@@ -12,7 +12,7 @@ import tempfile as tp
 from fastapi.responses import JSONResponse
 
 def getImageReport(contentsOriginal, contentsSegmentation, remarks):
-      try:
+    try:
         nparrOriginal = np.fromstring(contentsOriginal, np.uint8)
         imgOriginal = cv2.imdecode(nparrOriginal, cv2.IMREAD_COLOR)
 
