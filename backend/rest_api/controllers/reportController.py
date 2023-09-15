@@ -5,11 +5,15 @@ from image_processing.Image import Image
 import PyPDF2
 from io import BytesIO
 
-def getImageReport(contents):
-    nparr = np.fromstring(contents, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+def getImageReport(contentsOriginal, contentsSegmentation, remarks):
+    nparrOriginal = np.fromstring(contentsOriginal, np.uint8)
+    imgOriginal = cv2.imdecode(nparrOriginal, cv2.IMREAD_COLOR)
+    
+    nparrSegmentation = np.fromstring(contentsSegmentation, np.uint8)
+    imgSegmentation = cv2.imdecode(nparrSegmentation, cv2.IMREAD_COLOR)
 
-    image = Image(img)
+    imageOriginal = Image(imgOriginal)
+    imageSegmentation = Image(imgSegmentation)
 
     pdf_content = BytesIO()
     
