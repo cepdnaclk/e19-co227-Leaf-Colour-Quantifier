@@ -6,3 +6,6 @@
 
 /backend/env
 /backend/.pytest_cache
+
+**/*.pth
+*.pth
