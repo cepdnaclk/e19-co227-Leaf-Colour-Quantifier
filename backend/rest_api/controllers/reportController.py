@@ -27,7 +27,7 @@ def getImageReport(contentsOriginal, contentsSegmentation, remarks):
         temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
         os.chdir(pathlib.Path(temp_dir.name))
 
-        getPDF.createPDF(img)
+        getPDF.createPDF(imgOriginal)
 
         pdf_content = BytesIO()
         
