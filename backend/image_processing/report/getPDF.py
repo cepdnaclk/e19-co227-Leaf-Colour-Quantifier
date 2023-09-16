@@ -1,3 +1,4 @@
+import datetime
 import os
 import pathlib
 import shutil
@@ -49,31 +50,54 @@ def getHistogramChannelWise(img, col, colours, i):
 def createPDF(img):
     getHistogram(img)
 
-    can = Canvas("Report.pdf", pagesize=pagesizes.A4)
+    can = Canvas("ReportNew.pdf", pagesize=pagesizes.A4)
     can.setFont("Times-Bold", 20)
 
     width, height = pagesizes.A4
-    can.drawCentredString(width/2, height-50, "Histogram of Leaf")
 
-    can.drawInlineImage("histogram.jpg", 40, height-420, width=500,
-                        preserveAspectRatio=True)
+    cv.imwrite("./leafimg.jpg", img)
+    timestamp = datetime.datetime.now()
+
+    can.drawCentredString(width/2, height-60, "Leaf Spectrum Report")
+
+    can.setFont("Times-Roman", 14)
+    can.drawString(70, height-90, "Date: "+str(timestamp.date()))
+    can.drawString(70, height-120, "Time: {:02d}: {:02d}: {:02d}".format(timestamp.hour,
+                   timestamp.minute, timestamp.second))
+
+    can.drawInlineImage("./leafimg.jpg", width/2-150, height-550,
+                        width=300, preserveAspectRatio=True)
 
     can.setFont("Times-Bold", 17)
-    can.drawCentredString(width/2, height-400, "Histogram Channel Wise")
-    can.drawInlineImage("histogramb.jpg", 20, height-700,
+    can.drawCentredString(width/2, height-350, "Histogram")
+
+    can.drawInlineImage("histogram.jpg", 40, height-700, width=500,
+                        preserveAspectRatio=True)
+
+    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
+                        preserveAspectRatio=True)
+
+    can.showPage()
+
+    can.setFont("Times-Bold", 17)
+    can.drawCentredString(width/2, height-50, "Histogram Channel Wise")
+    can.drawInlineImage("histogramb.jpg", 20, height-350,
                         width=280, preserveAspectRatio=True)
-    can.drawInlineImage("histogramg.jpg", 300, height-700,
+    can.drawInlineImage("histogramg.jpg", 300, height-350,
                         width=280, preserveAspectRatio=True)
-    can.drawInlineImage("histogramr.jpg", 20, height-880,
+    can.drawInlineImage("histogramr.jpg", 20, height-520,
                         width=280, preserveAspectRatio=True)
 
+    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
+                        preserveAspectRatio=True)
     can.showPage()
     can.save()
 
 
 if __name__ == "__main__":
     # create temporary directory
-    temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
+    temp_dir = tp.TemporaryDirectory(
+        prefix="leafseg_", suffix="_tmp", dir="./")
 
     # print(temp_dir)
 
