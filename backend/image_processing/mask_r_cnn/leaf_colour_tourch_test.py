@@ -16,9 +16,9 @@ def main():
     model = torch.load("image_processing\\mask_r_cnn\\models\\model_4.pth", map_location=device)
     model.eval()
 
-    img = Image.open("image_processing\\mask_r_cnn\\test\\0.jpg")
+    image = cv2.imread("image_processing\\mask_r_cnn\\test\\2.jpg")
     transform = T.ToTensor()
-    ig = transform(img)
+    ig = transform(image)
 
     with torch.no_grad():
         pred = model([ig.to(device)])
@@ -30,9 +30,8 @@ def main():
     cv2.imshow("image_mask",m)
     cv2 .waitKey(0)
 
-    igg = cv2.imread("image_processing\\mask_r_cnn\\test\\0.jpg")
-    fin_img = cv2.bitwise_and(igg , igg , mask = m)
-    cv2.imshow("image", fin_img)
+    fin_img = cv2.bitwise_and(image , image , mask = m)
+    cv2.imshow("image", cv2.resize(fin_img, (800,600), interpolation = cv2.INTER_AREA))
     cv2 .waitKey(0)
 
 if __name__ == "__main__":
