@@ -9,3 +9,6 @@ httpx
 scikit-learn
 PyPDF2
 reportlab
+torch
+torchvision
+torchaudio
