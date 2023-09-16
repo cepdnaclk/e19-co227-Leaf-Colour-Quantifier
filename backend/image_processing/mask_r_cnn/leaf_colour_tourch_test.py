@@ -11,24 +11,29 @@ from torchvision import transforms as T
 from PIL import Image
 import cv2
 
-device = torch.device('cpu')
-model = torch.load("image_processing\\mask_r_cnn\\models\\model_4.pth", map_location=device)
-model.eval()
+def main():
+    device = torch.device('cpu')
+    model = torch.load("image_processing\\mask_r_cnn\\models\\model_4.pth", map_location=device)
+    model.eval()
 
-img = Image.open("image_processing\\mask_r_cnn\\test\\0.jpg")
-transform = T.ToTensor()
-ig = transform(img)
-with torch.no_grad():
-    pred = model([ig.to(device)])
+    img = Image.open("image_processing\\mask_r_cnn\\test\\0.jpg")
+    transform = T.ToTensor()
+    ig = transform(img)
 
-masks = pred[0]["masks"]
-mask = masks[0 , 0]
-mask = masks[0 , 0] > 0.5
-m = mask.cpu().detach().numpy().astype("uint8") * 255
-cv2.imshow("image_mask",m)
-cv2 .waitKey(0)
+    with torch.no_grad():
+        pred = model([ig.to(device)])
 
-igg = cv2.imread("image_processing\\mask_r_cnn\\test\\0.jpg")
-fin_img = cv2.bitwise_and(igg , igg , mask = m)
-cv2.imshow("image", fin_img)
-cv2 .waitKey(0)
+    masks = pred[0]["masks"]
+    mask = masks[0 , 0]
+    mask = masks[0 , 0] > 0.5
+    m = mask.cpu().detach().numpy().astype("uint8") * 255
+    cv2.imshow("image_mask",m)
+    cv2 .waitKey(0)
+
+    igg = cv2.imread("image_processing\\mask_r_cnn\\test\\0.jpg")
+    fin_img = cv2.bitwise_and(igg , igg , mask = m)
+    cv2.imshow("image", fin_img)
+    cv2 .waitKey(0)
+
+if __name__ == "__main__":
+    main()
