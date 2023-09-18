@@ -1,11 +1,13 @@
 import numpy as np
 import cv2
 from image_processing.leafSegmentation.segment import segment_leaf
+from image_processing.define import *
 
 class Image:
 
     def __init__(self, image):
-        self.image = image
+
+        self.image = cv2.resize(image, (DIM_WIDTH, DIM_HEIGHT), interpolation = cv2.INTER_AREA)
 
     def getImage(self):
         return self.image
