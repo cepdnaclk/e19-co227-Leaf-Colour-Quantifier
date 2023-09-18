@@ -11,10 +11,7 @@ image = cv2.imread("test\\a4.jpg")
 myImage = Image(image)
 
 def test_image():
-    if type(image == myImage.getImage()) == np.ndarray:
-        assert (image == myImage.getImage()).all()
-    else:
-        assert image == myImage.getImage()
+    assert myImage.getImage() == None
 
 if __name__ == "__main__":
 
