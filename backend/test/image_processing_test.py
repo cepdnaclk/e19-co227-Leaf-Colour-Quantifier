@@ -10,7 +10,6 @@ image = cv2.imread("test//a4.jpg")
 myImage = Image(image)
 
 def test_image():
-    print(image)
     assert myImage.getImage().any()
 
 if __name__ == "__main__":
