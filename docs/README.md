@@ -28,7 +28,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Challenges With Traditional Method]
+2. [Challenges With Traditional Method](#challenges_with_traditional_method)
 3. [Links](#links)
 
 ---
@@ -41,6 +41,8 @@ Welcome to <em>"LeafSpectrum"</em>, a cutting-edge mobile application designed t
 
 Traditional methods of leaf color assessment have long relied on subjective human judgment and manual color matching, resulting in inconsistencies and subjectivity in scientific studies and plant identification.
 <em>LeafSpectrum</em> addresses this critical need for a reliable, objective, and time-efficient leaf color assessment technique.
+![TraditionalMethod](#./images/traditional.jpg)
+
 
 
 ## Links
