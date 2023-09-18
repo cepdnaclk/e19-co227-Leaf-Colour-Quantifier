@@ -11,7 +11,7 @@ print(image)
 myImage = Image(image)
 
 def test_image():
-    assert myImage.getImage() == None
+    assert myImage.getImage().any()
 
 if __name__ == "__main__":
 
