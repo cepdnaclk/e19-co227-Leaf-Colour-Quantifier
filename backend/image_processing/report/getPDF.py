@@ -74,7 +74,7 @@ def createPDF(img):
     can.drawInlineImage("histogram.jpg", 40, height-700, width=500,
                         preserveAspectRatio=True)
 
-    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
+    can.drawInlineImage("./assets/blacklogo.jpg", width-120, height-890, width=100,
                         preserveAspectRatio=True)
 
     can.showPage()
@@ -88,7 +88,7 @@ def createPDF(img):
     can.drawInlineImage("histogramr.jpg", 20, height-520,
                         width=280, preserveAspectRatio=True)
 
-    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
+    can.drawInlineImage("./assets/blacklogo.jpg", width-120, height-890, width=100,
                         preserveAspectRatio=True)
     can.showPage()
     can.save()
