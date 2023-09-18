@@ -41,7 +41,7 @@ Welcome to <em>"LeafSpectrum"</em>, a cutting-edge mobile application designed t
 
 Traditional methods of leaf color assessment have long relied on subjective human judgment and manual color matching, resulting in inconsistencies and subjectivity in scientific studies and plant identification.
 <em>LeafSpectrum</em> addresses this critical need for a reliable, objective, and time-efficient leaf color assessment technique.
-![TraditionalMethod](#./images/traditional.jpg)
+![TraditionalMethod](./images/traditional.jpg)
 
 
 
