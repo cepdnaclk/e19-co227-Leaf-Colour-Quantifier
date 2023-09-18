@@ -11,19 +11,23 @@ from io import BytesIO
 import tempfile as tp
 from fastapi.responses import JSONResponse
 
-def getImageReport(contents):
-
+def getImageReport(contentsOriginal, contentsSegmentation, remarks):
     try:
-        nparr = np.fromstring(contents, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        nparrOriginal = np.fromstring(contentsOriginal, np.uint8)
+        imgOriginal = cv2.imdecode(nparrOriginal, cv2.IMREAD_COLOR)
 
+        nparrSegmentation = np.fromstring(contentsSegmentation, np.uint8)
+        imgSegmentation = cv2.imdecode(nparrSegmentation, cv2.IMREAD_COLOR)
+
+        imageOriginal = Image(imgOriginal)
+        imageSegmentation = Image(imgSegmentation)
         # image = Image(img)
 
         # make the temp directory and use tha as root
         temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
         os.chdir(pathlib.Path(temp_dir.name))
 
-        getPDF.createPDF(img)
+        getPDF.createPDF(imgOriginal)
 
         pdf_content = BytesIO()
         
