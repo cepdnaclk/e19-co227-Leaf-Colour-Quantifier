@@ -9,6 +9,8 @@ title: A Field-Based Approach for Quantifying Plant Leaf Color
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
+![Logo](./images/blacklogo.jpg)
+
 # A Field-Based Approach for Quantifying Plant Leaf Color
 
 ---
@@ -18,7 +20,6 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ![Sample Image](./images/sample.png)
  -->
-
 ## Team
 -  [E/19/094, Eashwara M.](https://people.ce.pdn.ac.lk/students/e19/094/)
 -  [E/19/129, Gunawardana K.H.](https://people.ce.pdn.ac.lk/students/e19/129/)
@@ -27,16 +28,19 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Links](#links)
+2. [Challenges With Traditional Method]
+3. [Links](#links)
 
 ---
 
 ## Introduction
 
- Welcome to our GitHub repository for a project on developing a simple field technique to detect and quantify the color of plant leaves. Our goal is to provide a practical solution for researchers, botanists, and enthusiasts who need a quick and accurate method to assess leaf color in various environments.
-Traditionally, leaf color assessment has been subjective and time-consuming. To overcome these limitations, we are developing a field technique that leverages image processing. By capturing leaf images and analyzing the RGB values or other color models, we can quantify the color characteristics of the leaves, such as hue, saturation, and brightness.
-Our approach is simple, affordable, and accessible, using commonly available equipment and open-source software libraries. The use of digital imaging ensures consistent and repeatable measurements, reducing human bias.
+Welcome to <em>"LeafSpectrum"</em>, a cutting-edge mobile application designed to revolutionize the way we perceive and understand the world of plants. LeafSpectrum is your trusted companion in the realm of leaf color analysis, offering a seamless and elegant solution for plant enthusiasts, researchers, and botanists alike.
 
+## Challenges With Traditional Method
+
+Traditional methods of leaf color assessment have long relied on subjective human judgment and manual color matching, resulting in inconsistencies and subjectivity in scientific studies and plant identification.
+<em>LeafSpectrum</em> addresses this critical need for a reliable, objective, and time-efficient leaf color assessment technique.
 
 
 ## Links
