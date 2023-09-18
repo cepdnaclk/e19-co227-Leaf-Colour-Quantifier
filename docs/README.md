@@ -52,17 +52,17 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 
 <ul>
  <li> <strong>Home Page</strong> <br>
-Simple and easy-to-navigate homepage where you can effortlessly capture leaf images or import them from your gallery
+Simple and easy-to-navigate homepage where you can effortlessly capture leaf images or import them from your gallery.<br>
   
  ![homepage](./images/homePage.jpg)   ![selectedImage](./images/ImageSelector.jpg)</li>
 
  <li><strong>Image Segmentation</strong><br>
-When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it
+When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it.<br>
  
  ![segmentedLeaf](./images/segmentation.jpg)</li>
 
  <li><strong>Color Analysis</strong><br>
- The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics
+ The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics.<br>
 
  ![histogram](./images/histogram.jpg)</li>
 </ul>
