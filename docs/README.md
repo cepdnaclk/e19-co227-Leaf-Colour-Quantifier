@@ -41,10 +41,36 @@ Welcome to <em>"LeafSpectrum"</em>, a cutting-edge mobile application designed t
 
 Traditional methods of leaf color assessment have long relied on subjective human judgment and manual color matching, resulting in inconsistencies and subjectivity in scientific studies and plant identification.
 <em>LeafSpectrum</em> addresses this critical need for a reliable, objective, and time-efficient leaf color assessment technique.
-![TraditionalMethod](./images/traditional.jpg)
 
+![TraditionalMethod](./images/traditional1.jpg)
 
+## Our Solution
 
+<em>LeafSpectrum</em> introduces an innovative approach that combines digital imaging with advanced image processing techniques to objectively quantify leaf color. With the convenience of widely available equipment such as smartphones or digital cameras, users can capture high-resolution leaf images effortlessly. Behind the scenes, sophisticated image processing algorithms extract and analyze color information, eliminating the subjectivity of the manual color assessment.
+
+## Key Features
+
+<ul>
+ <li>**Home Page**<br>
+Simple and easy-to-navigate homepage where you can effortlessly capture leaf images or import them from your gallery
+  
+ ![homepage](./images/homePage.jpg)   ![selectedImage](./images/ImageSelector.jpg)</li>
+
+ <li>**Image Segmentation**<br>
+When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it
+ 
+ ![segmentedLeaf](./images/segmentation.jpg)</li>
+
+ <li>**Color Analysis**<br>
+ The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics
+
+ ![histogram](./images/histogram.jpg)</li>
+</ul>
+
+## Tech Stack
+![techstack](./images/techstack.jpg)
+
+ 
 ## Links
 
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
