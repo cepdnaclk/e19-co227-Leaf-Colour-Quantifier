@@ -6,7 +6,6 @@ from image_processing.define import *
 class Image:
 
     def __init__(self, image):
-
         self.image = cv2.resize(image, (DIM_WIDTH, DIM_HEIGHT), interpolation = cv2.INTER_AREA)
 
     def getImage(self):

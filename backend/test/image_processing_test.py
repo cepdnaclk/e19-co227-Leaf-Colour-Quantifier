@@ -6,7 +6,7 @@ import cv2
 from image_processing.Image import Image
  
 # Load the image
-image = cv2.imread("test\\a4.jpg")
+image = cv2.imread("test//a4.jpg")
 myImage = Image(image)
 
 def test_image():
