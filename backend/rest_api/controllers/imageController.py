@@ -12,7 +12,7 @@ def getImageToEnhance(contents):
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
         image = Image(img)
-        enhancedImg = image.getGradImage()
+        enhancedImg = image.getEnhancedImage()
 
         _, encoded_img = cv2.imencode('.PNG', enhancedImg)
 

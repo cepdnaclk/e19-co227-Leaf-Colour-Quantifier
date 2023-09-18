@@ -11,27 +11,25 @@ class Image:
     def getImage(self):
         return self.image
     
-    def getGradImage(self):
-        newImage = self.image.copy()
-        cv2.GaussianBlur(newImage, (3, 3), 0)
-        
-        #Convert image to grayscale
-        gray = cv2.cvtColor(newImage, cv2.COLOR_BGR2GRAY)
-        #Apply Sobel method to the grayscale image
-        grad_x = cv2.Sobel(gray, cv2.CV_16S, 1, 0, ksize=3, scale=1, 
-        delta=0, borderType=cv2.BORDER_DEFAULT) #Horizontal Sobel 
-
-        grad_y = cv2.Sobel(gray, cv2.CV_16S, 0, 1, ksize=3, scale=1, 
-        delta=0, borderType=cv2.BORDER_DEFAULT) #Vertical Sobel 
-
-        abs_grad_x = cv2.convertScaleAbs(grad_x)
-        abs_grad_y = cv2.convertScaleAbs(grad_y)
-        grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
-
-        return grad
+    def getEnhancedImage(self):
+        img = self.getNoiceReducedImage(self.image)
+    
+        return self.getSharpImage(img)
     
     def getSegmentationImage(self):
-        return segment_leaf(self.image, 1, True, 0)
+        return segment_leaf(self.getEnhancedImage(), 1, True, 0)
     
     def getSegmentationImageRCNN(self):
         return getRCNNSegmentation(self.image)
+    
+    def getSharpImage(self, img):
+        # Create the sharpening kernel
+        kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+  
+        # Sharpen the image
+        return cv2.filter2D(img, -1, kernel)
+    
+    def getNoiceReducedImage(self, img):
+        
+        return cv2.GaussianBlur(img, (7, 7), 0)
+
