@@ -68,7 +68,7 @@ When you capture a leaf image or import one from your gallery, the segmentation 
 </ul>
 
 ## Tech Stack
-![techstack](./images/techstack.jpg)
+![techstack](./images/techstack.png)
 
  
 ## Links
