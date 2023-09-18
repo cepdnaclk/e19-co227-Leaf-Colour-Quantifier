@@ -22,7 +22,6 @@ def getImageReport(contentsOriginal, contentsSegmentation, remarks):
         imageOriginal = Image(imgOriginal)
         imageSegmentation = Image(imgSegmentation)
         # image = Image(img)
-
         # make the temp directory and use tha as root
         temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
         os.chdir(pathlib.Path(temp_dir.name))
@@ -56,7 +55,8 @@ def getImageReport(contentsOriginal, contentsSegmentation, remarks):
         # Return the PDF as a StreamingResponse
         return StreamingResponse(pdf_content, media_type="application/pdf", headers={"Content-Disposition": "attachment; filename=report.pdf"})
     
-    except:
+    except Exception as e:
+        print(e)
         # go back to previous dir
         os.chdir("../")
 

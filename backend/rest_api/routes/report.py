@@ -12,7 +12,7 @@ class ReportRequest(BaseModel):
 async def getReport(reportRequest: ReportRequest = Depends(), originalImage: UploadFile = File(...), segmentationImage: UploadFile = File(...)):
     contentsOriginal = await originalImage.read()
     contentsSegmentation = await segmentationImage.read()
-    
+
     # Return the streaming response.
     return reportController.getImageReport(contentsOriginal, contentsSegmentation, reportRequest.remaks)
 

@@ -23,7 +23,8 @@ def getImageToEnhance(contents):
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
     
-    except:
+    except Exception as e:
+        print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
     
 
@@ -45,7 +46,8 @@ def getImageToSegementation(contents):
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
     
-    except:
+    except Exception as e:
+        print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
     
 def getImageToSegementationWithMask(image, mask):
@@ -69,7 +71,8 @@ def getImageToSegementationWithMask(image, mask):
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
     
-    except:
+    except Exception as e:
+        print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
     
 
@@ -85,7 +88,8 @@ def getImageToNpArray(contents):
         # Create a StreamingResponse with the generator function and appropriate media type
         return {"img":enhancedImg.tolist()}
     
-    except:
+    except Exception as e:
+        print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
     
 
@@ -103,5 +107,6 @@ def getImageToRGB(contents):
         # Create a StreamingResponse with the generator function and appropriate media type
         return {"r":rgbData[0], "g":rgbData[1], "b":rgbData[2]}
     
-    except:
+    except Exception as e:
+        print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
