@@ -12,3 +12,5 @@ reportlab
 torch
 torchvision
 torchaudio
+pytest
+requests
