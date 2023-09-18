@@ -13,7 +13,7 @@ import cv2
 
 def main():
     device = torch.device('cpu')
-    model = torch.load("image_processing\\mask_r_cnn\\models\\model_4.pth", map_location=device)
+    model = torch.load("image_processing\\mask_r_cnn\\models\\model_01.pth", map_location=device)
     model.eval()
 
     image = cv2.imread("image_processing\\mask_r_cnn\\test\\2.jpg")

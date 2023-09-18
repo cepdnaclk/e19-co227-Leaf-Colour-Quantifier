@@ -12,3 +12,4 @@ reportlab
 torch
 torchvision
 torchaudio
+gdown

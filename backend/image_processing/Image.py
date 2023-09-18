@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from image_processing.leafSegmentation.segment import segment_leaf
+from image_processing.mask_r_cnn.leaf_colour_segmentation import getRCNNSegmentation
 
 class Image:
 
@@ -31,3 +32,6 @@ class Image:
     
     def getSegmentationImage(self):
         return segment_leaf(self.image, 1, True, 0)
+    
+    def getSegmentationImageRCNN(self):
+        return getRCNNSegmentation(self.image)
