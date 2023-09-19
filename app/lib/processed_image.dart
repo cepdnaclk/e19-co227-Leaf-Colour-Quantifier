@@ -10,19 +10,25 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
+  final File imageFile;
 
-  const ProcessedImagePage({Key? key, required this.processedImage})
+  const ProcessedImagePage(
+      {Key? key, required this.processedImage, required this.imageFile})
       : super(key: key);
 
-  Future<String> sendImageToServer(
-      File processedImage, String url, BuildContext context) async {
+  Future<String> sendImageToServer(File processedImage, File imageFile,
+      String text, String url, BuildContext context) async {
     // Create a multipart request
     // print(imageFile.p);
     var request = http.MultipartRequest('POST', Uri.parse(url));
-
+    request.fields['remaks'] = text;
+    request.files.add(
+        await http.MultipartFile.fromPath('originalImage', imageFile.path));
+    request.files.add(await http.MultipartFile.fromPath(
+        'segmentationImage', processedImage.path));
     // Attach the image file to the request
-    var file = await http.MultipartFile.fromPath('file', processedImage.path);
-    request.files.add(file);
+    // var file = await http.MultipartFile.fromPath('file', processedImage.path);
+    // request.files.add(file);
 
     // Send the request and wait for the response
     var response = await request.send();
@@ -38,13 +44,16 @@ class ProcessedImagePage extends StatelessWidget {
     String pdfPath = '${appDocDir.path}/analyzed_leaf.pdf';
     File reportFile = File(pdfPath);
     await reportFile.writeAsBytes(report.bodyBytes);
-
+    print("Hey");
+    print(reportFile);
     // await pdfFile.writeAsBytes(response.bodyBytes);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PDFView(
-          filePath: pdfPath,
+        builder: (context) => Expanded(
+          child: PDFView(
+            filePath: pdfPath,
+          ),
         ),
       ),
     );
@@ -77,7 +86,7 @@ class ProcessedImagePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40)),
                   foregroundColor: Colors.black),
               onPressed: () {
-                sendImageToServer(processedImage,
+                sendImageToServer(processedImage, imageFile, "Remarkstest123",
                     'http://192.168.8.177:5000/report/image', context);
                 // Navigator.push(
                 //   context,

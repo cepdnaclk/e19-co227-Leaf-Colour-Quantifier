@@ -43,8 +43,10 @@ class ImagePage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  ProcessedImagePage(processedImage: processedImage),
+              builder: (context) => ProcessedImagePage(
+                processedImage: processedImage,
+                imageFile: imageFile,
+              ),
             ),
           );
         },
