@@ -21,6 +21,8 @@ model.eval()
 transform = T.ToTensor()
 
 def getRCNNSegmentation(image):
+    shape = image.shape
+    image = cv2.resize(image, (800, 800), interpolation = cv2.INTER_AREA)
     ig = transform(image)
 
     with torch.no_grad():
@@ -31,6 +33,8 @@ def getRCNNSegmentation(image):
     maskImage = mask.cpu().detach().numpy().astype("uint8") * 255
 
     fin_img = cv2.bitwise_and(image , image , mask = maskImage)
+    fin_img = cv2.resize(fin_img, (shape[1], shape[0]), interpolation = cv2.INTER_AREA)
+
     return fin_img
 
 if __name__ == "__main__":
