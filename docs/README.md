@@ -69,7 +69,7 @@ When you capture a leaf image or import one from your gallery, the segmentation 
 ![segmentedLeaf](./images/proc_img.jpeg)
 
 - **Color Analysis**  
-The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics.In addition, we can filter the histogram by channels.
+The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
 ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg)
 
