@@ -7,22 +7,24 @@ class Histogram extends StatelessWidget {
   final bool showGreen;
   final bool showBlue;
 
+
+
   Histogram({super.key, required this.histogramData, required this.showRed, required this.showGreen, required this.showBlue});
 
   List<LineChartBarData> getLineData() {
     List<LineChartBarData> lineDataList = [];
     if (showRed) {
       lineDataList.add(lineData(
-          spots: histogramData.getRedSpots(), color: Colors.redAccent));
+          spots: histogramData.redSpots, color: Colors.redAccent));
     }
 
     if (showGreen) {
-      lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
+      lineDataList.add(lineData(spots: histogramData.greenSpots, color: Colors.greenAccent));
     }
 
     if (showBlue) {
       lineDataList.add(
-        lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
+        lineData(spots: histogramData.blueSpots, color:Colors.blueAccent )
       );
     }
     return lineDataList;

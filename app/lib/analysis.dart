@@ -7,14 +7,18 @@ import 'package:image/image.dart' as img;
 import 'package:leaf_spectrum/models/histogram_data.dart';
 import 'package:leaf_spectrum/home.dart';
 
-class Analysis extends StatelessWidget {
+class Analysis extends StatefulWidget {
   final File imageFile;
 
   const Analysis({super.key, required this.imageFile});
 
+  @override
+  State<Analysis> createState() => _AnalysisState();
+}
 
+class _AnalysisState extends State<Analysis> {
   Future<HistogramData> getHistogramMaps() async {
-    final Uint8List imageData = await imageFile.readAsBytesSync();
+    final Uint8List imageData = await widget.imageFile.readAsBytesSync();
     img.Image? image = img.decodeImage(imageData);
 
 
@@ -151,8 +155,5 @@ class Analysis extends StatelessWidget {
       ),
     );
   }
-
-
-
 }
 

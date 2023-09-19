@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
-import 'package:leaf_spectrum/analysis.dart';
 import 'package:leaf_spectrum/processed_image.dart';
 
 class ImagePage extends StatelessWidget {
   final File imageFile;
 
   const ImagePage({Key? key, required this.imageFile}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +36,7 @@ class ImagePage extends StatelessWidget {
         onPressed: () async {
           print(imageFile.path);
           var processedImage = await sendImageToServer(
-              imageFile, 'http://192.168.43.208:5000/image/segmentaion');
+              imageFile, 'http://192.168.0.101:5000/image/segmentaion');
           Navigator.push(
             context,
             MaterialPageRoute(
