@@ -63,17 +63,21 @@ Simple and easy-to-navigate homepage where you can effortlessly capture leaf ima
 - **Selected Image**  
 The selected image before processing
 
-![selectedImage](./images/cap_img.jpeg)
+<img src="./images/cap_img.jpeg" alt="Image" width="400">
+<!-- ![selectedImage](./images/cap_img.jpeg) -->
 
 - **Image Segmentation**  
 When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it.
 
-![segmentedLeaf](./images/proc_img.jpeg)
+<img src="./images/proc_img.jpeg" alt="Image" width="400">
+<!-- ![segmentedLeaf](./images/proc_img.jpeg) -->
 
 - **Color Analysis**  
 The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
-![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg)
+<img src="./images/histogram.jpeg" alt="Image" width="400">
+<img src="./images/red_fil.jpeg" alt="Image" width="400">
+<!-- ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg) -->
 
 <!--
 <ul>
