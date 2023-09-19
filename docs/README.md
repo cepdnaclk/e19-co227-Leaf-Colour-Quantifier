@@ -56,7 +56,9 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 - **Home Page**  
 Simple and easy-to-navigate homepage where you can effortlessly capture leaf images or import them from your gallery.
 
-![homepage](./images/homepage.jpeg)  
+<img src="./images/homepage.jpeg" alt="Image" width="400">
+
+<!--![homepage](./images/homepage.jpeg) --> 
 
 - **Selected Image**  
 The selected image before processing
