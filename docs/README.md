@@ -60,6 +60,7 @@ Simple and easy-to-navigate homepage where you can effortlessly capture leaf ima
 
 - **Selected Image**  
 The selected image before processing
+
 ![selectedImage](./images/ImageSelector.jpg)
 
 - **Image Segmentation**  
