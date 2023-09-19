@@ -17,6 +17,11 @@ class Analysis extends StatefulWidget {
 }
 
 class _AnalysisState extends State<Analysis> {
+
+  //List to contain the toggle button status of the three channels; RGB in order.
+  List<bool> toggleValues = [true, true, true];
+
+
   Future<HistogramData> getHistogramMaps() async {
     final Uint8List imageData = await widget.imageFile.readAsBytesSync();
     img.Image? image = img.decodeImage(imageData);
@@ -73,6 +78,8 @@ class _AnalysisState extends State<Analysis> {
 
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,45 +93,94 @@ class _AnalysisState extends State<Analysis> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                const Text(
-                  "Analysis",
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.bar_chart_outlined,
+                      size: 32.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 10.0,),
+                    const Text(
+                      "Analysis",
 
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    fontSize: 32.0,
-                  ),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        fontSize: 32.0,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20,),
-                AspectRatio(
-                  aspectRatio: 0.9,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: const Color.fromRGBO(
-                            64, 72, 80, 0.4196078431372549)
-                    ),
-                    alignment: Alignment.center,
-                    clipBehavior: Clip.hardEdge,
-                    child: FutureBuilder<HistogramData>(
-                      future: getHistogramMaps(),
-                      builder: (BuildContext context, AsyncSnapshot<HistogramData> snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else {
-                          return Histogram(
-                            histogramData: snapshot.data!,
-                            showRed: true,
-                            showBlue: true,
-                            showGreen: true,
-                          );
-                        }
-                      },
-                    ),
+                Container(
+
+                  height: 450,
+                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: const Color.fromRGBO(
+                          64, 72, 80, 0.4196078431372549)
                   ),
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.hardEdge,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        //aspectRatio: 0.9,
+                        child: FutureBuilder<HistogramData>(
+                          future: getHistogramMaps(),
+                          builder: (BuildContext context, AsyncSnapshot<HistogramData> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              return Histogram(
+                                histogramData: snapshot.data!,
+                                showRed: toggleValues[0],
+                                showGreen: toggleValues[1],
+                                showBlue: toggleValues[2],
+
+                              );
+                            }
+                          },
+                        ),
+                      ),
+
+                      SizedBox(height: 10,),
+                      Text("Showing Channels",
+                        style: TextStyle(
+                          color: Color.fromRGBO(255,255, 255, 0.5),
+                          fontSize: 12,
+                        ),
+                      ),
+                      SizedBox(height: 5,),
+
+
+
+                      ToggleButtons(
+                        isSelected: toggleValues,
+                        onPressed: (int index) {
+                          setState(() {
+                            toggleValues[index] = !toggleValues[index];
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(30.0),
+                        constraints: BoxConstraints.expand(width: 80, height: 35),
+                        color: Color.fromRGBO(255, 255, 255, 0.4),
+                        disabledBorderColor: Colors.white24,
+
+                        children: [
+                          Text("Red", style: TextStyle(fontSize: 12.0),),
+                          Text("Green" , style: TextStyle(fontSize: 12.0),),
+                          Text("Blue",style: TextStyle(fontSize: 12.0), ),
+
+                        ],
+                      )
+                    ],
+                  ),
+
                 ),
                 const SizedBox(height: 40,),
                 Center(
