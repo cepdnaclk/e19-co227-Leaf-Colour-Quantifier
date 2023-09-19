@@ -14,3 +14,4 @@ torchvision
 torchaudio
 pytest
 requests
+imutils

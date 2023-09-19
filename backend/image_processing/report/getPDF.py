@@ -7,23 +7,24 @@ from reportlab.lib import pagesizes
 import cv2 as cv
 from matplotlib import pyplot as plt
 import tempfile as tp
+import imutils
 
 
-def getHistogram(img):
+def getHistogram(img, mask):
     # assert img is not None, "file could not be read, check with os.path.exists()"
     colours = {'r': 'Red', 'b': 'Blue', 'g': 'Green'}
     histrArrays = {}
     i = 0
+    # print('inside get histogram')
     for col in colours.keys():
         histrArrays[col] = getHistogramChannelWise(
-            img, col, colours, i)
+            img, col, colours, i, mask)
         i += 1
         # plt.show()
 
     plt.figure(figsize=(8, 4))
     for col in histrArrays.keys():
         plt.plot(histrArrays[col], color=col, label=colours.get(col))
-
     plt.title("")
     plt.xlabel("Pixel Value", fontname='Times New Roman')
     plt.ylabel("Frequency", fontname='Times New Roman')
@@ -34,9 +35,9 @@ def getHistogram(img):
     # plt.show()
 
 
-def getHistogramChannelWise(img, col, colours, i):
-
-    histr = cv.calcHist([img], [i], None, [256], [0, 256])
+def getHistogramChannelWise(img, col, colours, i, mask):
+    # print('inside channel wise function')
+    histr = cv.calcHist([img], [i], mask, [256], [0, 256])
     plt.figure(figsize=(8, 4))
     plt.plot(histr, color=col)
     plt.title(colours[col], fontname='Times New Roman')
@@ -47,15 +48,19 @@ def getHistogramChannelWise(img, col, colours, i):
     return histr
 
 
-def createPDF(img):
-    getHistogram(img)
+def createPDF(img, logo, segmentedImg, remarks):
+    cv.imwrite("./segmentedLeaf.jpg", segmentedImg)
+    mask = cv.imread("./segmentedLeaf.jpg", cv.IMREAD_GRAYSCALE)
 
-    can = Canvas("ReportNew.pdf", pagesize=pagesizes.A4)
+    getHistogram(segmentedImg, mask)
+
+    can = Canvas("Report.pdf", pagesize=pagesizes.A4)
     can.setFont("Times-Bold", 20)
 
     width, height = pagesizes.A4
 
-    cv.imwrite("./leafimg.jpg", img)
+    cv.imwrite("./leafimg.jpg", imutils.resize(img, height=200))
+    cv.imwrite("./blacklogo.jpg", logo)
     timestamp = datetime.datetime.now()
 
     can.drawCentredString(width/2, height-60, "Leaf Spectrum Report")
@@ -65,17 +70,18 @@ def createPDF(img):
     can.drawString(70, height-120, "Time: {:02d}: {:02d}: {:02d}".format(timestamp.hour,
                    timestamp.minute, timestamp.second))
 
-    can.drawInlineImage("./leafimg.jpg", width/2-150, height-550,
+    can.drawInlineImage("./leafimg.jpg", width/2-150, height-350,
                         width=300, preserveAspectRatio=True)
 
     can.setFont("Times-Bold", 17)
-    can.drawCentredString(width/2, height-350, "Histogram")
-
+    can.drawCentredString(width/2, height-375, "Histogram")
+    # print('middle of functino')
     can.drawInlineImage("histogram.jpg", 40, height-700, width=500,
                         preserveAspectRatio=True)
 
-    can.drawInlineImage("./assets/blacklogo.jpg", width-120, height-890, width=100,
+    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
                         preserveAspectRatio=True)
+    # print('blacklogo1')
 
     can.showPage()
 
@@ -88,8 +94,11 @@ def createPDF(img):
     can.drawInlineImage("histogramr.jpg", 20, height-520,
                         width=280, preserveAspectRatio=True)
 
-    can.drawInlineImage("./assets/blacklogo.jpg", width-120, height-890, width=100,
+    can.setFont("Times-Roman", 14)
+    can.drawString(70, height-650, "Remarks: "+remarks)
+    can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
                         preserveAspectRatio=True)
+
     can.showPage()
     can.save()
 

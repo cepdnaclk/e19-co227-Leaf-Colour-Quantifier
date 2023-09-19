@@ -5,8 +5,9 @@ from image_processing.Image import Image
 from rest_api.util.utils import *
 from fastapi.responses import JSONResponse
 
+
 def getImageToEnhance(contents):
-    
+
     try:
         nparr = np.fromstring(contents, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -22,14 +23,14 @@ def getImageToEnhance(contents):
 
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
-    
+
     except Exception as e:
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
-    
+
 
 def getImageToSegementation(contents):
-    
+
     try:
         nparr = np.fromstring(contents, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -45,13 +46,14 @@ def getImageToSegementation(contents):
 
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
-    
+
     except Exception as e:
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
-    
+
+
 def getImageToSegementationWithMask(image, mask):
-    
+
     try:
         nparr = np.fromstring(image, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -70,14 +72,14 @@ def getImageToSegementationWithMask(image, mask):
 
         # Create a StreamingResponse with the generator function and appropriate media type
         return StreamingResponse(image_generator(), media_type="image/jpeg")
-    
+
     except Exception as e:
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
-    
+
 
 def getImageToNpArray(contents):
-    
+
     try:
         nparr = np.fromstring(contents, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -86,15 +88,15 @@ def getImageToNpArray(contents):
         enhancedImg = image.getSegmentationImage()
 
         # Create a StreamingResponse with the generator function and appropriate media type
-        return {"img":enhancedImg.tolist()}
-    
+        return {"img": enhancedImg.tolist()}
+
     except Exception as e:
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
-    
+
 
 def getImageToRGB(contents):
-    
+
     try:
         nparr = np.fromstring(contents, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -105,8 +107,8 @@ def getImageToRGB(contents):
         rgbData = imageToRGB(enhancedImg)
 
         # Create a StreamingResponse with the generator function and appropriate media type
-        return {"r":rgbData[0], "g":rgbData[1], "b":rgbData[2]}
-    
+        return {"r": rgbData[0], "g": rgbData[1], "b": rgbData[2]}
+
     except Exception as e:
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
