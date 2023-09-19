@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:leaf_spectrum/image_page.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,11 +25,23 @@ class _HomeState extends State<Home> {
             Image.asset(
               'assets/images/logo-vertical.png',
               width: 240,
-
             ),
 
             // const PlantSelector(),
-            const SizedBox(height: 30),
+            // const SizedBox(height: 2),
+            Text(
+
+              "Quantifying Colours of Plant Leaves",
+              style: GoogleFonts.poppins(
+                fontSize: 12.0,
+                color: Colors.white60,
+              ),
+
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -39,35 +51,27 @@ class _HomeState extends State<Home> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),
                         foregroundColor: Colors.white,
-                        side: const BorderSide(color: Colors.white, width: 1)
-
-                    ),
+                        side: const BorderSide(color: Colors.white, width: 1)),
                     onPressed: () => getImage(source: ImageSource.gallery),
                     label: const Text('Import',
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
-                        )
-                    ),
+                        )),
                     icon: const Icon(
                       Icons.image,
                       size: 18,
-                    )
-                ),
+                    )),
                 const SizedBox(width: 10),
-
                 ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+                        backgroundColor:
+                            const Color.fromARGB(255, 33, 145, 126),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),
                         foregroundColor: Colors.black),
                     onPressed: () => getImage(source: ImageSource.camera),
                     label: const Text('Take Photo'),
-                    icon: const Icon(
-                        Icons.camera
-                    )
-                ),
-
+                    icon: const Icon(Icons.camera)),
               ],
             ),
           ],

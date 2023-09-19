@@ -15,8 +15,9 @@ class Histogram extends StatelessWidget {
     List<LineChartBarData> lineDataList = [];
     if (showRed) {
       lineDataList.add(lineData(
-          spots: histogramData.redSpots, color: Colors.redAccent));
+          spots: histogramData.redSpots, color: Colors.redAccent),);
     }
+
 
     if (showGreen) {
       lineDataList.add(lineData(spots: histogramData.greenSpots, color: Colors.greenAccent));
