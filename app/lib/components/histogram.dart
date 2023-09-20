@@ -15,17 +15,17 @@ class Histogram extends StatelessWidget {
     List<LineChartBarData> lineDataList = [];
     if (showRed) {
       lineDataList.add(lineData(
-          spots: histogramData.redSpots, color: Colors.redAccent),);
+          spots: histogramData.getRedSpots(), color: Colors.redAccent),);
     }
 
 
     if (showGreen) {
-      lineDataList.add(lineData(spots: histogramData.greenSpots, color: Colors.greenAccent));
+      lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
     }
 
     if (showBlue) {
       lineDataList.add(
-          lineData(spots: histogramData.blueSpots, color:Colors.blueAccent )
+          lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
       );
     }
     return lineDataList;
