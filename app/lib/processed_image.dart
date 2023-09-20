@@ -18,7 +18,7 @@ class ProcessedImagePage extends StatelessWidget {
       {Key? key, required this.processedImage, required this.imageFile})
       : super(key: key);
 
-  Future<String> sendImageToServer(File processedImage, File imageFile,
+  Future<Void?> sendImageToServer(File processedImage, File imageFile,
       String text, String url, BuildContext context) async {
     Dio dio = Dio();
 
@@ -31,34 +31,6 @@ class ProcessedImagePage extends StatelessWidget {
       'segmentationImage': await MultipartFile.fromFile(processedImage.path,
           contentType: MediaType('image', 'jpeg')),
     });
-
-    // dio.options.queryParameters = {
-    //   'remaks': text,
-    // };
-    // var multipartFile1 = await MultipartFile.fromFile(imageFile as String,
-    //     filename: 'imageFile');
-    // var multipartFile2 = await MultipartFile.fromFile(processedImage as String,
-    //     filename: 'processedImage');
-
-    // var formData = FormData.fromMap({
-    //   'originalImage': multipartFile1,
-    //   'segmentationImage': multipartFile2,
-    // });
-
-    // Create a multipart request
-    // print(imageFile.p);
-    // var request = http.MultipartRequest('POST', Uri.parse(url));
-    // request.files.add(
-    //     await http.MultipartFile.fromPath('originalImage', imageFile.path));
-    // request.files.add(await http.MultipartFile.fromPath(
-    //     'segmentationImage', processedImage.path));
-    // Attach the image file to the request
-    // var file = await http.MultipartFile.fromPath('file', processedImage.path);
-    // request.files.add(file);
-    // request.fields['remaks'] = text;
-
-    // Send the request and wait for the response
-    // var response = await request.send();
 
     Response response = await dio.post(
       url,
@@ -87,34 +59,6 @@ class ProcessedImagePage extends StatelessWidget {
         ),
       ),
     );
-
-    // Read the response and convert it to a file
-    // var report = await http.Response.fromStream(response);
-
-    // var processedImageFile = File('./assets');
-    // var tempDir = await getTemporaryDirectory();
-    // var tempPath = tempDir.path;
-    // var reportFile = File('$tempPath/processed_image.pdf');
-    // Directory appDocDir = await getApplicationDocumentsDirectory();
-    // String pdfPath = '${appDocDir.path}/report.pdf';
-    // File reportFile = File(pdfPath);
-    // // await reportFile.writeAsBytes(report.bodyBytes);
-    // print("Hey");
-    // print(reportFile);
-    // // await pdfFile.writeAsBytes(response.bodyBytes);
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => Expanded(
-    //       child: PDFView(
-    //         filePath: pdfPath,
-    //       ),
-    //     ),
-    //   ),
-    // );
-    // return reportFile;
-    // print("Success");
-    return 'ss';
   }
 
   @override
