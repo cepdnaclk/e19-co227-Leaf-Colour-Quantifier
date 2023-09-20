@@ -105,14 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.3.2"
   dropdown_search:
     dependency: "direct main"
     description:
@@ -224,14 +216,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  google_fonts:
-    dependency: "direct main"
-    description:
-      name: google_fonts
-      sha256: "0833bfcc1c32560ee51d381fcf1d6d6b35921e89afe852c12f83dc8c00b2e6bc"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   http:
     dependency: "direct main"
     description:
