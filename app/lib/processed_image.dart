@@ -9,6 +9,7 @@ import 'package:leaf_spectrum/analysis.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:leaf_spectrum/report_export.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
@@ -17,49 +18,6 @@ class ProcessedImagePage extends StatelessWidget {
   const ProcessedImagePage(
       {Key? key, required this.processedImage, required this.imageFile})
       : super(key: key);
-
-  Future<Void?> sendImageToServer(File processedImage, File imageFile,
-      String text, String url, BuildContext context) async {
-    Dio dio = Dio();
-
-    Map<String, dynamic> queryParameters = {
-      'remaks': text,
-    };
-    FormData formData = FormData.fromMap({
-      'originalImage': await MultipartFile.fromFile(imageFile.path,
-          contentType: MediaType('image', 'jpeg')),
-      'segmentationImage': await MultipartFile.fromFile(processedImage.path,
-          contentType: MediaType('image', 'jpeg')),
-    });
-
-    Response response = await dio.post(
-      url,
-      queryParameters: queryParameters,
-      data: formData,
-      options: Options(responseType: ResponseType.bytes),
-    );
-    // var response = await dio.post(url, data: formData);
-    print(response.statusCode);
-    Directory tempDir = await getTemporaryDirectory();
-    String tempPath = tempDir.path;
-
-    // Generate a unique file name for the PDF file
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString() + '.pdf';
-
-    // Save the received PDF response to the temporary directory
-    String filePath = '$tempPath/$fileName';
-    await File(filePath).writeAsBytes(response.data);
-
-    // Open the PDF file using flutter_pdfview
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PDFView(
-          filePath: filePath,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +43,7 @@ class ProcessedImagePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40)),
                   foregroundColor: Colors.black),
               onPressed: () {
-                sendImageToServer(processedImage, imageFile, "Remarkstest123",
+                sendDataToServer(processedImage, imageFile, "Remarkstest123",
                     'http://192.168.1.51:5000/report/image', context);
                 // Navigator.push(
                 //   context,
