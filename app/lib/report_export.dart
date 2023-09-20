@@ -50,10 +50,8 @@ class ProcessedImagePage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => Expanded(
-          child: PDFView(
-            filePath: pdfPath,
-          ),
+        builder: (context) => PDFView(
+          filePath: pdfPath,
         ),
       ),
     );

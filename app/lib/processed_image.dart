@@ -79,9 +79,13 @@ class ProcessedImagePage extends StatelessWidget {
     await File(filePath).writeAsBytes(response.data);
 
     // Open the PDF file using flutter_pdfview
-    await PDFView(filePath: filePath)
-      
-      
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PDFView(
+          filePath: filePath,
+        ),
+      ),
     );
 
     // Read the response and convert it to a file
@@ -91,23 +95,23 @@ class ProcessedImagePage extends StatelessWidget {
     // var tempDir = await getTemporaryDirectory();
     // var tempPath = tempDir.path;
     // var reportFile = File('$tempPath/processed_image.pdf');
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String pdfPath = '${appDocDir.path}/report.pdf';
-    File reportFile = File(pdfPath);
-    // await reportFile.writeAsBytes(report.bodyBytes);
-    print("Hey");
-    print(reportFile);
-    // await pdfFile.writeAsBytes(response.bodyBytes);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Expanded(
-          child: PDFView(
-            filePath: pdfPath,
-          ),
-        ),
-      ),
-    );
+    // Directory appDocDir = await getApplicationDocumentsDirectory();
+    // String pdfPath = '${appDocDir.path}/report.pdf';
+    // File reportFile = File(pdfPath);
+    // // await reportFile.writeAsBytes(report.bodyBytes);
+    // print("Hey");
+    // print(reportFile);
+    // // await pdfFile.writeAsBytes(response.bodyBytes);
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => Expanded(
+    //       child: PDFView(
+    //         filePath: pdfPath,
+    //       ),
+    //     ),
+    //   ),
+    // );
     // return reportFile;
     // print("Success");
     return 'ss';
