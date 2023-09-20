@@ -9,7 +9,7 @@ import 'package:leaf_spectrum/analysis.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:leaf_spectrum/report_export.dart';
+import 'package:leaf_spectrum/sendDataToServer.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
