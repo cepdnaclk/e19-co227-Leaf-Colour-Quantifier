@@ -84,7 +84,7 @@ class ProcessedImagePage extends StatelessWidget {
                   ),
                 );
               },
-              label: const Text('Analyse'),
+              label: const Text('Analyse The Leaf'),
               icon: const Icon(Icons.bar_chart_outlined)),
         ],
       ),
