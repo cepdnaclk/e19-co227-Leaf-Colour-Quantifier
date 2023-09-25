@@ -41,7 +41,7 @@ Future<Void?> sendDataToServer(File processedImage, File imageFile, String text,
   // Save the received PDF response to the temporary directory
   String filePath = '$tempPath/$fileName';
   await File(filePath).writeAsBytes(response.data);
-
+  Navigator.of(context).pop();
   // Open the PDF file using flutter_pdfview
   Navigator.push(
     context,

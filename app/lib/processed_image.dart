@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:leaf_spectrum/sendDataToServer.dart';
 import 'package:leaf_spectrum/showRemarkDialog.dart';
+import 'package:leaf_spectrum/showWaitingPopup.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
@@ -76,6 +77,7 @@ class ProcessedImagePage extends StatelessWidget {
                       ),
                     );
                   } else {
+                    showWaitingPopup(context);
                     sendDataToServer(processedImage, imageFile, remark,
                         'http://192.168.8.177:5000/report/image', context);
                   }
