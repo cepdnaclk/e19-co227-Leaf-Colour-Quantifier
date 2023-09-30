@@ -33,11 +33,12 @@ class ImagePage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+
         onPressed: () async {
           print(imageFile.path);
           var processedImage = await sendImageToServer(
-              imageFile, 'http://10.40.18.177:5000/image/segmentaion');
+              imageFile, 'http://192.168.0.100:5000/image/segmentaion');
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -46,8 +47,16 @@ class ImagePage extends StatelessWidget {
             ),
           );
         },
-        child: Icon(Icons.send),
-        backgroundColor: Colors.green,
+        icon: Icon(Icons.navigate_next, size: 20.0,),
+        label: Text("Process", style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16.0,
+          letterSpacing: 0.2,
+
+        ),),
+        foregroundColor: Colors.black,
+
+        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

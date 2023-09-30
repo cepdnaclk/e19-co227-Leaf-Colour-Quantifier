@@ -65,29 +65,52 @@ class ProcessedImagePage extends StatelessWidget {
           Center(
             child: Image.file(processedImage),
           ),
-          SizedBox(
-            height: 35,
-          ),
-          ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40)),
-                  foregroundColor: Colors.black),
-              onPressed: () {
-                // sendImageToServer(processedImage,
-                //     'http://192.168.8.177:5000/report/image', context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Analysis(imageFile: processedImage,),
-                  ),
-                );
-              },
-              label: const Text('Analyse The Leaf'),
-              icon: const Icon(Icons.bar_chart_outlined)),
+          // SizedBox(
+          //   height: 35,
+          // ),
+          // ElevatedButton.icon(
+          //     style: ElevatedButton.styleFrom(
+          //         backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+          //         shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(40)),
+          //         foregroundColor: Colors.black),
+          //     onPressed: () {
+          //       // sendImageToServer(processedImage,
+          //       //     'http://192.168.8.177:5000/report/image', context);
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => Analysis(imageFile: processedImage,),
+          //         ),
+          //       );
+          //     },
+          //     label: const Text('Analyse The Leaf'),
+          //     icon: const Icon(Icons.bar_chart_outlined)),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // sendImageToServer(processedImage,
+            //     'http://192.168.8.177:5000/report/image', context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Analysis(imageFile: processedImage,),
+              ),
+            );
+          },
+        icon: Icon(Icons.bar_chart_outlined, size: 20.0,),
+        label: Text("Analyze",
+          style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16.0,
+          letterSpacing: 0.2,
+
+          ),
+        ),
+        foregroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+      )
     );
   }
 }
