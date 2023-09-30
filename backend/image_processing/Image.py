@@ -23,7 +23,7 @@ class Image:
         return self.resizeImage(segment_leaf(self.getEnhancedImage(), 1, True, 0))
 
     def getSegmentationImageRCNN(self):
-        return self.resizeImage(getRCNNSegmentation(self.image))
+        return self.resizeImage(getRCNNSegmentation(self.getEnhancedImage()))
 
     def getSharpImage(self, img):
         # Create the sharpening kernel
