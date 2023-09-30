@@ -4,8 +4,11 @@ import cv2
 import os
 import gdown
 
-URL = 'https://drive.google.com/file/d/1T-CTsVM4R-TGmyF0sOGzu8Ar3sgMbY4D/view?usp=drive_link'
-MODEL = "model_01.pth"
+# URL = 'https://drive.google.com/file/d/1T-CTsVM4R-TGmyF0sOGzu8Ar3sgMbY4D/view?usp=drive_link' # model_04
+# URL = 'https://drive.google.com/file/d/1-Tqx0VvC117hVDYBcHU2uD4Ryg68VtpX/view?usp=drive_link'  # model_11.3
+URL = 'https://drive.google.com/file/d/100rQP-_0nQFWwudp3qjxcRDMgbFnnNwR/view?usp=drive_link'  # model_11.5
+
+MODEL = "model_03.pth"
 
 MODEL_PATH = "image_processing\\mask_r_cnn\\models\\" + MODEL 
 
@@ -22,20 +25,26 @@ transform = T.ToTensor()
 
 def getRCNNSegmentation(image):
     shape = image.shape
-    image = cv2.resize(image, (800, 800), interpolation = cv2.INTER_AREA)
-    ig = transform(image)
 
-    with torch.no_grad():
-        pred = model([ig.to(device)])
+    try:
+        # image = cv2.resize(image, (800, 1200), interpolation = cv2.INTER_AREA)
 
-    masks = pred[0]["masks"]
-    mask = masks[0 , 0] > 0.5
-    maskImage = mask.cpu().detach().numpy().astype("uint8") * 255
+        ig = transform(image)
 
-    fin_img = cv2.bitwise_and(image , image , mask = maskImage)
-    fin_img = cv2.resize(fin_img, (shape[1], shape[0]), interpolation = cv2.INTER_AREA)
+        with torch.no_grad():
+            pred = model([ig.to(device)])
 
-    return fin_img
+        masks = pred[0]["masks"]
+        mask = masks[0 , 0] > 0.4
+        maskImage = mask.cpu().detach().numpy().astype("uint8") * 255
+
+        fin_img = cv2.bitwise_and(image , image , mask = maskImage)
+        # fin_img = cv2.resize(fin_img, (shape[1], shape[0]), interpolation = cv2.INTER_AREA)
+
+        return fin_img
+    
+    except:
+        return image
 
 if __name__ == "__main__":
     image = cv2.imread("image_processing\\mask_r_cnn\\test\\0.jpg")
