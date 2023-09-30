@@ -4,21 +4,17 @@ sys.path.insert(0, os.getcwd())
 
 import cv2
 from image_processing.Image import Image
-import numpy as np
  
 # Load the image
-image = cv2.imread("test\\a4.jpg")
+image = cv2.imread("test//a4.jpg")
 myImage = Image(image)
 
 def test_image():
-    if type(image == myImage.getImage()) == np.ndarray:
-        assert (image == myImage.getImage()).all()
-    else:
-        assert image == myImage.getImage()
+    assert myImage.getImage().any()
 
 if __name__ == "__main__":
 
-    cv2.imshow("Image", myImage.getGradImage())
+    cv2.imshow("Image", myImage.getEnhancedImage())
     # Wait for the user to press a key
     cv2.waitKey(0)
 

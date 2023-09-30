@@ -11,22 +11,31 @@ from io import BytesIO
 import tempfile as tp
 from fastapi.responses import JSONResponse
 
-def getImageReport(contents):
 
+def getImageReport(contentsOriginal, contentsSegmentation, remarks):
     try:
-        nparr = np.fromstring(contents, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        nparrOriginal = np.fromstring(contentsOriginal, np.uint8)
+        imgOriginal = cv2.imdecode(nparrOriginal, cv2.IMREAD_COLOR)
 
+        nparrSegmentation = np.fromstring(contentsSegmentation, np.uint8)
+        imgSegmentation = cv2.imdecode(nparrSegmentation, cv2.IMREAD_COLOR)
+
+        imageOriginal = Image(imgOriginal)
+        imageSegmentation = Image(imgSegmentation)
         # image = Image(img)
-
         # make the temp directory and use tha as root
-        temp_dir = tp.TemporaryDirectory(prefix="pre_", suffix="_suf", dir="./")
+        temp_dir = tp.TemporaryDirectory(
+            prefix="pre_", suffix="_suf", dir="./")
+        logo = cv2.imread("./assets/blacklogo.jpg")
         os.chdir(pathlib.Path(temp_dir.name))
 
-        getPDF.createPDF(img)
+        # print('inside get image report')
 
+        getPDF.createPDF(imgOriginal, logo, imgSegmentation, remarks)
+
+        # print('inside get image report')
         pdf_content = BytesIO()
-        
+
         # Open and read the existing PDF file
         with open('Report.pdf', 'rb') as pdfFileObj:
             # Create a PDF reader object
@@ -37,7 +46,7 @@ def getImageReport(contents):
 
             for i in pdfReader.pages:
                 pdfWriter.add_page(i)
-            
+
             # Write the modified PDF to the BytesIO object
             pdfWriter.write(pdf_content)
 
@@ -46,13 +55,14 @@ def getImageReport(contents):
 
         # delete temp dir
         shutil.rmtree(pathlib.Path(temp_dir.name))
-        
+
         # Set the position of BytesIO object to the beginning
         pdf_content.seek(0)
         # Return the PDF as a StreamingResponse
         return StreamingResponse(pdf_content, media_type="application/pdf", headers={"Content-Disposition": "attachment; filename=report.pdf"})
-    
-    except:
+
+    except Exception as e:
+        print(e)
         # go back to previous dir
         os.chdir("../")
 
@@ -60,4 +70,3 @@ def getImageReport(contents):
         shutil.rmtree(pathlib.Path(temp_dir.name))
 
         return JSONResponse(status_code=404, content={"message": "Item not found"})
-    

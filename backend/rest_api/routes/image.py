@@ -25,3 +25,11 @@ async def getSegmentationImage(file: UploadFile = File(...)):
 
     # Return the streaming response.
     return imageController.getImageToSegementationRCNN(contents)
+
+@router.post("/segmentaion/mask", response_class=StreamingResponse)
+async def getSegmentationImage(image: UploadFile = File(...), mask: UploadFile = File(...)):
+    contentsImage = await image.read()
+    contentsMask = await mask.read()
+
+    # Return the streaming response.
+    return imageController.getImageToSegementationWithMask(contentsImage, contentsMask)

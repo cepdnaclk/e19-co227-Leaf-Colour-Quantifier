@@ -13,3 +13,6 @@ torch
 torchvision
 torchaudio
 gdown
+pytest
+requests
+imutils
