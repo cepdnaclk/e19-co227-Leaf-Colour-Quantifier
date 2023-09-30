@@ -29,7 +29,7 @@ app.add_middleware(
 
 # adding routes
 app.include_router(image.router, prefix="/image", tags=["image"])
-# app.include_router(report.router, prefix="/report", tags=["report"])
+app.include_router(report.router, prefix="/report", tags=["report"])
 
 # Root API
 @app.get(ProjectSettings.API_VERSION_PATH, tags=["api"])

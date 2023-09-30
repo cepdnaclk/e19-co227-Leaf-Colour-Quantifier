@@ -12,12 +12,12 @@ router = APIRouter()
 #     # Return the streaming response.
 #     return imageController.getImageToEnhance(contents)
 
-# @router.post("/segmentaion", response_class=StreamingResponse)
-# async def getSegmentationImage(file: UploadFile = File(...)):
-#     contents = await file.read()
+@router.post("/segmentaion", response_class=StreamingResponse)
+async def getSegmentationImage(file: UploadFile = File(...)):
+    contents = await file.read()
 
-#     # Return the streaming response.
-#     return imageController.getImageToSegementation(contents)
+    # Return the streaming response.
+    return imageController.getImageToSegementation(contents)
 
 @router.post("/segmentaion/mask-rcnn", response_class=StreamingResponse)
 async def getSegmentationImage(file: UploadFile = File(...)):
