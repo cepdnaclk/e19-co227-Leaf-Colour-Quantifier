@@ -2,6 +2,8 @@ import numpy as np
 import cv2
 from image_processing.leafSegmentation.segment import segment_leaf
 from image_processing.mask_r_cnn.leaf_colour_segmentation import getRCNNSegmentation
+from image_processing.dominantColours.dominant import get_dominant_colors
+from image_processing.leafSegmentationMask.segmentationMask import getLeafUsingMark
 from image_processing.define import *
 
 class Image:
@@ -39,3 +41,11 @@ class Image:
         (h, w) = image.shape[:2]
         aspect_ratio = h*1.0/w
         return cv2.resize(image, (int(SEND_DIM_HEIGHT/aspect_ratio), SEND_DIM_HEIGHT), interpolation=cv2.INTER_AREA)
+    
+    def getDominantColours(self):
+        return get_dominant_colors(self.image)
+    
+    def getSegmentationImageUsingMark(self, mask):
+        return self.resizeImage(getLeafUsingMark(self.image, mask))
+
+

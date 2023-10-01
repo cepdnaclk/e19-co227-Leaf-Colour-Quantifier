@@ -10,6 +10,7 @@ from fastapi.responses import JSONResponse
 from rest_api.config import ProjectSettings
 from rest_api.routes import image
 from rest_api.routes import report
+from rest_api.routes import analysis
  
 app = FastAPI(title=ProjectSettings.PROJECT_NAME,
               description=ProjectSettings.PROJECT_DESCRIPTION,
@@ -30,6 +31,7 @@ app.add_middleware(
 # adding routes
 app.include_router(image.router, prefix="/image", tags=["image"])
 app.include_router(report.router, prefix="/report", tags=["report"])
+app.include_router(analysis.router, prefix="/analysis", tags=["analysis"])
 
 # Root API
 @app.get(ProjectSettings.API_VERSION_PATH, tags=["api"])

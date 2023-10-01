@@ -1,12 +1,9 @@
 from fastapi import APIRouter, File, UploadFile,  Depends
 from fastapi.responses import StreamingResponse
 from rest_api.controllers import reportController
-from pydantic import BaseModel
+from rest_api.models.reportRequest import ReportRequest
 
 router = APIRouter()
-
-class ReportRequest(BaseModel):
-    remaks : str
 
 @router.post("/image", response_class=StreamingResponse)
 async def getReport(reportRequest: ReportRequest = Depends(), originalImage: UploadFile = File(...), segmentationImage: UploadFile = File(...)):

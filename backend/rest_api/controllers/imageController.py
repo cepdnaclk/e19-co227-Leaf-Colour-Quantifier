@@ -51,6 +51,16 @@ def getImageToSegementation(contents):
         print(e)
         return JSONResponse(status_code=404, content={"message": "Item not found"})
 
+def getImageDominantColours(contents):
+
+    nparr = np.fromstring(contents, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    image = Image(img)
+
+    # Create a StreamingResponse with the generator function and appropriate media type
+    return image.getDominantColours()
+
 def getImageToSegementationRCNN(contents):
     
     try:
@@ -83,7 +93,7 @@ def getImageToSegementationWithMask(image, mask):
         mask = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
         image = Image(img)
-        enhancedImg = image.getSegmentationImage()
+        enhancedImg = image.getSegmentationImageUsingMark(mask)
 
         _, encoded_img = cv2.imencode('.PNG', enhancedImg)
 

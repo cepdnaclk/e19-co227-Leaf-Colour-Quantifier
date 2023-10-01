@@ -44,17 +44,17 @@ def get_dominant_colors(image, num_colors=3):
     
     temp_pixel = pixels[np.random.choice(pixels.shape[0], 1000, replace=False)]
 
-    ax = plt.axes(projection='3d')
-    xdata = temp_pixel[:,0]
-    ydata = temp_pixel[:,1]
-    zdata = temp_pixel[:,2]
-    ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens')
-    print(top_colors)
-    xdata = top_colors[:,0]
-    ydata = top_colors[:,1]
-    zdata = top_colors[:,2]
-    ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Dark2_r')
-    plt.show()
+    # ax = plt.axes(projection='3d')
+    # xdata = temp_pixel[:,0]
+    # ydata = temp_pixel[:,1]
+    # zdata = temp_pixel[:,2]
+    # ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens')
+    # print(top_colors)
+    # xdata = top_colors[:,0]
+    # ydata = top_colors[:,1]
+    # zdata = top_colors[:,2]
+    # ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Dark2_r')
+    # plt.show()
 
     return top_colors, color_spreads, color_percentages
 
@@ -123,7 +123,7 @@ def resize(image, p=0.3):
     return cv2.resize(image, (w, h))
 
 
-photo = cv2.imread('test\\a5.jpg')
+photo = cv2.imread('test\\test_01.jpg')
 # paint = cv2.imread('paint.jpg')
 
 # composite_mask = createCompositeMask(photo, paint)
@@ -149,7 +149,7 @@ photo = cv2.imread('test\\a5.jpg')
 dominant_colors, color_spreads, color_percentages = get_dominant_colors(
     photo)
 
-# print(dominant_colors, color_spreads, color_percentages)
+print(dominant_colors, color_spreads, color_percentages)
 
 for color, spread, percentage in zip(dominant_colors, color_spreads, color_percentages):
     print(f"Dominant color: {color}, Spread: {spread}, Percentage: {percentage}%")
