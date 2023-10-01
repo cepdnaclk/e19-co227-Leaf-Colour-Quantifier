@@ -12,4 +12,6 @@
 
 > cd backend
 
+> .\env\Scripts\activate
+
 > python main.py

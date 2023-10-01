@@ -22,7 +22,7 @@ async def getSegmentationImage(file: UploadFile = File(...)):
             dominant.dominant[i].spread = float(color_spreads[i])
             dominant.dominant[i].precentage = float(color_percentages[i])
 
-        # Return the streaming response.
+        # Return the DominantResponse
         return dominant
     
     except Exception as e:

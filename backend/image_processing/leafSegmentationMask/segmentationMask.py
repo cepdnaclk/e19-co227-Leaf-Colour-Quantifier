@@ -20,6 +20,7 @@ def createCompositeMask(photo, paint):
 def extractLeafMask(image):
     # Convert the image to grayscale
     cv2.GaussianBlur(image, (3, 3), 0)
+
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Apply thresholding to create a binary mask
@@ -42,10 +43,11 @@ def extractLeafMask(image):
     return mask
 
 def getLeafUsingMark(img, mask):
+    mask = cv2.resize(mask, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_AREA)
+
+    m = mask - img
     
-    # composite_mask = createCompositeMask(photo, paint)
+    composite_mask = createCompositeMask(img, mask)
+    leaf = cv2.bitwise_and(img, img, mask=composite_mask)
 
-    # leaf = cv2.bitwise_and(photo, photo, mask=composite_mask)
-
-
-    return img
+    return leaf
