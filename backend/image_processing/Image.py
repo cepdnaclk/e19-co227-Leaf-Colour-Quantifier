@@ -28,10 +28,8 @@ class Image:
         return self.resizeImage(getRCNNSegmentation(self.getEnhancedImage()))
 
     def getSharpImage(self, img):
-        # Create the sharpening kernel
         kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
 
-        # Sharpen the image
         return cv2.filter2D(img, -1, kernel)
 
     def getNoiceReducedImage(self, img):

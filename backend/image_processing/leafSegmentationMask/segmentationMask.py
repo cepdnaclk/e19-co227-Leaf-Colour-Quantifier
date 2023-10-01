@@ -42,6 +42,26 @@ def extractLeafMask(image):
 
     return mask
 
+def filterColour(img, mask):
+
+    # It converts the BGR color space of image to HSV color space
+    hsv = cv2.cvtColor(mask, cv2.COLOR_BGR2HSV)
+      
+    # Threshold of blue in HSV space
+    lower_blue = np.array([0, 0, 0])
+    upper_blue = np.array([66, 164, 245])
+    # lower_blue = np.array([66, 164, 245])
+    # upper_blue = np.array([255, 255, 255])
+  
+    # preparing the mask to overlay
+    mask = cv2.inRange(mask, lower_blue, upper_blue)
+      
+    # The black region in the mask has the value of 0,
+    # so when multiplied with original image removes all non-blue regions
+    result = cv2.bitwise_and(img, img, mask = mask)
+
+    return result
+
 def getLeafUsingMark(img, mask):
     mask = cv2.resize(mask, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_AREA)
 
