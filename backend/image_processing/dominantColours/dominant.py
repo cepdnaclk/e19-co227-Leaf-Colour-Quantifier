@@ -38,4 +38,8 @@ def get_dominant_colors(image, num_colors=3):
     color_spreads = np.sqrt(
         np.mean(np.square(pixels - kmeans.cluster_centers_[kmeans.labels_]), axis=0))
     
+    top_colors = [[int(x) for x in y] for y in top_colors]
+    color_spreads = [float(x) for x in color_spreads]
+    color_percentages = [float(x) for x in color_percentages]
+
     return top_colors, color_spreads, color_percentages
