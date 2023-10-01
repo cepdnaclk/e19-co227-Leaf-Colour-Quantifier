@@ -2,14 +2,14 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+// import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:share_plus/share_plus.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher_string.dart';
+// import 'package:share_plus/share_plus.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 
 Future<void> sendDataToServer(File processedImage, File imageFile, String text,
