@@ -49,23 +49,25 @@ def filterColour(img, mask):
       
     # Threshold of blue in HSV space
     lower_blue = np.array([0, 0, 0])
-    upper_blue = np.array([66, 164, 245])
-    # lower_blue = np.array([66, 164, 245])
-    # upper_blue = np.array([255, 255, 255])
+    upper_blue = np.array([0, 255, 255])
   
     # preparing the mask to overlay
-    mask = cv2.inRange(mask, lower_blue, upper_blue)
+    new_mask = cv2.inRange(hsv, lower_blue, upper_blue)
       
     # The black region in the mask has the value of 0,
     # so when multiplied with original image removes all non-blue regions
-    result = cv2.bitwise_and(img, img, mask = mask)
+    b = np.zeros_like(mask)
+    w = np.ones_like(mask)
+    w.fill(255)
+
+    result = cv2.bitwise_or(b, w, mask = new_mask)
 
     return result
 
 def getLeafUsingMark(img, mask):
     mask = cv2.resize(mask, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_AREA)
 
-    m = mask - img
+    mask = filterColour(img, mask)
     
     composite_mask = createCompositeMask(img, mask)
     leaf = cv2.bitwise_and(img, img, mask=composite_mask)
