@@ -213,7 +213,7 @@ The dominant color extraction process involves identifying the main colors in an
 
 4. **Cluster Analysis**: After clustering, we obtain the labels and counts for each cluster. The clusters are sorted based on the count of pixels they contain in descending order, revealing the most dominant colors.
 
-5. **Top Dominant Colors**: The top N clusters (where N is the specified number of dominant colors) are selected based on their pixel count. These clusters represent the dominant colors in the image.
+5. **Top Dominant Colors**: The top 3 clusters (where 3 is the specified number of dominant colors) are selected based on their pixel count. These clusters represent the dominant colors in the image.
 
 6. **Color Percentage**: We calculate the percentage of each dominant color in the image by dividing the count of pixels in each cluster by the total number of pixels in the image.
 
@@ -226,3 +226,19 @@ The output of this process includes:
 - The RGB values of the dominant colors.
 - The percentage of each dominant color in the image.
 - The color spread (variability) of each dominant color.
+
+## Report Generation
+
+The report generation process aims to provide a detailed summary of the image analysis, making it easier for users to understand the results and observations. The report is created in PDF format and contains various sections with visual representations of the analysis.
+
+1. **Histogram Generation**: Histograms of color channels (Red, Green, Blue) are generated from the segmented leaf image. These histograms provide insights into the distribution of pixel intensities for each color channel.
+
+2. **PDF Creation**: The ReportLab library is used to create a PDF document. We set up the document's layout, fonts, and styles for consistent formatting.
+
+3. **Header Information**: The report begins with a title, "Leaf Spectrum Report," followed by the date and time of the analysis. The current date and time are automatically generated using the `datetime` module.
+
+4. **Image and Logo**: The original plant image is resized and included in the report to provide visual context. Additionally, a logo image is added for branding purposes.
+
+5. **Histogram Section**: The histograms of color channels (Red, Green, Blue) are added to the report, providing a visual representation of color distribution within the segmented leaf.
+
+6. **Remarks**: Users have the option to add remarks or comments to the report. These remarks are included in the report for additional information.
