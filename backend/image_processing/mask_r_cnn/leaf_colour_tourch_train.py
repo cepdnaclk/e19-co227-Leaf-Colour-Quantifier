@@ -10,6 +10,64 @@ import torchvision
 from torchvision import transforms as T
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
+import random
+from PIL.ImageFilter import (
+   BLUR, CONTOUR, DETAIL, EDGE_ENHANCE, EDGE_ENHANCE_MORE,
+   EMBOSS, FIND_EDGES, SMOOTH, SMOOTH_MORE, SHARPEN
+)
+
+w = 800
+h = 1200
+
+def rotate180(img, mask):
+    img, mask = rotate90(img, mask)
+    return rotate90(img, mask)
+
+def rotate270(img, mask):
+    img, mask = rotate180(img, mask)
+    return rotate90(img, mask)
+
+def rotate90(img, mask):
+    return img.transpose(Image.ROTATE_90), mask.transpose(Image.ROTATE_90)
+
+def resizeImage(img, mask):
+    return img.resize((w + 100, h + 200)), mask.resize((w + 100, h + 200))
+
+def shapeImage(img, mask):
+    return img.filter(SHARPEN), mask
+
+def blueImage(img, mask):
+    return img.filter(BLUR), mask
+
+def detailImage(img, mask):
+    return img.filter(DETAIL), mask
+
+def smoothImage(img, mask):
+    return img.filter(SMOOTH), mask
+
+def smoothMImage(img, mask):
+    return img.filter(SMOOTH_MORE), mask
+
+def CONTOURImage(img, mask):
+    return img.filter(CONTOUR), mask
+
+def EDGE_ENHANCEImage(img, mask):
+    return img.filter(EDGE_ENHANCE), mask
+
+def EMBOSSImage(img, mask):
+    return img.filter(EMBOSS), mask
+
+def FIND_EDGESImage(img, mask):
+    return img.filter(FIND_EDGES), mask
+
+def normal(img, mask):
+    return img, mask
+
+f = [rotate180, rotate90, resizeImage, normal, shapeImage, blueImage, smoothImage, rotate270, detailImage, normal, smoothMImage, CONTOURImage, EDGE_ENHANCEImage, EMBOSSImage, FIND_EDGESImage]
+
+def getfunF(img, mask):
+    function = random.choice(f)
+    return function(img, mask)
 
 
 class CustDat(torch.utils.data.Dataset):
@@ -20,6 +78,13 @@ class CustDat(torch.utils.data.Dataset):
     def __getitem__(self , idx):
         img = Image.open("image_processing\\mask_r_cnn\\images\\" + self.imgs[idx]).convert("RGB")
         mask = Image.open("image_processing\\mask_r_cnn\\masks\\" + self.masks[idx])
+
+        img, mask = getfunF(img, mask)
+        img, mask = getfunF(img, mask)
+
+        img = img.resize((w, h))
+        mask = mask.resize((w, h))
+
         mask = np.array(mask)
         obj_ids = np.unique(mask)
         obj_ids = obj_ids[1:]
@@ -94,7 +159,6 @@ def main():
                                     pin_memory = True if torch.cuda.is_available() else False)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    device
 
     model.to(device)
 
@@ -139,7 +203,7 @@ def main():
 
         print(epoch , "  " , train_epoch_loss , "  " , val_epoch_loss)
 
-    torch.save(model, "image_processing\\mask_r_cnn\\models\\model_4.pth")
+    torch.save(model, "image_processing\\mask_r_cnn\\models\\model.pth")
 
 if __name__ == "__main__":
     main()
