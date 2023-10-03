@@ -12,17 +12,3 @@ async def getReport(reportRequest: ReportRequest = Depends(), originalImage: Upl
 
     # Return the streaming response.
     return reportController.getImageReport(contentsOriginal, contentsSegmentation, reportRequest.remaks)
-
-
-# class ReportRequest(BaseModel):
-#     originalImage: UploadFile = File(...)
-#     segmentationImage: UploadFile = File(...)
-#     remaks : str
-
-# @router.post("/image", response_class=StreamingResponse)
-# async def getReport(reportRequest: ReportRequest):
-#     contentsOriginal = await reportRequest.originalImage.read()
-#     contentsSegmentation = await reportRequest.segmentationImage.read()
-    
-#     # Return the streaming response.
-#     return reportController.getImageReport(contentsOriginal, contentsSegmentation, reportRequest.remaks)

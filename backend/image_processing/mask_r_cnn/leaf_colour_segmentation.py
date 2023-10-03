@@ -10,40 +10,56 @@ URL = 'https://drive.google.com/file/d/100rQP-_0nQFWwudp3qjxcRDMgbFnnNwR/view?us
 
 MODEL = "model_03.pth"
 
-MODEL_PATH = "image_processing\\mask_r_cnn\\models\\" + MODEL 
+# Path to store the downloaded model file
+MODEL_PATH = "image_processing\\mask_r_cnn\\models\\" + MODEL
 
+# Function to download the model file if it doesn't exist
 def downloadModel(file_url, output):
     gdown.download(url=file_url, output=output, quiet=False, fuzzy=True)
 
+# Check if the model file exists, if not, download it
 if not os.path.exists(MODEL_PATH):
     downloadModel(URL, MODEL_PATH)
 
+# Determine the device (GPU or CPU) for running the model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Load the pre-trained Mask R-CNN model
 model = torch.load(MODEL_PATH, map_location=device)
 model.eval()
+
+# Define a transformation to convert input images to tensors
 transform = T.ToTensor()
 
+# Function to perform Mask R-CNN segmentation on an input image
 def getRCNNSegmentation(image):
     try:
-        ig = transform(image)
+        # Transform the input image to a tensor
+        img = transform(image)
 
         with torch.no_grad():
-            pred = model([ig.to(device)])
+            # Make predictions using the Mask R-CNN model
+            pred = model([img.to(device)])
 
+        # Get the mask for the detected object
         masks = pred[0]["masks"]
-        mask = masks[0 , 0] > 0.4
+        mask = masks[0, 0] > 0.4
         maskImage = mask.cpu().detach().numpy().astype("uint8") * 255
 
-        fin_img = cv2.bitwise_and(image , image , mask = maskImage)
+        # Apply the mask to the original image
+        fin_img = cv2.bitwise_and(image, image, mask=maskImage)
 
         return fin_img
-    
+
     except:
+        # Return the original image in case of an error
         return image
 
 if __name__ == "__main__":
+    # Example usage: Load an image and perform Mask R-CNN segmentation
     image = cv2.imread("image_processing\\mask_r_cnn\\test\\0.jpg")
     segmentationImage = getRCNNSegmentation(image)
 
-    cv2.imshow("image_mask",segmentationImage)
-    cv2 .waitKey(0)
+    # Display the segmented image
+    cv2.imshow("image_mask", segmentationImage)
+    cv2.waitKey(0)

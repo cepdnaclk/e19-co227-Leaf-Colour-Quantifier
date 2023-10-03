@@ -9,7 +9,6 @@ Follow these steps to set up the backend environment:
 1. Clone the Repository:
 
    ```bash
-   git clone <repository-url>
    cd backend
    ```
 
