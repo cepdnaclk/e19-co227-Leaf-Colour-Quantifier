@@ -16,7 +16,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Links](#links)
+2. [Backend](#Backend)
+3. [Links](#links)
 
 ---
 
@@ -26,7 +27,9 @@ This is a sample image, to show how to add images to your page. To learn more op
 Traditionally, leaf color assessment has been subjective and time-consuming. To overcome these limitations, we are developing a field technique that leverages image processing. By capturing leaf images and analyzing the RGB values or other color models, we can quantify the color characteristics of the leaves, such as hue, saturation, and brightness.
 Our approach is simple, affordable, and accessible, using commonly available equipment and open-source software libraries. The use of digital imaging ensures consistent and repeatable measurements, reducing human bias.
 
-# Leaf Colour Quantifier - Backend
+---
+
+# Backend
 
 ## Setup
 
@@ -268,6 +271,8 @@ The report generation process aims to provide a detailed summary of the image an
 5. **Histogram Section**: The histograms of color channels (Red, Green, Blue) are added to the report, providing a visual representation of color distribution within the segmented leaf.
 
 6. **Remarks**: Users have the option to add remarks or comments to the report. These remarks are included in the report for additional information.
+
+---
 
 ## Links
 
