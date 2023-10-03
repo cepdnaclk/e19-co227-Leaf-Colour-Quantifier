@@ -28,8 +28,6 @@ Our approach is simple, affordable, and accessible, using commonly available equ
 
 # Leaf Colour Quantifier - Backend
 
-Welcome to the backend repository of the Leaf Colour Quantifier project. This backend serves as the API for the Leaf Colour Quantifier, providing image processing and analysis capabilities.
-
 ## Setup
 
 Follow these steps to set up the backend environment:
