@@ -112,3 +112,41 @@ The backend server will start, and you will see output indicating the server is 
 - **Method**: POST
 - **Request Body**: Accepts a multipart/form-data request containing the image.
 - **Response**: Returns a JSON response with information about dominant colors.
+
+## Directory Structure
+
+Here is the directory structure of the backend:
+
+```
+├── assets
+│
+├── image_processing
+│   ├── dominantColours
+│   ├── leafSegmentation
+│   ├── leafSegmentationMask
+│   ├── mask_r_cnn
+│   ├── report
+│   ├── __init__.py
+│   ├── define.py
+│   └── Image.py
+│
+├── rest_api
+│   ├── config
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── util
+│   ├── __init__.py
+│   └── api.py
+│
+├── test
+│
+├── __init__.py
+├── .gitignore
+├── Dockerfile
+├── main.py
+├── README.md
+└── requirements.txt
+```
+
+This structure outlines the main components of the backend, including image processing modules, REST API components, and tests.
