@@ -12,7 +12,7 @@ import gdown
 # URL = 'https://drive.google.com/file/d/1gDk4Rw1TOwXL3h2lTByp7I8Wpn4ILF3K/view?usp=drive_link'  # model_12.0
 URL = 'https://drive.google.com/file/d/1-9jD-F6NLZC5iZTI8hkTwGpOB3-1zWGD/view?usp=drive_link'  # model_12.1
 
-MODEL = "model_01.pth"
+MODEL = "model_05.pth"
 
 # Path to store the downloaded model file
 MODEL_PATH = "image_processing\\mask_r_cnn\\models\\" + MODEL
