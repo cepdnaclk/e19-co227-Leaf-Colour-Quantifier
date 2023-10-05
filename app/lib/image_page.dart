@@ -38,7 +38,7 @@ class ImagePage extends StatelessWidget {
         onPressed: () async {
           print(imageFile.path);
           var processedImage = await sendImageToServer(
-              imageFile, 'http://192.168.0.100:5000/image/segmentaion');
+              imageFile, 'http://192.168.0.102:5000/image/segmentaion');
           Navigator.push(
             context,
             MaterialPageRoute(
