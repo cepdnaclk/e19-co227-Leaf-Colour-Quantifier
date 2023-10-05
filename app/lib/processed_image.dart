@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:leaf_spectrum/annotator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:leaf_spectrum/analysis.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
+  final File originalImage;
 
-  const ProcessedImagePage({Key? key, required this.processedImage})
+  const ProcessedImagePage({Key? key, required this.processedImage, required this.originalImage})
       : super(key: key);
 
   Future<String> sendImageToServer(
@@ -93,11 +95,21 @@ class ProcessedImagePage extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(10),
               child: FloatingActionButton.extended(
+                heroTag: "ProcessedImage: Improve Selection",
                 shape: const StadiumBorder(
                     side: BorderSide(color: Colors.white60, width: 2)),
                 foregroundColor: Colors.white60,
                 backgroundColor: Colors.transparent,
-                onPressed: () {},
+                onPressed: () {
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Annotator(imageFile: originalImage,),
+                    ),
+                  );
+                },
                 label: Text(
                   'Improve Selection',
                   style: TextStyle(
@@ -112,6 +124,7 @@ class ProcessedImagePage extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(10),
               child: FloatingActionButton.extended(
+                heroTag: "ProcessedImage: Go to Analysis",
                 onPressed: () {
                   // sendImageToServer(processedImage,
                   //     'http://192.168.8.177:5000/report/image', context);

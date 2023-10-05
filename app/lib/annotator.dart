@@ -18,58 +18,61 @@ class Annotator extends StatefulWidget {
 }
 
 class _AnnotatorState extends State<Annotator> {
-  late ui.Image image;
-  bool isImageloaded = false;
+  Future<ui.Image>? imageFuture;
   GlobalKey _myCanvasKey = new GlobalKey();
   ImageEditor? editor;
 
+  @override
   void initState() {
     super.initState();
-    init();
+    imageFuture = loadImageFromFile(widget.imageFile);
   }
 
-  Future<Null> init() async {
-    final data = await widget.imageFile.readAsBytes();
-    image = await loadImage(data);
-    editor = ImageEditor(image: image);
-  }
-
-  Future<ui.Image> loadImage(Uint8List img) async {
+  Future<ui.Image> loadImageFromFile(File file) async {
+    final Uint8List bytes = await file.readAsBytes();
     final Completer<ui.Image> completer = Completer();
-    ui.decodeImageFromList(img, (ui.Image img) {
-      setState(() {
-        isImageloaded = true;
-      });
-      return completer.complete(img);
-    });
+    final codec = await ui.instantiateImageCodec(bytes);
+    final frameInfo = await codec.getNextFrame();
+    completer.complete(frameInfo.image);
     return completer.future;
-  }
-
-  Widget _buildImage() {
-    if (this.isImageloaded) {
-      return GestureDetector(
-        onPanDown: (detailData) {
-          editor!.update(detailData.localPosition);
-          _myCanvasKey.currentContext?.findRenderObject()?.markNeedsPaint();
-        },
-        onPanUpdate: (detailData) {
-          editor!.update(detailData.localPosition);
-          _myCanvasKey.currentContext?.findRenderObject()?.markNeedsPaint();
-        },
-        child: RepaintBoundary(
-          key: _myCanvasKey,
-          child: CustomPaint(
-            painter: editor,
-          ),
-        ),
-      );
-    } else {
-      return Center(child: Text('loading'));
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<ui.Image>(
+      future: imageFuture,
+      builder: (BuildContext context, AsyncSnapshot<ui.Image> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          ui.Image image = snapshot.data!;
+          editor = ImageEditor(image: image);
+          return buildAnnotator(context, image);
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  Widget _buildImage() {
+    return GestureDetector(
+      onPanDown: (detailData) {
+        editor!.update(detailData.localPosition);
+        _myCanvasKey.currentContext?.findRenderObject()?.markNeedsPaint();
+      },
+      onPanUpdate: (detailData) {
+        editor!.update(detailData.localPosition);
+        _myCanvasKey.currentContext?.findRenderObject()?.markNeedsPaint();
+      },
+      child: RepaintBoundary(
+        key: _myCanvasKey,
+        child: CustomPaint(
+          painter: editor,
+        ),
+      ),
+    );
+  }
+
+  Widget buildAnnotator(BuildContext context, ui.Image image) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Paint Over The Leaf'),
@@ -102,6 +105,10 @@ class _AnnotatorState extends State<Annotator> {
                   ByteData? byteData = await capture.toByteData(
                       format: ui.ImageByteFormat.png); // Save as PNG
                   Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+                  //TODO: @Mansitha
+                  //Change this so its sent to the backend server instead of saving it to the gallery
+                  //Navigate to the processed image, pass the original image and the new processes image.
 
                   final directory = await getApplicationDocumentsDirectory();
                   final pathOfTheFileToWrite = directory.path +
@@ -143,7 +150,6 @@ class ImageEditor extends CustomPainter {
     ..strokeCap = StrokeCap.round
     ..strokeJoin = StrokeJoin.round
     ..style = PaintingStyle.stroke;
-
 
   void update(Offset offset) {
     points?.add(offset);
