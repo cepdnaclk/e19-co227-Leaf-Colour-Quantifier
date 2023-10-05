@@ -54,6 +54,8 @@ class ProcessedImagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    imageCache.clear();
+    imageCache.clearLiveImages();
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(

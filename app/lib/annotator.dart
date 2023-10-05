@@ -1,12 +1,13 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:leaf_spectrum/processed_image.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:io';
 
-import 'package:path_provider/path_provider.dart';
+
+import 'models/server_connection.dart';
 
 class Annotator extends StatefulWidget {
   final File imageFile;
@@ -106,16 +107,19 @@ class _AnnotatorState extends State<Annotator> {
                       format: ui.ImageByteFormat.png); // Save as PNG
                   Uint8List pngBytes = byteData!.buffer.asUint8List();
 
-                  //TODO: @Mansitha
-                  //Change this so its sent to the backend server instead of saving it to the gallery
-                  //Navigate to the processed image, pass the original image and the new processes image.
 
-                  final directory = await getApplicationDocumentsDirectory();
-                  final pathOfTheFileToWrite = directory.path +
-                      "/painted_image.png"; // Change the file extension to ".png"
-                  File file = File(pathOfTheFileToWrite);
-                  await file.writeAsBytes(pngBytes);
-                  print("Image saved to Gallery");
+                  ServerConnection server = ServerConnection();
+                  var processedImage = await server.sendImageAndMaskAndGetProcessedImage(widget.imageFile, pngBytes);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ProcessedImagePage(processedImage: processedImage, originalImage: widget.imageFile, key: UniqueKey(),),
+                    ),
+                  );
+
+
+
                 },
                 backgroundColor: const Color.fromARGB(255, 33, 145, 126),
                 child: Icon(Icons.check),
