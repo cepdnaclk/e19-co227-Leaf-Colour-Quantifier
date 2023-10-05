@@ -9,7 +9,10 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class Annotator extends StatefulWidget {
-  Annotator({Key? key}) : super(key: key);
+  final File imageFile;
+
+  Annotator({Key? key, required this.imageFile}) : super(key: key);
+
   @override
   _AnnotatorState createState() => _AnnotatorState();
 }
@@ -26,8 +29,8 @@ class _AnnotatorState extends State<Annotator> {
   }
 
   Future<Null> init() async {
-    final ByteData data = await rootBundle.load('assets/images/test.jpeg');
-    image = await loadImage(Uint8List.view(data.buffer));
+    final data = await widget.imageFile.readAsBytes();
+    image = await loadImage(data);
     editor = ImageEditor(image: image);
   }
 
