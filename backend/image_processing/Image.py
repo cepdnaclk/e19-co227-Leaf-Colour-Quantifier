@@ -73,7 +73,7 @@ class Image:
 
     def getDominantColours(self):
         """Get the dominant colors in the input image."""
-        return get_dominant_colors(self.image)
+        return get_dominant_colors(self.resizeImage(self.image))
 
     def getSegmentationImageUsingMark(self, mask):
         """

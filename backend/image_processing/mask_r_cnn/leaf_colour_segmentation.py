@@ -34,7 +34,6 @@ model.eval()
 
 # Define a transformation to convert input images to tensors
 transform = T.ToTensor()
-
 # Function to perform Mask R-CNN segmentation on an input image
 def getRCNNSegmentation(image):
     try:

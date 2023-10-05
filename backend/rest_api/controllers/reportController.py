@@ -31,7 +31,7 @@ def getImageReport(contentsOriginal, contentsSegmentation, remarks):
 
         # print('inside get image report')
 
-        getPDF.createPDF(imgOriginal, logo, imgSegmentation, remarks)
+        getPDF.createPDF(imageOriginal.resizeImage(imgOriginal), logo, imageSegmentation.resizeImage(imgSegmentation), remarks)
 
         # print('inside get image report')
         pdf_content = BytesIO()
