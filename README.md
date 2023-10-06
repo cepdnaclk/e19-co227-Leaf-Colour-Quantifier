@@ -2,19 +2,21 @@
 
 ---
 
-<!-- 
+<!--
 This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
 
 ![Sample Image](./images/sample.png)
  -->
 
 ## Team
--  E/19/094-Eashwara M.
--  E/19/129-Gunawardana K.H.
--  E/19/372-Silva A.K.M.
--  E/19/408-Ubayasiri S.J.
+
+- E/19/094-Eashwara M.
+- E/19/129-Gunawardana K.H.
+- E/19/372-Silva A.K.M.
+- E/19/408-Ubayasiri S.J.
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Backend](#Backend)
 3. [Links](#links)
@@ -23,7 +25,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Introduction
 
- Welcome to our GitHub repository for a project on developing a simple field technique to detect and quantify the color of plant leaves. Our goal is to provide a practical solution for researchers, botanists, and enthusiasts who need a quick and accurate method to assess leaf color in various environments.
+Welcome to our GitHub repository for a project on developing a simple field technique to detect and quantify the color of plant leaves. Our goal is to provide a practical solution for researchers, botanists, and enthusiasts who need a quick and accurate method to assess leaf color in various environments.
 Traditionally, leaf color assessment has been subjective and time-consuming. To overcome these limitations, we are developing a field technique that leverages image processing. By capturing leaf images and analyzing the RGB values or other color models, we can quantify the color characteristics of the leaves, such as hue, saturation, and brightness.
 Our approach is simple, affordable, and accessible, using commonly available equipment and open-source software libraries. The use of digital imaging ensures consistent and repeatable measurements, reducing human bias.
 
@@ -31,73 +33,21 @@ Our approach is simple, affordable, and accessible, using commonly available equ
 
 # Backend
 
-## Setup
-
-Follow these steps to set up the backend environment:
-
-1. Clone the Repository:
-
-   ```bash
-   cd backend
-   ```
-
-2. Create a Virtual Environment (Optional but Recommended):
-
-   ```bash
-   python -m venv env
-   ```
-
-3. Activate the Virtual Environment:
-
-   - On Windows:
-
-     ```bash
-     .\env\Scripts\activate
-     ```
-
-   - On macOS and Linux:
-
-     ```bash
-     source env/bin/activate
-     ```
-
-4. Install Required Dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Run the Backend
-
-To run the backend server, use the following commands:
-
-1. Change to the `backend` directory if you're not already there:
-
-   ```bash
-   cd backend
-   ```
-
-2. Activate the Virtual Environment (if not already activated):
-
-   - On Windows:
-
-     ```bash
-     .\env\Scripts\activate
-     ```
-
-   - On macOS and Linux:
-
-     ```bash
-     source env/bin/activate
-     ```
-
-3. Start the FastAPI Application:
-
-   ```bash
-   python main.py
-   ```
-
 The backend server will start, and you will see output indicating the server is running. By default, the server will be accessible at `http://localhost:5000`.
+
+## API Documentation
+
+- http://localhost:5000/docs
+
+  - Access the interactive Swagger documentation for the API.
+
+- http://localhost:5000/openapi.json
+
+  - Download the OpenAPI JSON file to use with your API client.
+
+- http://localhost:5000/redoc
+
+  - View API documentation in a user-friendly ReDoc interface.
 
 ## API Endpoints
 
@@ -279,6 +229,5 @@ The report generation process aims to provide a detailed summary of the image an
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
-
-[//]: # (Please refer this to learn more about Markdown syntax)
-[//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[//]: # "Please refer this to learn more about Markdown syntax"
+[//]: # "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"

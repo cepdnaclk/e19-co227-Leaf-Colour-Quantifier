@@ -70,6 +70,19 @@ To run the backend server, use the following commands:
 
 The backend server will start, and you will see output indicating the server is running. By default, the server will be accessible at `http://localhost:5000`.
 
+## API Documentation
+
+- http://localhost:5000/docs
+
+  - Access the interactive Swagger documentation for the API.
+
+- http://localhost:5000/openapi.json
+
+  - Download the OpenAPI JSON file to use with your API client.
+
+- http://localhost:5000/redoc
+  - View API documentation in a user-friendly ReDoc interface.
+
 ## API Endpoints
 
 ### 1. Get Segmentation Image
