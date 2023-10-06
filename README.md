@@ -283,6 +283,8 @@ pytest
 
 This command will run all available tests and provide you with test results.
 
+---
+
 ## Links
 
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
