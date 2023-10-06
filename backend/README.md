@@ -255,3 +255,64 @@ The report generation process aims to provide a detailed summary of the image an
 5. **Histogram Section**: The histograms of color channels (Red, Green, Blue) are added to the report, providing a visual representation of color distribution within the segmented leaf.
 
 6. **Remarks**: Users have the option to add remarks or comments to the report. These remarks are included in the report for additional information.
+
+Certainly! Here's an updated README.md file with the structure and information specifically about integration tests and unit tests:
+
+# Testing
+
+Implemeted using pytest
+
+```
+
+test/
+│
+├── integration_test/
+│ ├── integration_test.py
+│
+├── unit_test/
+│ ├── image_processing_test.py
+│ └── rest_api_test.py
+│
+├── test_01.jpg
+├── test_02.jpg
+├── test_03.jpg
+├── test_04.jpg
+└── test_05.jpg
+
+```
+
+## Integration Tests
+
+These tests use the FastAPI test client to make HTTP requests to your API endpoints.
+
+### Running Integration Tests
+
+```bash
+pytest integration_test.py
+```
+
+## Unit Tests
+
+These tests focus on specific units of code, such as image processing and API functionality.
+
+### Running Unit Tests
+
+```bash
+pytest image_processing_test.py
+pytest rest_api_test.py
+```
+
+The `image_processing_test.py` file contains tests for image loading, segmentation, and RCNN-based segmentation.
+The `rest_api_test.py` file contains API tests for your FastAPI application.
+
+## Run Test
+
+```bash
+cd backend
+```
+
+```bash
+pytest
+```
+
+This command will run all available tests and provide you with test results.

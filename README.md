@@ -224,6 +224,65 @@ The report generation process aims to provide a detailed summary of the image an
 
 ---
 
+## Testing Backend
+
+Implemeted using pytest
+
+```
+
+test/
+│
+├── integration_test/
+│ ├── integration_test.py
+│
+├── unit_test/
+│ ├── image_processing_test.py
+│ └── rest_api_test.py
+│
+├── test_01.jpg
+├── test_02.jpg
+├── test_03.jpg
+├── test_04.jpg
+└── test_05.jpg
+
+```
+
+### Integration Tests
+
+These tests use the FastAPI test client to make HTTP requests to your API endpoints.
+
+#### Running Integration Tests
+
+```bash
+pytest integration_test.py
+```
+
+### Unit Tests
+
+These tests focus on specific units of code, such as image processing and API functionality.
+
+#### Running Unit Tests
+
+```bash
+pytest image_processing_test.py
+pytest rest_api_test.py
+```
+
+The `image_processing_test.py` file contains tests for image loading, segmentation, and RCNN-based segmentation.
+The `rest_api_test.py` file contains API tests for your FastAPI application.
+
+### Run Test
+
+```bash
+cd backend
+```
+
+```bash
+pytest
+```
+
+This command will run all available tests and provide you with test results.
+
 ## Links
 
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
