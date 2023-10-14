@@ -6,8 +6,8 @@ import 'dart:typed_data';
 import 'package:image/image.dart' as img;
 import 'package:leaf_spectrum/models/histogram_data.dart';
 import 'package:leaf_spectrum/home.dart';
-
-import 'package:leaf_spectrum/sendDataToServer.dart';
+import 'package:leaf_spectrum/models/server_connection.dart';
+// import 'package:leaf_spectrum/sendDataToServer.dart';
 import 'package:leaf_spectrum/showRemarkDialog.dart';
 import 'package:leaf_spectrum/showWaitingPopup.dart';
 
@@ -294,8 +294,10 @@ class _AnalysisState extends State<Analysis> {
                   );
                 } else {
                   showWaitingPopup(context);
-                  sendDataToServer(imageFile, originalImage, remark,
-                      'http://192.168.8.177:5000/report/image', context);
+                  ServerConnection server = new ServerConnection();
+
+                  server.sendDataToServer(
+                      imageFile, originalImage, remark, context);
                 }
               },
               icon: Icon(
