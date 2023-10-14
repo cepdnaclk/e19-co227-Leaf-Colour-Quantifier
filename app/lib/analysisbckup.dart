@@ -7,27 +7,16 @@ import 'package:image/image.dart' as img;
 import 'package:leaf_spectrum/models/histogram_data.dart';
 import 'package:leaf_spectrum/home.dart';
 
-import 'package:leaf_spectrum/sendDataToServer.dart';
-import 'package:leaf_spectrum/showRemarkDialog.dart';
-import 'package:leaf_spectrum/showWaitingPopup.dart';
-
 class Analysis extends StatefulWidget {
   final File imageFile;
-  final File originalImage;
 
-  const Analysis(
-      {super.key, required this.imageFile, required this.originalImage});
+  const Analysis({super.key, required this.imageFile});
 
   @override
-  State<Analysis> createState() =>
-      _AnalysisState(imageFile: imageFile, originalImage: originalImage);
+  State<Analysis> createState() => _AnalysisState();
 }
 
 class _AnalysisState extends State<Analysis> {
-  final File imageFile;
-  final File originalImage;
-
-  _AnalysisState({required this.imageFile, required this.originalImage});
   //List to contain the toggle button status of the three channels; RGB in order.
   List<bool> toggleValues = [true, true, true];
 
@@ -197,124 +186,27 @@ class _AnalysisState extends State<Analysis> {
                 const SizedBox(
                   height: 40,
                 ),
-                // Center(
-                //   child: ElevatedButton.icon(
-                //       style: ElevatedButton.styleFrom(
-                //           backgroundColor:
-                //               const Color.fromARGB(255, 33, 145, 126),
-                //           shape: RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.circular(40)),
-                //           foregroundColor: Colors.black),
-                //       onPressed: () {
-                //         Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //             builder: (context) => Home(),
-                //           ),
-                //         );
-                //       },
-                //       label: const Text('Analyse another leaf'),
-                //       icon: const Icon(Icons.restart_alt_sharp)),
-                // ),
+                Center(
+                  child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 33, 145, 126),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          foregroundColor: Colors.black),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ),
+                        );
+                      },
+                      label: const Text('Analyse another leaf'),
+                      icon: const Icon(Icons.restart_alt_sharp)),
+                ),
               ]),
         ),
-      ),
-      floatingActionButton: Wrap(
-        direction: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(10),
-            child: FloatingActionButton.extended(
-              // heroTag: "ProcessedImage: Improve Selection",
-              shape: const StadiumBorder(
-                  side: BorderSide(color: Colors.white60, width: 2)),
-              foregroundColor: Colors.white60,
-              backgroundColor: Colors.transparent,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(),
-                  ),
-                );
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => Annotator(
-                //       imageFile: originalImage,
-                //     ),
-                //   ),
-                // );
-              },
-              label: Text(
-                'Analyse another leaf',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.0,
-                  letterSpacing: 0.2,
-                ),
-              ),
-              icon: Icon(Icons.restart_alt_sharp),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10),
-            child: FloatingActionButton.extended(
-              heroTag: "ProcessedImage: Go to Analysis",
-              onPressed: () async {
-                final remark = await showRemarkDialog(context);
-
-                if (remark!.isEmpty) {
-                  // Show a watning Message
-                  // show dialog
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (BuildContext context) {
-                  //     return AlertDialog(
-                  //       title: Text('Warning'),
-                  //       content: Text('Please enter remarks.'),
-                  //       actions: [
-                  //         TextButton(
-                  //           onPressed: () {
-                  //             Navigator.of(context).pop();
-                  //           },
-                  //           child: Text('OK'),
-                  //         ),
-                  //       ],
-                  //     );
-                  //   },
-                  // );
-                  // Snack bar
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Please enter a remark.'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                } else {
-                  showWaitingPopup(context);
-                  sendDataToServer(imageFile, originalImage, remark,
-                      'http://192.168.8.177:5000/report/image', context);
-                }
-              },
-              icon: Icon(
-                Icons.bar_chart_outlined,
-                size: 20.0,
-              ),
-              label: Text(
-                "Report",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.0,
-                  letterSpacing: 0.2,
-                ),
-              ),
-              foregroundColor: Colors.black,
-              backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-            ),
-          ),
-        ],
       ),
     );
   }

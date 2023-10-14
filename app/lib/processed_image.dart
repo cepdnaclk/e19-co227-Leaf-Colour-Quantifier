@@ -10,7 +10,8 @@ class ProcessedImagePage extends StatelessWidget {
   final File processedImage;
   final File originalImage;
 
-  const ProcessedImagePage({Key? key, required this.processedImage, required this.originalImage})
+  const ProcessedImagePage(
+      {Key? key, required this.processedImage, required this.originalImage})
       : super(key: key);
 
   Future<String> sendImageToServer(
@@ -57,105 +58,106 @@ class ProcessedImagePage extends StatelessWidget {
     imageCache.clear();
     imageCache.clearLiveImages();
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-          title: Text('Processed Image'),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Image.file(processedImage),
-            ),
-            // SizedBox(
-            //   height: 35,
-            // ),
-            // ElevatedButton.icon(
-            //     style: ElevatedButton.styleFrom(
-            //         backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-            //         shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(40)),
-            //         foregroundColor: Colors.black),
-            //     onPressed: () {
-            //       // sendImageToServer(processedImage,
-            //       //     'http://192.168.8.177:5000/report/image', context);
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => Analysis(imageFile: processedImage,),
-            //         ),
-            //       );
-            //     },
-            //     label: const Text('Analyse The Leaf'),
-            //     icon: const Icon(Icons.bar_chart_outlined)),
-          ],
-        ),
-        floatingActionButton: Wrap(
-          direction: Axis.horizontal,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(10),
-              child: FloatingActionButton.extended(
-                heroTag: "ProcessedImage: Improve Selection",
-                shape: const StadiumBorder(
-                    side: BorderSide(color: Colors.white60, width: 2)),
-                foregroundColor: Colors.white60,
-                backgroundColor: Colors.transparent,
-                onPressed: () {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          Annotator(imageFile: originalImage,),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+        title: Text('Processed Image'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Image.file(processedImage),
+          ),
+          // SizedBox(
+          //   height: 35,
+          // ),
+          // ElevatedButton.icon(
+          //     style: ElevatedButton.styleFrom(
+          //         backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+          //         shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(40)),
+          //         foregroundColor: Colors.black),
+          //     onPressed: () {
+          //       // sendImageToServer(processedImage,
+          //       //     'http://192.168.8.177:5000/report/image', context);
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => Analysis(imageFile: processedImage,),
+          //         ),
+          //       );
+          //     },
+          //     label: const Text('Analyse The Leaf'),
+          //     icon: const Icon(Icons.bar_chart_outlined)),
+        ],
+      ),
+      floatingActionButton: Wrap(
+        direction: Axis.horizontal,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FloatingActionButton.extended(
+              heroTag: "ProcessedImage: Improve Selection",
+              shape: const StadiumBorder(
+                  side: BorderSide(color: Colors.white60, width: 2)),
+              foregroundColor: Colors.white60,
+              backgroundColor: Colors.transparent,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Annotator(
+                      imageFile: originalImage,
                     ),
-                  );
-                },
-                label: Text(
-                  'Improve Selection',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                    letterSpacing: 0.2,
                   ),
+                );
+              },
+              label: Text(
+                'Improve Selection',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                  letterSpacing: 0.2,
                 ),
-                icon: Icon(Icons.format_paint),
               ),
+              icon: Icon(Icons.format_paint),
             ),
-            Container(
-              margin: EdgeInsets.all(10),
-              child: FloatingActionButton.extended(
-                heroTag: "ProcessedImage: Go to Analysis",
-                onPressed: () {
-                  // sendImageToServer(processedImage,
-                  //     'http://192.168.8.177:5000/report/image', context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Analysis(
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FloatingActionButton.extended(
+              heroTag: "ProcessedImage: Go to Analysis",
+              onPressed: () {
+                // sendImageToServer(processedImage,
+                //     'http://192.168.8.177:5000/report/image', context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Analysis(
                         imageFile: processedImage,
-                      ),
-                    ),
-                  );
-                },
-                icon: Icon(
-                  Icons.bar_chart_outlined,
-                  size: 20.0,
-                ),
-                label: Text(
-                  "Analyze",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                    letterSpacing: 0.2,
+                        originalImage: originalImage),
                   ),
-                ),
-                foregroundColor: Colors.black,
-                backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+                );
+              },
+              icon: Icon(
+                Icons.bar_chart_outlined,
+                size: 20.0,
               ),
+              label: Text(
+                "Analyze",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                  letterSpacing: 0.2,
+                ),
+              ),
+              foregroundColor: Colors.black,
+              backgroundColor: const Color.fromARGB(255, 33, 145, 126),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
