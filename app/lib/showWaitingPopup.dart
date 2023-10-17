@@ -13,7 +13,10 @@ Future<void> showWaitingPopup(BuildContext context, String message) async {
           children: [
             Text(message),
             SizedBox(height: 20),
-            CircularProgressIndicator(),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Color.fromARGB(255, 33, 145, 126)),
+            ),
           ],
         ),
       ),
