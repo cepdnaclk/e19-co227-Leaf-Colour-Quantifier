@@ -132,7 +132,7 @@ class _AnnotatorState extends State<Annotator> {
                   ServerConnection server = ServerConnection();
                   showWaitingPopup(
                     context,
-                    'Wait, The Image is Processing...',
+                    'Processing Image',
                   );
                   var processedImage =
                       await server.sendImageAndMaskAndGetProcessedImage(
