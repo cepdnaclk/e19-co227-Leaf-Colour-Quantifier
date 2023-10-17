@@ -91,8 +91,8 @@ Traditional methods of leaf color assessment have long relied on subjective huma
   The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
 <p align="center">
-  <img src="./images/histogram.jpeg" alt="Image" width="300" style="margin: 0 10px;">
-  <img src="./images/red_fil.jpeg" alt="Image" width="300" style="margin: 0 10px;">
+  <img src="./images/histogram.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+  <img src="./images/red_fil.jpeg" alt="Image" width="300" style="margin: 0 5px;">
 </p>
 
 <!-- ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg) -->
@@ -140,6 +140,11 @@ The OpenCV-based leaf segmentation algorithm utilizes various image processing m
 
 - **Segment Leaf**: The leaf is segmented from the original image using the generated background marker. The segmentation includes options for filling holes, smoothing boundaries, and specifying marker intensity.
 
+<p align="center">
+  <img src="./images/test_02.jpg" alt="Image" width="200" style="margin: 0 10px;">
+  <img src="./images/test_02_mask.jpeg" alt="Image" width="200" style="margin: 0 10px;">
+</p>
+
 This technique is implemented in Python and provides an efficient way to segment leaves from images.
 
 ### 2. Mask R-CNN Model
@@ -159,6 +164,11 @@ The Mask R-CNN model is a deep learning-based technique used for leaf segmentati
 - **Validation**: After each epoch of training, the code evaluates the model on a validation dataset to monitor its performance.
 
 - **Model Saving**: The trained model is saved to a file for later use in the Leaf Colour Quantifier project.
+
+<p align="center">
+  <img src="./images/rcnn.jpg" alt="Image" width="200" style="margin: 0 10px;">
+  <img src="./images/rcnn_mask.jpeg" alt="Image" width="200" style="margin: 0 10px;">
+</p>
 
 The trained Mask R-CNN model provides accurate leaf segmentation results and is a powerful tool for this task.
 
