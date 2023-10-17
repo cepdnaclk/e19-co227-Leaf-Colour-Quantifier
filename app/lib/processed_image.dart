@@ -13,8 +13,12 @@ class ProcessedImagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    imageCache.clear();
-    imageCache.clearLiveImages();
+
+    //clear cache before building the widget
+    //selectively clearing cache, so performance won't be affected.
+    imageCache.evict(FileImage(File(processedImage.path)));
+    imageCache.evict(FileImage(File(originalImage.path)));
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
