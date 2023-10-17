@@ -37,7 +37,10 @@ This is a sample image, to show how to add images to your page. To learn more op
 3. [Our Solution](#our_solution)
 4. [Key Features](#key_features)
 5. [Tech Stack](#tech_stack)
-6. [Links](#links)
+6. [Leaf Segmentation Techniques](#leaf_segmentation_techniques)
+7. [Dominant Color Extractions](#dominant_color_extraction)
+8. [Report Generation](#report_generation)
+9. [Links](#links)
 
 ---
 
@@ -195,6 +198,10 @@ This technique effectively combines mask-based and color-based segmentation to a
 ## Dominant Color Extraction
 
 The dominant color extraction process involves identifying the main colors in an image. It's particularly useful for analyzing the predominant color characteristics of plant leaves or other plant parts.
+
+<p align="center">
+  <img src="./images/plot.png" alt="TraditionalMethod" width="400">
+</p>
 
 1. **Convert to RGB**: The input image is first converted from the BGR color space to the more commonly used RGB color space. This step ensures that the image is in the right color format for further processing.
 
