@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 
 class ServerConnection {
   static final ServerConnection _singleton = ServerConnection._internal();
-  static const String _baseUrl = 'http://192.168.8.104:5000';
+  static const String _baseUrl = 'http://192.168.8.177:5000';
   //static const String _baseUrl = 'http://agbc-fe.pdn.ac.lk:5000';
 
   factory ServerConnection() {
@@ -60,10 +60,10 @@ class ServerConnection {
       return DominantColorsData(responseString);
     } else {
       throw Exception(
-          'Failed to get dominant color information. Status code: ${response
-              .statusCode}');
+          'Failed to get dominant color information. Status code: ${response.statusCode}');
     }
   }
+
   Future<File> sendImageAndMaskAndGetProcessedImage(
       File imageFile, Uint8List maskBytes) async {
     var url = Uri.parse('$_baseUrl/image/segmentaion/mask');
