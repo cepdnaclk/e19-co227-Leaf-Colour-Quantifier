@@ -154,6 +154,8 @@ This technique is implemented in Python and provides an efficient way to segment
 
 The Mask R-CNN model is a deep learning-based technique used for leaf segmentation. It leverages pre-trained models and fine-tunes them for the task of identifying leaves in images.
 
+**Note: Initially, this model works specifically for the "Dieffenbachia Amoena" species. However, we plan to extend its functionality to other plant species as well.**
+
 - **Data Augmentation**: The code applies various data augmentation techniques to enhance the diversity of the training dataset. These techniques include rotations, resizing, blurring, sharpening, and more. Data augmentation helps the model generalize better to different leaf images.
 
 - **Dataset Preparation**: The code loads leaf images and corresponding masks, where each pixel in the mask corresponds to a specific object (in this case, different parts of the plant leaf). It prepares the data by resizing and applying data augmentation.
