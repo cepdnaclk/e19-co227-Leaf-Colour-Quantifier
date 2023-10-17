@@ -147,8 +147,8 @@ class ServerConnection {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Color.fromARGB(255, 33, 145, 126),
-        title: Text('Download Complete'),
-        content: Text('The PDF file has been downloaded successfully.'),
+        title: Text('The Report Is Ready'),
+        content: Text('The Report has been downloaded successfully.'),
         actions: [
           TextButton(
             onPressed: () async {

@@ -60,8 +60,15 @@ class ProcessedImagePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-        title: Text('Processed Image'),
+        backgroundColor: Colors.black,
+        leading: Icon(
+          Icons.image,
+          color: Colors.white,
+        ),
+        title: Text(
+          'Processed Image',
+          style: TextStyle(fontSize: 25),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

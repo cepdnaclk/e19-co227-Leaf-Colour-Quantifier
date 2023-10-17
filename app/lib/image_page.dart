@@ -14,8 +14,15 @@ class ImagePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-        title: const Text('Captured Image'),
+        backgroundColor: Colors.black,
+        leading: Icon(
+          Icons.image,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Captured Image',
+          style: TextStyle(fontSize: 25),
+        ),
       ),
       body: Center(
         child: Container(
