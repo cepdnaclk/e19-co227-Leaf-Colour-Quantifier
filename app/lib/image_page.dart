@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:leaf_spectrum/models/server_connection.dart';
 import 'package:leaf_spectrum/processed_image.dart';
+import 'package:leaf_spectrum/showWaitingPopup.dart';
 
 class ImagePage extends StatelessWidget {
   final File imageFile;
@@ -33,33 +34,44 @@ class ImagePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-
         onPressed: () async {
           print(imageFile.path);
+          showWaitingPopup(
+            context,
+            'Wait, The Image is Processing...',
+          );
           ServerConnection server = ServerConnection();
-          var processedImage = await server.sendImageAndGetProcessedImage(imageFile);
+
+          var processedImage =
+              await server.sendImageAndGetProcessedImage(imageFile);
+          Navigator.of(context).pop();
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  ProcessedImagePage(processedImage: processedImage, originalImage: imageFile, key: UniqueKey(),),
+              builder: (context) => ProcessedImagePage(
+                processedImage: processedImage,
+                originalImage: imageFile,
+                key: UniqueKey(),
+              ),
             ),
           );
         },
-        icon: Icon(Icons.navigate_next, size: 20.0,),
-        label: Text("Process", style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 16.0,
-          letterSpacing: 0.2,
-
-        ),),
+        icon: Icon(
+          Icons.navigate_next,
+          size: 20.0,
+        ),
+        label: Text(
+          "Process",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16.0,
+            letterSpacing: 0.2,
+          ),
+        ),
         foregroundColor: Colors.black,
-
         backgroundColor: const Color.fromARGB(255, 33, 145, 126),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
-
-
 }

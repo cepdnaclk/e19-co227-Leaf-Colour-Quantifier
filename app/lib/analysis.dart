@@ -293,7 +293,10 @@ class _AnalysisState extends State<Analysis> {
                     ),
                   );
                 } else {
-                  showWaitingPopup(context);
+                  showWaitingPopup(
+                    context,
+                    'Wait, The Report is Processing...',
+                  );
                   ServerConnection server = new ServerConnection();
 
                   server.sendDataToServer(

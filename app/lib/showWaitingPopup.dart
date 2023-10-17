@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<void> showWaitingPopup(BuildContext context) async {
+Future<void> showWaitingPopup(BuildContext context, String message) async {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -11,9 +11,7 @@ Future<void> showWaitingPopup(BuildContext context) async {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Wait, The Report is Processing...',
-            ),
+            Text(message),
             SizedBox(height: 20),
             CircularProgressIndicator(),
           ],

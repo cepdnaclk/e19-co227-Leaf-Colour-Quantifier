@@ -5,7 +5,7 @@ import 'package:leaf_spectrum/processed_image.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:io';
-
+import 'package:leaf_spectrum/showWaitingPopup.dart';
 
 import 'models/server_connection.dart';
 
@@ -107,19 +107,25 @@ class _AnnotatorState extends State<Annotator> {
                       format: ui.ImageByteFormat.png); // Save as PNG
                   Uint8List pngBytes = byteData!.buffer.asUint8List();
 
-
                   ServerConnection server = ServerConnection();
-                  var processedImage = await server.sendImageAndMaskAndGetProcessedImage(widget.imageFile, pngBytes);
+                  showWaitingPopup(
+                    context,
+                    'Wait, The Image is Processing...',
+                  );
+                  var processedImage =
+                      await server.sendImageAndMaskAndGetProcessedImage(
+                          widget.imageFile, pngBytes);
+                  Navigator.of(context).pop();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          ProcessedImagePage(processedImage: processedImage, originalImage: widget.imageFile, key: UniqueKey(),),
+                      builder: (context) => ProcessedImagePage(
+                        processedImage: processedImage,
+                        originalImage: widget.imageFile,
+                        key: UniqueKey(),
+                      ),
                     ),
                   );
-
-
-
                 },
                 backgroundColor: const Color.fromARGB(255, 33, 145, 126),
                 child: Icon(Icons.check),
