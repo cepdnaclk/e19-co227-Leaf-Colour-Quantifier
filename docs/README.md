@@ -153,11 +153,19 @@ The Mask R-CNN model is a deep learning-based technique used for leaf segmentati
 
 **Note: Initially, this model works specifically for the "Dieffenbachia Amoena" species. However, we plan to extend its functionality to other plant species as well.**
 
+<p align="center">
+  <img src="./images/rcnn_archi.jpg" alt="TraditionalMethod">
+</p>
+
 - **Data Augmentation**: The code applies various data augmentation techniques to enhance the diversity of the training dataset. These techniques include rotations, resizing, blurring, sharpening, and more. Data augmentation helps the model generalize better to different leaf images.
 
 - **Dataset Preparation**: The code loads leaf images and corresponding masks, where each pixel in the mask corresponds to a specific object (in this case, different parts of the plant leaf). It prepares the data by resizing and applying data augmentation.
 
 - **Model Architecture**: It uses the Mask R-CNN architecture based on ResNet-50 as the backbone. The model is customized for binary leaf segmentation (foreground and background). Fast R-CNN and Mask R-CNN predictors are modified accordingly.
+
+<p align="center">
+  <img src="./images/cnn_table.jpg" alt="TraditionalMethod" width="500">
+</p>
 
 - **Training Loop**: The code includes a training loop that iterates over the dataset. It uses stochastic gradient descent (SGD) as the optimizer and calculates the loss for each batch. The loss is backpropagated to update the model's weights.
 
