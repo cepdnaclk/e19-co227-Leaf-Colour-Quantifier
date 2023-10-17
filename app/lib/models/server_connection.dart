@@ -10,7 +10,8 @@ import 'package:open_file_plus/open_file_plus.dart';
 
 class ServerConnection {
   static final ServerConnection _singleton = ServerConnection._internal();
-  static const String _baseUrl = 'http://192.168.8.177:5000';
+  // static const String _baseUrl = 'http://192.168.8.177:5000';
+  static const String _baseUrl = 'http://agbc-fe.pdn.ac.lk:5000';
 
   factory ServerConnection() {
     return _singleton;
