@@ -35,6 +35,7 @@ class _AnalysisState extends State<Analysis> {
   Future<DominantColorsData> getDominantColors() async {
     return ServerConnection().getDominantColorsFromImage(imageFile);
   }
+
   Future<HistogramData> getHistogramMaps() async {
     final Uint8List imageData = await widget.imageFile.readAsBytesSync();
     img.Image? image = img.decodeImage(imageData);
@@ -201,40 +202,47 @@ class _AnalysisState extends State<Analysis> {
                 const SizedBox(
                   height: 40,
                 ),
-
                 Container(
-                    height: 360,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20.0, horizontal: 20.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color:
-                        const Color.fromRGBO(64, 72, 80, 0.4196078431372549)),
-                    alignment: Alignment.center,
-                    clipBehavior: Clip.hardEdge,
+                  height: 360,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 20.0, horizontal: 20.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color:
+                          const Color.fromRGBO(64, 72, 80, 0.4196078431372549)),
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.hardEdge,
                   child: Column(
-                    
                     children: [
-                      Text("Dominant Colors", style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                      Text(
+                        "Dominant Colors",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       FutureBuilder<DominantColorsData>(
-                        future: getDominantColors(), // Assuming getDominantColors() returns a Future<List<Data>>
-                        builder: (BuildContext context, AsyncSnapshot<DominantColorsData> snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
+                        future:
+                            getDominantColors(), // Assuming getDominantColors() returns a Future<List<Data>>
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DominantColorsData> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
                           } else {
-                            return PieChartWidget(dominantColorsData: snapshot.data!);
+                            return PieChartWidget(
+                                dominantColorsData: snapshot.data!);
                           }
                         },
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 80,)
+                SizedBox(
+                  height: 80,
+                )
               ]),
         ),
       ),
@@ -248,7 +256,7 @@ class _AnalysisState extends State<Analysis> {
               shape: const StadiumBorder(
                   side: BorderSide(color: Colors.white60, width: 2)),
               foregroundColor: Colors.white60,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black,
               onPressed: () {
                 Navigator.push(
                   context,
