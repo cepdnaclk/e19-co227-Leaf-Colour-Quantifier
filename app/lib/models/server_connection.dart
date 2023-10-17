@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
+import 'package:leaf_spectrum/models/dominant_colors_data.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -11,8 +12,8 @@ import 'package:intl/intl.dart';
 
 class ServerConnection {
   static final ServerConnection _singleton = ServerConnection._internal();
-  // static const String _baseUrl = 'http://192.168.8.177:5000';
-  static const String _baseUrl = 'http://agbc-fe.pdn.ac.lk:5000';
+  static const String _baseUrl = 'http://192.168.8.104:5000';
+  //static const String _baseUrl = 'http://agbc-fe.pdn.ac.lk:5000';
 
   factory ServerConnection() {
     return _singleton;
@@ -44,6 +45,25 @@ class ServerConnection {
     return processedImageFile;
   }
 
+  Future<DominantColorsData> getDominantColorsFromImage(File imageFile) async {
+    var url = Uri.parse('$_baseUrl/analysis/dominant');
+    var request = http.MultipartRequest('POST', url);
+
+    var image = await http.MultipartFile.fromPath('file', imageFile.path);
+    request.files.add(image);
+
+    var response = await request.send();
+    var responseString = await response.stream.bytesToString();
+
+    // Handle the response
+    if (response.statusCode == 200) {
+      return DominantColorsData(responseString);
+    } else {
+      throw Exception(
+          'Failed to get dominant color information. Status code: ${response
+              .statusCode}');
+    }
+  }
   Future<File> sendImageAndMaskAndGetProcessedImage(
       File imageFile, Uint8List maskBytes) async {
     var url = Uri.parse('$_baseUrl/image/segmentaion/mask');
