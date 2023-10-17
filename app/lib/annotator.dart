@@ -76,8 +76,15 @@ class _AnnotatorState extends State<Annotator> {
   Widget buildAnnotator(BuildContext context, ui.Image image) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Paint Over The Leaf'),
-        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
+        title: Text(
+          'Paint Over The Leaf',
+          style: TextStyle(fontSize: 25),
+        ),
+        backgroundColor: Colors.black,
+        leading: Icon(
+          Icons.brush_outlined,
+          color: Colors.white,
+        ),
       ),
       floatingActionButton: Wrap(
         direction: Axis.horizontal, //use vertical to show on vertical axis
