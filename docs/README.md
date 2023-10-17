@@ -88,6 +88,14 @@ Traditional methods of leaf color assessment have long relied on subjective huma
   <img src="./images/processed_image.jpeg" alt="Image" width="300">
 </p>
 
+- **Manual Masking**  
+  If the image was not segmented properly user can navigate to manually improve the selection by painting over it
+
+<p align="center">
+  <img src="./images/paint_over_the_leaf.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+  <img src="./images/half_painted.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+</p>
+
 <!-- ![segmentedLeaf](./images/proc_img.jpeg) -->
 
 - **Color Analysis**  
