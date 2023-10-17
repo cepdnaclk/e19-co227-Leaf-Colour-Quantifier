@@ -60,7 +60,7 @@ def createPDF(img, logo, segmentedImg, remarks):
     width, height = pagesizes.A4
 
     cv.imwrite("./leafimg.jpg", imutils.resize(img, height=200))
-    # cv.imwrite("./leafimg_mask.jpg", imutils.resize(img, height=200))
+    cv.imwrite("./leafimg_mask.jpg", imutils.resize(segmentedImg, height=200))
     cv.imwrite("./blacklogo.jpg", logo)
     timestamp = datetime.datetime.now()
 
@@ -71,7 +71,7 @@ def createPDF(img, logo, segmentedImg, remarks):
     can.drawString(70, height-120, "Time: {:02d}: {:02d}: {:02d}".format(timestamp.hour,
                    timestamp.minute, timestamp.second))
 
-    can.drawInlineImage("./segmentedLeaf.jpg", width/2-150, height-350,
+    can.drawInlineImage("./leafimg_mask.jpg", width/2-150, height-350,
                         width=300, preserveAspectRatio=True)
 
     can.setFont("Times-Bold", 17)
