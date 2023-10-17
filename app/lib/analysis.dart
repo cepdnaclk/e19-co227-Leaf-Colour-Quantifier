@@ -295,7 +295,7 @@ class _AnalysisState extends State<Analysis> {
                 } else {
                   showWaitingPopup(
                     context,
-                    'Wait, The Report is Processing...',
+                    'The report will be downloaded and opened shortly..',
                   );
                   ServerConnection server = new ServerConnection();
 

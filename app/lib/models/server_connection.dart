@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:open_file_plus/open_file_plus.dart';
+import 'package:intl/intl.dart';
 
 class ServerConnection {
   static final ServerConnection _singleton = ServerConnection._internal();
@@ -112,8 +113,16 @@ class ServerConnection {
       appDocPath = await _localPath();
 
       // Generate a unique file name for the PDF file
-      String fileName =
-          DateTime.now().millisecondsSinceEpoch.toString() + '.pdf';
+      // String fileName = "LeafSpectrum-" +
+      //     text +
+      //     '-' +
+      //     DateTime.now().millisecondsSinceEpoch.toString() +
+      //     '.pdf';
+      String fileName = "LeafSpectrum-" +
+          text +
+          '-' +
+          DateFormat('yyyy-MM-dd-HH-mm-ss').format(DateTime.now()) +
+          '.pdf';
 
       // Save the received PDF response to the storage
       filePath = '$appDocPath/$fileName';
@@ -126,25 +135,38 @@ class ServerConnection {
 
     // Close the waiting popup
     Navigator.of(context).pop();
-
-    await OpenFile.open(filePath);
-
-    // Show a completion message to the user
-    // showDialog(
-    //   context: context,
-    //   builder: (context) => AlertDialog(
-    //     title: Text('Download Complete'),
-    //     content: Text('The PDF file has been downloaded successfully.'),
-    //     actions: [
-    //       TextButton(
-    //         onPressed: () {
-    //           Navigator.of(context).pop();
-    //         },
-    //         child: Text('OK'),
-    //       ),
-    //     ],
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //     content: Text('Download completed'),
     //   ),
     // );
+
+    // Navigator.of(context).pop();
+    // NotificationService().showNotification();
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Color.fromARGB(255, 33, 145, 126),
+        title: Text('Download Complete'),
+        content: Text('The PDF file has been downloaded successfully.'),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await OpenFile.open(filePath);
+            },
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  Colors.black), // Set the text color here
+            ),
+            child: Text('Open'),
+          ),
+        ],
+      ),
+    );
+    // await OpenFile.open(filePath);
+
+    // Show a completion message to the user
     // OpenFile.open(filePath);
     // Open the PDF file using flutter_pdfview
     // Navigator.push(

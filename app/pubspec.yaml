@@ -48,6 +48,8 @@ dependencies:
   url_launcher: ^6.1.14
   share_plus: ^7.1.0
   open_file_plus: ^3.4.1
+  intl: ^0.18.1
+  flutter_local_notifications: ^9.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
