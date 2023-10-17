@@ -5,7 +5,7 @@ Future<void> showWaitingPopup(BuildContext context, String message) async {
     context: context,
     barrierDismissible: false,
     builder: (context) => Dialog(
-      backgroundColor: Colors.black.withOpacity(0.1),
+      backgroundColor: Colors.black.withOpacity(0),
       child: Center(
         widthFactor: double.infinity,
         heightFactor: double.infinity,
