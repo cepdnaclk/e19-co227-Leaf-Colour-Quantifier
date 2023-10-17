@@ -6,12 +6,12 @@ class IndicatorsWidget extends StatelessWidget {
   final DominantColorsData dominantColorsData;
   IndicatorsWidget({required this.dominantColorsData});
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+  Widget build(BuildContext context) => Wrap(
+    direction: Axis.horizontal,
     children: dominantColorsData.data
         .map(
           (data) => Container(
-          padding: EdgeInsets.symmetric(vertical: 2),
+          padding: EdgeInsets.symmetric(horizontal: 6),
           child: buildIndicator(
             color: data.color,
             text: data.name,
@@ -25,10 +25,11 @@ class IndicatorsWidget extends StatelessWidget {
     required Color color,
     required String text,
     bool isSquare = false,
-    double size = 16,
-    Color textColor = const Color(0xff505050),
+    double size = 6,
+    Color textColor = Colors.white60,
   }) =>
       Row(
+
         children: <Widget>[
           Container(
             width: size,
@@ -38,11 +39,11 @@ class IndicatorsWidget extends StatelessWidget {
               color: color,
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 6),
           Text(
             text,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
               color: textColor,
             ),

@@ -19,7 +19,7 @@ class DominantColorsData {
         colorValues[2].toInt(),
         1,
       );
-      final name = color.toString();
+      final name = 'RGB(${color.red}, ${color.green}, ${color.blue})';
       final percent = double.parse(item['precentage'].toStringAsFixed(2));
 
 
