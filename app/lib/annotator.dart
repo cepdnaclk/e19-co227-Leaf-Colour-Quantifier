@@ -76,14 +76,29 @@ class _AnnotatorState extends State<Annotator> {
   Widget buildAnnotator(BuildContext context, ui.Image image) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Paint Over The Leaf',
-          style: TextStyle(fontSize: 25),
-        ),
         backgroundColor: Colors.black,
-        leading: Icon(
-          Icons.brush_outlined,
-          color: Colors.white,
+        titleSpacing: 0,
+        title: Row(
+          children: [
+            Icon(
+              Icons.brush_outlined,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'Paint Over the Leaf',
+              style: TextStyle(fontSize: 25),
+            ),
+          ],
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
       ),
       floatingActionButton: Wrap(
