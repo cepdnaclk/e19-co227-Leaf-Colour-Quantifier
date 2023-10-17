@@ -11,7 +11,7 @@ class IndicatorsWidget extends StatelessWidget {
     children: dominantColorsData.data
         .map(
           (data) => Container(
-          padding: EdgeInsets.symmetric(horizontal: 6),
+          padding: EdgeInsets.symmetric(horizontal: 0),
           child: buildIndicator(
             color: data.color,
             text: data.name,
