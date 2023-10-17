@@ -11,9 +11,9 @@ title: A Field-Based Approach for Quantifying Plant Leaf Color
 
 # A Field-Based Approach for Quantifying Plant Leaf Color
 
-<div style="text-align:center;">
+<p align="center">
   <img src="./images/blacklogo.jpg" alt="Logo">
-</div>
+</p>
 
 ---
 
@@ -63,41 +63,37 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 - **Home Page**  
   Simple and easy-to-navigate homepage where you can effortlessly capture leaf images or import them from your gallery.
 
-<div style="text-align:center;">
+<p align="center">
   <img src="./images/homepage.jpeg" alt="Image" width="300">
-</div>
+</p>
 
 <!--![homepage](./images/homepage.jpeg) -->
 
 - **Selected Image**  
   The selected image before processing
 
-<div style="text-align:center;">
+<p align="center">
   <img src="./images/cap_img.jpeg" alt="Image" width="300">
-</div>
+</p>
 
 <!-- ![selectedImage](./images/cap_img.jpeg) -->
 
 - **Image Segmentation**  
   When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it.
 
-<div style="text-align:center;">
+<p align="center">
   <img src="./images/proc_img.jpeg" alt="Image" width="300">
-</div>
+</p>
 
 <!-- ![segmentedLeaf](./images/proc_img.jpeg) -->
 
 - **Color Analysis**  
   The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
-<div style="display: flex; justify-content: center;">
-  <div style="margin: 0 10px;">
-    <img src="./images/histogram.jpeg" alt="Image" width="300">
-  </div>
-  <div style="margin: 0 10px;">
-    <img src="./images/red_fil.jpeg" alt="Image" width="300">
-  </div>
-</div>
+<p align="center">
+  <img src="./images/histogram.jpeg" alt="Image" width="300" style="margin: 0 10px;">
+  <img src="./images/red_fil.jpeg" alt="Image" width="300" style="margin: 0 10px;">
+</p>
 
 <!-- ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg) -->
 
@@ -122,9 +118,9 @@ When you capture a leaf image or import one from your gallery, the segmentation 
 
 ## Tech Stack
 
-<div style="text-align: center;">
+<p align="center">
   <img src="./images/techstack.png" alt="techstack">
-</div>
+</p>
 
 ## Leaf Segmentation Techniques
 
