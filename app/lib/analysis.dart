@@ -264,14 +264,6 @@ class _AnalysisState extends State<Analysis> {
                     builder: (context) => Home(),
                   ),
                 );
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => Annotator(
-                //       imageFile: originalImage,
-                //     ),
-                //   ),
-                // );
               },
               label: Text(
                 'Analyse another leaf',
@@ -292,27 +284,6 @@ class _AnalysisState extends State<Analysis> {
                 final remark = await showRemarkDialog(context);
 
                 if (remark!.isEmpty) {
-                  // Show a watning Message
-                  // show dialog
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (BuildContext context) {
-                  //     return AlertDialog(
-                  //       title: Text('Warning'),
-                  //       content: Text('Please enter remarks.'),
-                  //       actions: [
-                  //         TextButton(
-                  //           onPressed: () {
-                  //             Navigator.of(context).pop();
-                  //           },
-                  //           child: Text('OK'),
-                  //         ),
-                  //       ],
-                  //     );
-                  //   },
-                  // );
-                  // Snack bar
-
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Please enter a remark.'),

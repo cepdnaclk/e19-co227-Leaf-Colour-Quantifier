@@ -120,24 +120,11 @@ class ServerConnection {
         queryParameters: queryParameters,
         data: formData,
         options: Options(responseType: ResponseType.bytes),
-        // onReceiveProgress: (received, total) {
-        //   if (total != -1) {
-        //     double progress = (received / total * 100);
-        //     print('Download progress: $progress%');
-        //     // Update the progress indicator here
-        //   }
-        // },
       );
       print(response.statusCode);
 
       appDocPath = await _localPath();
 
-      // Generate a unique file name for the PDF file
-      // String fileName = "LeafSpectrum-" +
-      //     text +
-      //     '-' +
-      //     DateTime.now().millisecondsSinceEpoch.toString() +
-      //     '.pdf';
       String fileName = "LeafSpectrum-" +
           text +
           '-' +
@@ -155,14 +142,7 @@ class ServerConnection {
 
     // Close the waiting popup
     Navigator.of(context).pop();
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text('Download completed'),
-    //   ),
-    // );
 
-    // Navigator.of(context).pop();
-    // NotificationService().showNotification();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -184,19 +164,6 @@ class ServerConnection {
         ],
       ),
     );
-    // await OpenFile.open(filePath);
-
-    // Show a completion message to the user
-    // OpenFile.open(filePath);
-    // Open the PDF file using flutter_pdfview
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => PDFView(
-    //       filePath: filePath,
-    //     ),
-    //   ),
-    // );
   }
 
   Future<String> _localPath() async {
