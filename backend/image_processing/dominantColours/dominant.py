@@ -10,6 +10,12 @@ def get_dominant_colors(image, num_colors=3):
     # Flatten the image into a 2D array of pixels
     pixels = image_rgb.reshape(-1, 3)
 
+    # Create a boolean mask for rows that are not [0, 0, 0]
+    mask = np.any(pixels != [0, 0, 0], axis=1)
+
+    # Use the mask to filter the array
+    pixels = pixels[mask]
+
     # Perform K-means clustering
     kmeans = KMeans(n_clusters=num_colors)
     kmeans.fit(pixels)

@@ -27,6 +27,22 @@ class _AnnotatorState extends State<Annotator> {
   void initState() {
     super.initState();
     imageFuture = loadImageFromFile(widget.imageFile);
+    showHint();
+  }
+
+  Future<void> showHint() async {
+    await Future.delayed(Duration(seconds: 0));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Color.fromARGB(255, 33, 145, 126),
+        content: Text(
+          'Paint over the leaf to segment it.',
+          style: TextStyle(fontSize: 17),
+        ),
+        duration: Duration(seconds: 5),
+      ),
+    );
   }
 
   Future<ui.Image> loadImageFromFile(File file) async {
@@ -132,7 +148,7 @@ class _AnnotatorState extends State<Annotator> {
                   ServerConnection server = ServerConnection();
                   showWaitingPopup(
                     context,
-                    'Wait, The Image is Processing...',
+                    'Processing Image',
                   );
                   var processedImage =
                       await server.sendImageAndMaskAndGetProcessedImage(
