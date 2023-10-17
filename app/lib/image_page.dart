@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:path_provider/path_provider.dart';
-import 'package:leaf_spectrum/analysis.dart';
+import 'package:leaf_spectrum/models/server_connection.dart';
 import 'package:leaf_spectrum/processed_image.dart';
+import 'package:leaf_spectrum/showWaitingPopup.dart';
 
 class ImagePage extends StatelessWidget {
   final File imageFile;
@@ -16,8 +14,30 @@ class ImagePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
-        title: const Text('Captured Image'),
+        backgroundColor: Colors.black,
+        titleSpacing: 0,
+        title: Row(
+          children: [
+            Icon(
+              Icons.image,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'Captured Image',
+              style: TextStyle(fontSize: 25),
+            ),
+          ],
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Center(
         child: Container(
@@ -35,47 +55,45 @@ class ImagePage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           print(imageFile.path);
-          var processedImage = await sendImageToServer(
-              imageFile, 'http://192.168.8.177:5000/image/segmentaion');
+          showWaitingPopup(
+            context,
+            'Processing Image',
+          );
+          ServerConnection server = ServerConnection();
+
+          var processedImage =
+              await server.sendImageAndGetProcessedImage(imageFile);
+          Navigator.of(context).pop();
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  ProcessedImagePage(processedImage: processedImage),
+              builder: (context) => ProcessedImagePage(
+                processedImage: processedImage,
+                originalImage: imageFile,
+                key: UniqueKey(),
+              ),
             ),
           );
         },
-        child: Icon(Icons.send),
-        backgroundColor: Colors.green,
+        icon: Icon(
+          Icons.navigate_next,
+          size: 20.0,
+        ),
+        label: Text(
+          "Process",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16.0,
+            letterSpacing: 0.2,
+          ),
+        ),
+        foregroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 33, 145, 126),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
-  }
-
-  Future<File> sendImageToServer(File imageFile, String url) async {
-    // Create a multipart request
-    // print(imageFile.p);
-    var request = http.MultipartRequest('POST', Uri.parse(url));
-
-    // Attach the image file to the request
-    var file = await http.MultipartFile.fromPath('file', imageFile.path);
-    request.files.add(file);
-
-    // Send the request and wait for the response
-    var response = await request.send();
-
-    // Read the response and convert it to a file
-    var processedImage = await http.Response.fromStream(response);
-
-    // var processedImageFile = File('./assets');
-    var tempDir = await getTemporaryDirectory();
-    var tempPath = tempDir.path;
-    var processedImageFile = File('$tempPath/processed_image.jpg');
-    await processedImageFile.writeAsBytes(processedImage.bodyBytes);
-
-    return processedImageFile;
   }
 }

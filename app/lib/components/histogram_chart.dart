@@ -7,14 +7,17 @@ class Histogram extends StatelessWidget {
   final bool showGreen;
   final bool showBlue;
 
+
+
   Histogram({super.key, required this.histogramData, required this.showRed, required this.showGreen, required this.showBlue});
 
   List<LineChartBarData> getLineData() {
     List<LineChartBarData> lineDataList = [];
     if (showRed) {
       lineDataList.add(lineData(
-          spots: histogramData.getRedSpots(), color: Colors.redAccent));
+          spots: histogramData.getRedSpots(), color: Colors.redAccent),);
     }
+
 
     if (showGreen) {
       lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
@@ -22,7 +25,7 @@ class Histogram extends StatelessWidget {
 
     if (showBlue) {
       lineDataList.add(
-        lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
+          lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
       );
     }
     return lineDataList;
@@ -74,27 +77,27 @@ class Histogram extends StatelessWidget {
   );
 
   LineChartBarData lineData({required List<FlSpot> spots, required Color color}) => LineChartBarData(
-    spots: spots,
-    color: color,
-    isCurved: true,
-    dotData: const FlDotData(
-      show: false,
-    )
+      spots: spots,
+      color: color,
+      isCurved: false,
+      dotData: const FlDotData(
+        show: false,
+      )
   );
 
   @override
   Widget build(BuildContext context) {
     return LineChart(LineChartData(
-        backgroundColor: Colors.transparent,
-        clipData: const FlClipData.none(),
-        lineTouchData: LineTouchData(
-         enabled: false,
-        ),
+      backgroundColor: Colors.transparent,
+      clipData: const FlClipData.none(),
+      lineTouchData: LineTouchData(
+        enabled: false,
+      ),
 
-        titlesData: FlTitlesData(
-          show: true,
+      titlesData: FlTitlesData(
+        show: true,
 
-          topTitles: const AxisTitles(
+        topTitles: const AxisTitles(
             axisNameWidget:Text("Histogram",
               style: TextStyle(
                 color: Colors.white,
@@ -103,34 +106,34 @@ class Histogram extends StatelessWidget {
               ),
             ),
             axisNameSize: 30.0
-          ),
-         bottomTitles: AxisTitles(
-           sideTitles: bottomTitles(),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: bottomTitles(),
 
-         ),
+        ),
         leftTitles: AxisTitles(
           sideTitles: leftTitles(),
         ),
-          rightTitles: const AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: false,
-            ),
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
           ),
         ),
+      ),
 
 
-        minX: 0,
-        maxX: 255,
-        minY: 0,
-        maxY: histogramData.getMaximum().toDouble(),
-        gridData: const FlGridData(
-          show: true,
-        ),
+      minX: 0,
+      maxX: 255,
+      minY: 0,
+      maxY: histogramData.getMaximum().toDouble(),
+      gridData: const FlGridData(
+        show: true,
+      ),
       borderData: FlBorderData(
         show: false,
       ),
-        lineBarsData: getLineData(),
-      ),
+      lineBarsData: getLineData(),
+    ),
     );
   }
 }

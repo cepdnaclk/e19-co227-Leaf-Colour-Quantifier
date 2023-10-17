@@ -1,0 +1,13 @@
+[Unit]
+Description=Leaf-Colour-Quantifier
+After=network.target
+
+[Service]
+User=ubuntu
+Type=simple
+WorkingDirectory=/home/e19co227/e19-co227-Leaf-Colour-Quantifier/backend
+ExecStart=/home/e19co227/e19-co227-Leaf-Colour-Quantifier/backend/start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

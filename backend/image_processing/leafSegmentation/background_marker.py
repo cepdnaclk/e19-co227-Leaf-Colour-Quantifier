@@ -135,7 +135,7 @@ def select_largest_obj(img_bin, lab_val=255, fill_mode=FILL['FLOOD'],
         kernel_ = np.ones((50, 50), dtype=np.uint8)
         largest_mask = cv2.morphologyEx(largest_mask, cv2.MORPH_CLOSE,
                                         kernel_)
-        
+
     elif fill_mode == FILL['THRESHOLD']:
         # fill background-holes based on hole size threshold
         # default hole size threshold is some percentage

@@ -3,6 +3,7 @@ import numpy as np
 # error message when image is not colored while it should be
 NOT_COLOR_IMAGE = 'NOT_COLOR_IMAGE'
 
+
 def ensure_color(image):
     """
     Ensure that an image is colored
