@@ -38,7 +38,7 @@ class ImagePage extends StatelessWidget {
           print(imageFile.path);
           showWaitingPopup(
             context,
-            'Wait, The Image is Processing...',
+            'Processing Image',
           );
           ServerConnection server = ServerConnection();
 

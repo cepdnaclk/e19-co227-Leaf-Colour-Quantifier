@@ -15,7 +15,7 @@ Future<void> showWaitingPopup(BuildContext context, String message) async {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             SizedBox(height: 20),
             CircularProgressIndicator(
