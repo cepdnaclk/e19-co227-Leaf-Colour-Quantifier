@@ -44,10 +44,10 @@ def getColorSpreads(img):
 
     # Create a pie chart
     fig, ax = plt.subplots()
-    ax.pie(color_percentages, labels=color_labels, autopct='%1.1f%%', startangle=90, colors=['#ff9999','#66b3ff','#99ff99'])
+    ax.pie(color_percentages, labels=color_labels, autopct='%1.1f%%', startangle=90, colors=[(r/255, g/255, b/255) for r, g, b in top_colors])
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-    plt.title('Top Color Percentages')
+    plt.title('Dominant Color Percentages')
     plt.savefig("dominentColors.jpg",bbox_inches= 'tight')
     plt.close()
 
@@ -114,7 +114,7 @@ def createPDF(img, logo, segmentedImg, remarks):
     getColorSpreads(segmentedImg)
     can.drawInlineImage("dominentColors.jpg", width/2-140, height-780, width = 280, preserveAspectRatio=True)
     can.setFont("Times-Roman", 14)
-    can.drawString(70, height-800, "Remarks: "+remarks)
+    can.drawString(70, height-780, "Remarks: "+remarks)
     can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,
                         preserveAspectRatio=True)
 
