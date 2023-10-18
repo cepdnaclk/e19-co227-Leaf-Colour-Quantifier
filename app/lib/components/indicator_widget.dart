@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leaf_spectrum/models/dominant_colors_data.dart';
 
 class IndicatorsWidget extends StatelessWidget {
-
+  //Indicator Widget for Displaying the Legend of the Pie Chart
   final DominantColorsData dominantColorsData;
   IndicatorsWidget({required this.dominantColorsData});
   @override
@@ -11,20 +11,18 @@ class IndicatorsWidget extends StatelessWidget {
     children: dominantColorsData.data
         .map(
           (data) => Container(
-          padding: EdgeInsets.symmetric(horizontal: 0),
           child: buildIndicator(
             color: data.color,
             text: data.name,
-            // isSquare: true,
           )),
     )
         .toList(),
   );
 
   Widget buildIndicator({
+    //Create a Row element with a circle of the color given and the rgb code as its text
     required Color color,
     required String text,
-    bool isSquare = false,
     double size = 6,
     Color textColor = Colors.white60,
   }) =>
@@ -35,7 +33,7 @@ class IndicatorsWidget extends StatelessWidget {
             width: size,
             height: size,
             decoration: BoxDecoration(
-              shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
+              shape: BoxShape.circle,
               color: color,
             ),
           ),

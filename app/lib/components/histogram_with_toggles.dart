@@ -8,7 +8,7 @@ import 'dart:collection';
 import 'histogram_chart.dart';
 
 class HistogramCardWithToggles extends StatefulWidget {
-  final File imageFile;
+  final File imageFile; //The segmented image
   const HistogramCardWithToggles({required this.imageFile, super.key});
 
   @override
@@ -111,6 +111,8 @@ class _HistogramCardWithTogglesState extends State<HistogramCardWithToggles> {
         SizedBox(
           height: 4,
         ),
+
+        //Toggle Buttons to toggle between red, green, blue channels to conditionally render the histogram
         ToggleButtons(
           isSelected: toggleValues,
           onPressed: (int index) {

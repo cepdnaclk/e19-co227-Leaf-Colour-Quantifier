@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:leaf_spectrum/models/histogram_data.dart';
+
 class Histogram extends StatelessWidget {
   final HistogramData histogramData;
+
+  //Boolean Variables to conditionally render red, blue, green channels separately
   final bool showRed;
   final bool showGreen;
   final bool showBlue;
 
 
-
+  //Constructor
   Histogram({super.key, required this.histogramData, required this.showRed, required this.showGreen, required this.showBlue});
 
+
   List<LineChartBarData> getLineData() {
+    //Returns a List of LineChartBarData for the Histogram rendering
     List<LineChartBarData> lineDataList = [];
+
+    //If Red is Selected, add the red channel graph
     if (showRed) {
       lineDataList.add(lineData(
           spots: histogramData.getRedSpots(), color: Colors.redAccent),);
     }
 
-
+    //If Green is Selected, add the green channel graph
     if (showGreen) {
       lineDataList.add(lineData(spots: histogramData.getGreenSpots(), color: Colors.greenAccent));
     }
 
+    //If Blue is selected, add the blue channel graph
     if (showBlue) {
       lineDataList.add(
           lineData(spots: histogramData.getBlueSpots(), color:Colors.blueAccent )
@@ -32,12 +40,15 @@ class Histogram extends StatelessWidget {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
+
+    //Generate the Y axis labels for the histogram
     const style = TextStyle(
       fontWeight: FontWeight.w200,
       fontSize: 12,
       color: Color.fromRGBO(200, 200, 200, 0.8),
     );
 
+    //Instead of showing 1000 -> 1K
     String text;
     text = '${value~/ 1000}k';
 
@@ -55,7 +66,7 @@ class Histogram extends StatelessWidget {
     getTitlesWidget: leftTitleWidgets,
     showTitles: true,
     interval: histogramData.getMaximum() / 10,
-    reservedSize: 24,
+    reservedSize: 24, // Reserve 24 Pixels for the Y labels
   );
 
   Widget rightTitleWidgets(double value, TitleMeta meta) {
@@ -72,7 +83,7 @@ class Histogram extends StatelessWidget {
     getTitlesWidget: rightTitleWidgets,
     showTitles: true,
     interval: 64,
-    reservedSize: 16,
+    reservedSize: 16, //Reserve 16 pixels for the X Labels
 
   );
 
@@ -122,8 +133,8 @@ class Histogram extends StatelessWidget {
       ),
 
 
-      minX: 0,
-      maxX: 255,
+      minX: 0, //Starting Range of Frequencies
+      maxX: 255, //End Range of Frequencies
       minY: 0,
       maxY: histogramData.getMaximum().toDouble(),
       gridData: const FlGridData(
