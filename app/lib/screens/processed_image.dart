@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:leaf_spectrum/annotator.dart';
-import 'package:leaf_spectrum/analysis.dart';
+import 'package:leaf_spectrum/screens/annotator.dart';
+import 'package:leaf_spectrum/screens/analysis.dart';
 
 class ProcessedImagePage extends StatelessWidget {
   final File processedImage;

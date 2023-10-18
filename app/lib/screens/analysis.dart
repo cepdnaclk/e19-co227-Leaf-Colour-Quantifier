@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:leaf_spectrum/components/histogram_with_toggles.dart';
 import 'package:leaf_spectrum/components/pie_chart.dart';
 import 'package:leaf_spectrum/models/dominant_colors_data.dart';
-import 'package:leaf_spectrum/home.dart';
+import 'package:leaf_spectrum/screens/home.dart';
 import 'package:leaf_spectrum/models/server_connection.dart';
-import 'package:leaf_spectrum/showRemarkDialog.dart';
-import 'package:leaf_spectrum/showWaitingPopup.dart';
+import 'package:leaf_spectrum/components/showRemarkDialog.dart';
+import 'package:leaf_spectrum/components/showWaitingPopup.dart';
 
 class Analysis extends StatefulWidget {
   final File imageFile;

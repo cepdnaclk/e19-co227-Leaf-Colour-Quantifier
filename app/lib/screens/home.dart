@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:leaf_spectrum/image_page.dart';
+import 'package:leaf_spectrum/screens/image_page.dart';
 import 'package:image_picker/image_picker.dart';
 
 

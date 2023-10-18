@@ -1,13 +1,13 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'package:leaf_spectrum/processed_image.dart';
+import 'package:leaf_spectrum/screens/processed_image.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:io';
-import 'package:leaf_spectrum/showWaitingPopup.dart';
+import 'package:leaf_spectrum/components/showWaitingPopup.dart';
 
-import 'models/server_connection.dart';
+import '../models/server_connection.dart';
 
 class Annotator extends StatefulWidget {
   final File imageFile;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:leaf_spectrum/models/server_connection.dart';
-import 'package:leaf_spectrum/processed_image.dart';
-import 'package:leaf_spectrum/showWaitingPopup.dart';
+import 'package:leaf_spectrum/screens/processed_image.dart';
+import 'package:leaf_spectrum/components/showWaitingPopup.dart';
 
 class ImagePage extends StatelessWidget {
   final File imageFile;
