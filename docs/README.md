@@ -109,7 +109,7 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 
 - **Report Generation**
 
-  Exporting a professional report from the analysis done, thereby facilitating a platform independent method for users to share the color distribution     
+  Exporting a professional report from the analysis done, thereby facilitating a platform independent method for users to share the color distribution  
   information. 
 
 <p align="center">
