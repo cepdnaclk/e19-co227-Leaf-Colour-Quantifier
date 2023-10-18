@@ -8,7 +8,7 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import tempfile as tp
 import imutils
-from dominant import get_dominant_colors
+from image_processing.report.dominant import get_dominant_colors
 
 def getHistogram(img, mask):
     # assert img is not None, "file could not be read, check with os.path.exists()"
