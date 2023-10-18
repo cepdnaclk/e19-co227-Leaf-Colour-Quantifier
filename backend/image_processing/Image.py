@@ -97,4 +97,4 @@ class Image:
         Returns:
             Segmented image.
         """
-        return segment_leaf(self.resizeImage(getLeafMask(self.image, mask)), 1, True, 0)
+        return self.resizeImage(segment_leaf(getLeafMask(self.image, mask), 1, True, 0))
