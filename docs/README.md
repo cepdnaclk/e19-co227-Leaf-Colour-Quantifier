@@ -99,18 +99,15 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 <!-- ![segmentedLeaf](./images/proc_img.jpeg) -->
 
 - **Color Analysis**
-- *Histogram*  
-  The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
+
+Channel separated histograms and pie charts in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
 <p align="center">
   <img src="./images/analysis.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+   <img src="./images/dominant_colours.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+</p>
 
-</p>
-- *Pie Chart*
-<p align="center">
-  
-  <img src="./images/dominant_colours.jpeg" alt="Image" width="300" style="margin: 0 5px;">
-</p>
+
 
 <!-- ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg) -->
 
