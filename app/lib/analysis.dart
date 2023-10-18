@@ -138,9 +138,10 @@ class _AnalysisState extends State<Analysis> {
             child: FloatingActionButton.extended(
               // heroTag: "ProcessedImage: Improve Selection",
               shape: const StadiumBorder(
-                  side: BorderSide(color: Color.fromRGBO(119, 182, 178, 0.4), width: 1)),
-              foregroundColor: Color.fromRGBO(119, 182, 178, 1.0),
-              backgroundColor: Color.fromRGBO(28, 47, 46, 1.0),
+                  side: BorderSide(color: Color.fromRGBO(
+                      40, 40, 40, 1.0), width: 1)),
+              foregroundColor: Color.fromRGBO(220, 220, 220, 1.0),
+              backgroundColor: Color.fromRGBO(28, 28, 28, 1.0),
               onPressed: () {
                 Navigator.push(
                   context,
