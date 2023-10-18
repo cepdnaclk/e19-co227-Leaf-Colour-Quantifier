@@ -8,7 +8,7 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import tempfile as tp
 import imutils
-import dominant
+from dominant import get_dominant_colors
 
 def getHistogram(img, mask):
     # assert img is not None, "file could not be read, check with os.path.exists()"
@@ -37,7 +37,7 @@ def getHistogram(img, mask):
 def getColorSpreads(img):
 
     # Assuming you have already obtained the output from the function
-    top_colors, color_spreads, color_percentages = dominant.get_dominant_colors(img)
+    top_colors, color_spreads, color_percentages = get_dominant_colors(img)
 
     # Extract color labels for the pie chart
     color_labels = [f"Color {i+1}" for i in range(len(color_percentages))]
