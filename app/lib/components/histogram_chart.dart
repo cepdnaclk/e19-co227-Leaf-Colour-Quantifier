@@ -50,7 +50,7 @@ class Histogram extends StatelessWidget {
 
     //Instead of showing 1000 -> 1K
     String text;
-    text = '${value~/ 1000}k';
+    text = '${(value/ 1000).toStringAsFixed(1)}k';
 
     if (value.toInt() == 0) {
       return const Text("");
@@ -66,7 +66,7 @@ class Histogram extends StatelessWidget {
     getTitlesWidget: leftTitleWidgets,
     showTitles: true,
     interval: histogramData.getMaximum() / 10,
-    reservedSize: 24, // Reserve 24 Pixels for the Y labels
+    reservedSize: 28, // Reserve 24 Pixels for the Y labels
   );
 
   Widget rightTitleWidgets(double value, TitleMeta meta) {

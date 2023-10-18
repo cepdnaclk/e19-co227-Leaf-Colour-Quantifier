@@ -11,8 +11,13 @@ import 'package:open_file_plus/open_file_plus.dart';
 import 'package:intl/intl.dart';
 
 class ServerConnection {
+  //Singleton Design Pattern to establish connection with the backend
   static final ServerConnection _singleton = ServerConnection._internal();
+
+  //Local Path URL
   static const String _baseUrl = 'http://192.168.8.104:5000';
+
+  //Hosted URL
   //static const String _baseUrl = 'http://agbc-fe.pdn.ac.lk:5000';
 
   factory ServerConnection() {
@@ -22,6 +27,7 @@ class ServerConnection {
   ServerConnection._internal();
 
   Future<File> sendImageAndGetProcessedImage(File imageFile) async {
+    // Sends image to the server and get the processed image
     var url = Uri.parse('$_baseUrl/image/segmentaion');
     var request = http.MultipartRequest('POST', url);
     var file = await http.MultipartFile.fromPath('file', imageFile.path);
@@ -46,6 +52,7 @@ class ServerConnection {
   }
 
   Future<DominantColorsData> getDominantColorsFromImage(File imageFile) async {
+    //Send processed image to the server to get the dominant colors
     var url = Uri.parse('$_baseUrl/analysis/dominant');
     var request = http.MultipartRequest('POST', url);
 
@@ -66,6 +73,8 @@ class ServerConnection {
 
   Future<File> sendImageAndMaskAndGetProcessedImage(
       File imageFile, Uint8List maskBytes) async {
+
+    //Send the original image and the mask to get the processed image
     var url = Uri.parse('$_baseUrl/image/segmentaion/mask');
     var request = http.MultipartRequest('POST', url);
 
@@ -98,6 +107,8 @@ class ServerConnection {
 
   Future<void> sendDataToServer(File processedImage, File imageFile,
       String text, BuildContext context) async {
+
+    //For report Generation
     Dio dio = Dio();
 
     Map<String, dynamic> queryParameters = {
