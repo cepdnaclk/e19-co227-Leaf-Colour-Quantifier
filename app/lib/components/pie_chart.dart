@@ -11,7 +11,6 @@ class PieChartWidget extends StatefulWidget {
 }
 
 class _PieChartWidgetState extends State<PieChartWidget> {
-  // late int touchedIndex;
 
   @override
   Widget build(BuildContext context) =>
