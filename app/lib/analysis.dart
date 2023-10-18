@@ -134,7 +134,7 @@ class _AnalysisState extends State<Analysis> {
         direction: Axis.horizontal,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(6),
             child: FloatingActionButton.extended(
               // heroTag: "ProcessedImage: Improve Selection",
               shape: const StadiumBorder(
@@ -161,7 +161,7 @@ class _AnalysisState extends State<Analysis> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(6),
             child: FloatingActionButton.extended(
               heroTag: "ProcessedImage: Go to Analysis",
               onPressed: () async {

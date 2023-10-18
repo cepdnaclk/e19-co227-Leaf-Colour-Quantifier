@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   File? imageFile;
-  String? dropDownValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
