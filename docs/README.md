@@ -104,6 +104,11 @@ Traditional methods of leaf color assessment have long relied on subjective huma
 
 <p align="center">
   <img src="./images/analysis.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+
+</p>
+- *Pie Chart*
+<p align="center">
+  
   <img src="./images/dominant_colours.jpeg" alt="Image" width="300" style="margin: 0 5px;">
 </p>
 
