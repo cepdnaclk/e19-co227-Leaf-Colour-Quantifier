@@ -33,13 +33,13 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Challenges With Traditional Method](#challenges_with_traditional_method)
-3. [Our Solution](#our_solution)
-4. [Key Features](#key_features)
-5. [Tech Stack](#tech_stack)
-6. [Leaf Segmentation Techniques](#leaf_segmentation_techniques)
-7. [Dominant Color Extractions](#dominant_color_extraction)
-8. [Report Generation](#report_generation)
+2. [Challenges With Traditional Method](#challenges-with-traditional-method)
+3. [Our Solution](#our-solution)
+4. [Key Features](#key-features)
+5. [Tech Stack](#tech-stack)
+6. [Leaf Segmentation Techniques](#leaf-segmentation-techniques)
+7. [Dominant Color Extractions](#dominant-color-extraction)
+8. [Report Generation](#report-generation)
 9. [Links](#links)
 
 ---
