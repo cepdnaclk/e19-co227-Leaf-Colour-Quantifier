@@ -3,7 +3,7 @@ import cv2
 from image_processing.leafSegmentation.segment import segment_leaf
 from image_processing.mask_r_cnn.leaf_colour_segmentation import getRCNNSegmentation
 from image_processing.dominantColours.dominant import get_dominant_colors
-from image_processing.leafSegmentationMask.segmentationMask import getLeafUsingMark
+from image_processing.leafSegmentationMask.segmentationMask import getLeafUsingMark, getLeafMask
 from image_processing.define import *
 
 class Image:
@@ -75,6 +75,18 @@ class Image:
         """Get the dominant colors in the input image."""
         return get_dominant_colors(self.resizeImage(self.image))
 
+    # def getSegmentationImageUsingMark(self, mask):
+    #     """
+    #     Get a segmented image using a provided mask.
+
+    #     Args:
+    #         mask: Binary mask used for segmentation.
+
+    #     Returns:
+    #         Segmented image.
+    #     """
+    #     return self.resizeImage(getLeafUsingMark(self.image, mask))
+    
     def getSegmentationImageUsingMark(self, mask):
         """
         Get a segmented image using a provided mask.
@@ -85,4 +97,4 @@ class Image:
         Returns:
             Segmented image.
         """
-        return self.resizeImage(getLeafUsingMark(self.image, mask))
+        return segment_leaf(self.resizeImage(getLeafMask(self.image, mask)), 1, True, 0)
