@@ -33,7 +33,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Challenges With Traditional Method](#challenges_with_traditional_method)
+2. [Challenges With Traditional Method](#challenges with traditional method)
 3. [Our Solution](#our_solution)
 4. [Key Features](#key_features)
 5. [Tech Stack](#tech_stack)
