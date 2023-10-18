@@ -8,7 +8,7 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import tempfile as tp
 import imutils
-
+import dominant
 
 def getHistogram(img, mask):
     # assert img is not None, "file could not be read, check with os.path.exists()"
@@ -34,6 +34,22 @@ def getHistogram(img, mask):
 
     # plt.show()
 
+def getColorSpreads(img):
+
+    # Assuming you have already obtained the output from the function
+    top_colors, color_spreads, color_percentages = dominant.get_dominant_colors(img)
+
+    # Extract color labels for the pie chart
+    color_labels = [f"Color {i+1}" for i in range(len(color_percentages))]
+
+    # Create a pie chart
+    fig, ax = plt.subplots()
+    ax.pie(color_percentages, labels=color_labels, autopct='%1.1f%%', startangle=90, colors=[tuple(color) for color in top_colors])
+    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    plt.title('Top Color Percentages')
+    plt.savefig("dominentColors.jpg",bbox_inches= 'tight')
+    plt.close()
 
 def getHistogramChannelWise(img, col, colours, i, mask):
     # print('inside channel wise function')
@@ -95,6 +111,8 @@ def createPDF(img, logo, segmentedImg, remarks):
     can.drawInlineImage("histogramr.jpg", 20, height-520,
                         width=280, preserveAspectRatio=True)
 
+    getColorSpreads(segmentedImg)
+    can.drawInlineImage("dominentColors.jpg",height-650, width = 280, preserveAspectRatio=True)
     can.setFont("Times-Roman", 14)
     can.drawString(70, height-650, "Remarks: "+remarks)
     can.drawInlineImage("./blacklogo.jpg", width-120, height-890, width=100,

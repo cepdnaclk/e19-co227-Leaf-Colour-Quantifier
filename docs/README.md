@@ -76,7 +76,7 @@ Traditional methods of leaf color assessment have long relied on subjective huma
   The selected image before processing
 
 <p align="center">
-  <img src="./images/cap_img.jpeg" alt="Image" width="300">
+  <img src="./images/captured_image.jpeg" alt="Image" width="300">
 </p>
 
 <!-- ![selectedImage](./images/cap_img.jpeg) -->
@@ -85,7 +85,15 @@ Traditional methods of leaf color assessment have long relied on subjective huma
   When you capture a leaf image or import one from your gallery, the segmentation algorithm goes to work. It carefully identifies and separates the leaf from its surroundings, effectively isolating it.
 
 <p align="center">
-  <img src="./images/proc_img.jpeg" alt="Image" width="300">
+  <img src="./images/processed_image.jpeg" alt="Image" width="300">
+</p>
+
+- **Manual Masking**  
+  If the image was not segmented properly user can navigate to manually improve the selection by painting over it
+
+<p align="center">
+  <img src="./images/paint_over_the_leaf.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+  <img src="./images/half_painted.jpeg" alt="Image" width="300" style="margin: 0 5px;">
 </p>
 
 <!-- ![segmentedLeaf](./images/proc_img.jpeg) -->
@@ -94,8 +102,8 @@ Traditional methods of leaf color assessment have long relied on subjective huma
   The histogram feature in LeafSpectrum generates a graphical representation of the leaf's color distribution. It displays how various color values are distributed across the leaf image, enabling users to precisely quantify and understand its color characteristics. Also it has the ability to selectively refine the histogram based on individual color channels, namely Red, Green, and Blue.
 
 <p align="center">
-  <img src="./images/histogram.jpeg" alt="Image" width="300" style="margin: 0 5px;">
-  <img src="./images/red_fil.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+  <img src="./images/analysis.jpeg" alt="Image" width="300" style="margin: 0 5px;">
+  <img src="./images/dominant_colours.jpeg" alt="Image" width="300" style="margin: 0 5px;">
 </p>
 
 <!-- ![histogram](./images/histogram.jpeg) ![histogram](./images/red_fil.jpeg) -->
