@@ -49,8 +49,8 @@ async def read_main():
 
 # Main function to run the FastAPI application using uvicorn
 def api():
-    uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=True)
+    uvicorn.run("rest_api.api:app", host="0.0.0.0", port=5000, reload=False)
 
 # Check if this script is being run as the main program and start the FastAPI application
 if __name__ == "__main__":
-    uvicorn.run("api:app", host="0.0.0.0", port=5000, reload=True)
+    uvicorn.run("api:app", host="0.0.0.0", port=5000, reload=False)
